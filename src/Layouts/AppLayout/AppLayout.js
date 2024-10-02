@@ -5,6 +5,7 @@ import Header from '../../Components/Header/Header';
 import Banner from '../../Components/Banner/Banner';
 import OrderSummary from '../../Components/OrderSummary/OrderSummary';
 import Coupons from '../../Components/Coupons/Coupons';
+import Shipping from '../../Components/Shipping/Shipping';
 
 const AppLayout = (prop) => {
     return (
@@ -13,6 +14,7 @@ const AppLayout = (prop) => {
             <Banner></Banner>
             <OrderSummary></OrderSummary>
             <Coupons></Coupons>
+            <Shipping></Shipping>
             <main>
                 <Outlet />
             </main>

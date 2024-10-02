@@ -1,11 +1,11 @@
 .Coupons{
-    padding: 0px 10px 13px 10px;
+    padding: 0px 10px 7px 10px;
     background-color: #f7f7f7;
     height: auto;
 
     .main-coupon-section{
         min-height: 3rem;
-        border-radius: 10px;
+        border-radius: 10px 10px 0px 0px;
         background-color: #ffffff;
         border: 1px solid #f4f4f4;
         display: flex;
@@ -27,6 +27,30 @@
             font-size: 14px;
             font-weight: 700;
             cursor: pointer;
+        }
+    }
+    .promoted-coupon {
+        border: 1px solid #f4f4f4;
+        border-top: 0;
+        background-color: #ffffff;
+        font-size: 12px;
+        padding: 7px 12px;
+    }
+    .view-coupons{
+        border: 1px solid #f4f4f4;
+        border-top: 0;
+        border-radius: 0px 0px 10px 10px;
+        background-color: #ffffff;
+        font-size: 13px;
+        padding: 7px 12px 9px 12px;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items:center;
+        justify-content:start;
+        gap: 3px;
+        i {
+            font-size: 10px;
         }
     }
 }
