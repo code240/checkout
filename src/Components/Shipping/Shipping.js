@@ -6,7 +6,7 @@ const Shipping = () => {
   return (
     <div className='Shipping'>
         <h6>
-            Hii Vipin 👋, Your item will deliver to this address 😋.  
+            Hii Vipin 👋, Your delivery address is : 😋   
         </h6>
         <div class="delivery-address">
             <span className='check-absolute'>
