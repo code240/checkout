@@ -1,0 +1,117 @@
+.OrderSummary {
+    padding: 13px 10px;
+    background-color: #f7f7f7;
+    height: auto;
+
+    .order-summary-wrap {
+        border: 1px solid #f4f4f4;
+        background-color: #ffffff;
+        border-radius: 10px;
+        width: 100%;
+        padding: 15px 15px;
+
+        .summary-button {
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 500;
+            font-size: 15px;
+
+            .title-container {
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                gap: 6px;
+
+                .downchevron {
+                    display: block;
+                    margin-left: 6px;
+                }
+
+            }
+
+            .summary-price {
+                font-weight: 600;
+            }
+        }
+
+
+        .details{
+            min-height: auto;
+            margin-top: 22px;
+            
+            .detail-row{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 6px;  
+            }
+            .row-title{
+                font-size: 13px;
+                font-weight: 700;
+            }
+            .row-value{
+                font-size: 13px;
+                font-weight: 700;
+            }
+            .discount {
+                color: rgb(18, 177, 18) !important;
+            }
+        }
+
+
+
+        .summary-item-main{
+            // border: 1px solid rebeccapurple;
+            margin-top: 22px;
+            max-height: 210px;
+            overflow: auto;
+            .item{
+                display: flex;
+                margin-bottom: 4px;
+                .item-image{
+                    flex: none;
+                    overflow: hidden;
+                    width: 4rem;
+                    height: 4rem;
+                    border: 1px solid #eeeeee;
+                    border-radius: 4px;
+                    object-fit: cover;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    img{
+                        width: 100%;
+                        height: 100%;
+
+                    }
+                }
+                .item-info {
+                    flex: 1;
+                    padding:7px 8px;
+                    .title{
+                        margin: 0;
+                        color: #111111;
+                        font-size: 14px;
+                    }
+                    .quantity{
+                        margin: 0;
+                        margin-top: 4px;
+                        font-size: 13px;
+                        font-weight: 700;
+                    }
+                    .price{
+                        margin: 0;
+                        margin-top: 4px;
+                        font-size: 13px;
+                        font-weight: 700;
+                    }
+                }
+            }
+
+        }
+    }
+
+}
