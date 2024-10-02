@@ -36,6 +36,14 @@ const OrderSummary = () => {
                                     {Constants.INR} 8.00
                                 </span>
                             </div>
+                            <div className='detail-row'>
+                                <span className='quicksand row-title'>
+                                    Shipping Charges
+                                </span>
+                                <span className='quicksand row-value'>
+                                    {Constants.INR} 30.00
+                                </span>
+                            </div>
                             <div className='detail-row discount'>
                                 <span className='quicksand row-title'>
                                     Applied Discount
@@ -73,7 +81,7 @@ const OrderSummary = () => {
                                                     Quantity : 3
                                                 </h6>
                                                 <h6 className="quicksand price">
-                                                    price : 172.05
+                                                    price : {Constants.INR} 172.05
                                                 </h6>
                                             </div>
                                         </div>
