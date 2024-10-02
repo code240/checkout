@@ -1,0 +1,32 @@
+.Coupons{
+    padding: 0px 10px 13px 10px;
+    background-color: #f7f7f7;
+    height: auto;
+
+    .main-coupon-section{
+        min-height: 3rem;
+        border-radius: 10px;
+        background-color: #ffffff;
+        border: 1px solid #f4f4f4;
+        display: flex;
+        align-items: center;
+        padding: 0px 12px;
+        font-size: 16px;
+        gap: 8px;
+        input {
+            border: 0;
+            flex: 1;
+            font-size: 15px;
+            height: 100%;
+            padding: 17px 0;
+            &:focus {
+                outline: 0;
+            }
+        }
+        span {
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+    }
+}

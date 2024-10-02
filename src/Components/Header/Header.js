@@ -5,7 +5,7 @@ const Header = () => {
         <div className='Header'>
             <h6>
                 <span className='quicksand'>
-                    <i class="bi bi-chevron-left"></i>Back
+                    <i className="bi bi-chevron-left"></i>Back
                 </span>
             </h6>
             <div className='brand-logo'>
