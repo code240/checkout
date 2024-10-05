@@ -9,13 +9,15 @@
         font-weight: 400;
         display: flex;
         justify-content: space-between;
-        margin-block: 10px;
+        margin-top: 5px;
         margin-bottom: 20px;
+        align-items: center;
 
         span{
-            padding: 6px 13px;
+            padding: 4px 13px;
             background-color: #f7f7f7;
             border-radius: 10px;
+            font-size: 12px;
         }
 
     }
@@ -66,13 +68,14 @@
         .address{
             font-size: 14px;
             margin: 0;
-            margin-top: 5px;
+            margin-top: 7px;
+            line-height: 23px;
             font-weight: 500;
         }
         .identifier{
             font-size: 14px;
             margin: 0;
-            margin-top: 5px;
+            margin-top: 7px;
             font-weight: 600;
         }
 

@@ -1,0 +1,26 @@
+.ShippingMethod{
+    width: 100%;
+    background-color: #ffffff;
+    padding: 0px 20px;
+    label{
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        margin: 0;
+        gap: 6px;
+        margin-bottom: 10px;
+        input {
+            display: block;
+            margin: 0;
+        }
+        h6{
+            font-weight: 500;
+            font-size: 14px;
+            display: block;
+            margin: 0;
+        }
+    }
+    .gap{
+        height: 8rem;
+    }
+}

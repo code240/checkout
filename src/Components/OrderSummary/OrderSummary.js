@@ -4,7 +4,7 @@ import Constants from '../../Data/Constants';
 
 const OrderSummary = () => {
     const [summaryProduct,setSummaryProduct] = useState(false)
-    const products = [{},{},{}];
+    const products = [{}];
     return (
         <div className='OrderSummary'>
             <div className='order-summary-wrap'>

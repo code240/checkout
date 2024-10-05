@@ -5,30 +5,31 @@ import './Shipping.scss';
 const Shipping = () => {
   return (
     <div className='Shipping'>
-        <h6>
+        <h6 className='quicksand'>
             Hii +91 8930395227 👋, 
-            <span>
+            <span className='quicksand'>
                 Logout    
             </span>   
         </h6>
-        <div class="delivery-address">
+        <div className="delivery-address">
             <span className='check-absolute'>
                 <i className="bi bi-check-lg"></i>
             </span>
             <h2 className='quicksand customer-name'>
                 Vipin Rao 
-                <button>Edit</button>
+                <button className='quicksand'>Change</button>
             </h2>
             <h5 className='quicksand address'>
-                Village Gangaicha Ahir, Rewari, 123401
+                Village Gangaicha Ahir, Near Govt High school, Rewari, Haryana, 123401
             </h5>
             <h6 className='quicksand identifier'>
                 vipinraoxyz02@gmail.com
             </h6>
         </div>
-        <span className='quicksand change-text'>
-            Click to <b>change</b> address ? 🙄🙄  
-        </span>
+        {/* <span className='quicksand change-text'>
+            Click to <b>change</b> address
+        </span> */}
+        <div class="gap"></div>
     </div>
   )
 }

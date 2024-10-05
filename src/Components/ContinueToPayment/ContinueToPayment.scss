@@ -1,0 +1,39 @@
+.ContinueToPayment{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    max-height: 8rem;
+    padding: 10px 10px;
+    height: auto;
+    padding-top: 16px;
+    border: 1px solid #f4f4f4;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    @media screen and (max-width:550px) {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+    }
+    .button-wrap{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        button {
+            width: 70%;
+            max-width: 256px;
+            min-width: 256px;
+            border: 0;
+            background-color: #000000;
+            color: #ffffff;
+            font-size: 17px;
+            padding: 15px 25px;
+            border-radius: 10px;
+        }
+    }
+    .footer{
+        width: 100%;
+    }
+}
