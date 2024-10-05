@@ -29,7 +29,7 @@ const Shipping = () => {
         {/* <span className='quicksand change-text'>
             Click to <b>change</b> address
         </span> */}
-        <div class="gap"></div>
+        <div className="gap"></div>
     </div>
   )
 }

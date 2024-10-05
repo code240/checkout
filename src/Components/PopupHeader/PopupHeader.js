@@ -14,7 +14,7 @@ const PopupHeader = (props) => {
                 <img src='https://asvf.in/wp-content/uploads/2023/05/Logo_Black-2-002.png' alt='brand'></img>
             </div>
             <div className='third-division'>
-                <i class="bi bi-x" onClick={() => closePopup(props.page)}></i>
+                <i className="bi bi-x" onClick={() => closePopup(props.page)}></i>
             </div>
         </div>
     )

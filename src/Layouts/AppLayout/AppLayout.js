@@ -22,7 +22,7 @@ const AppLayout = (prop) => {
             <ShippingMethod></ShippingMethod>
             <ContinueToPayment></ContinueToPayment>
 
-            <div class="hiddens">
+            <div className="hiddens">
                 <Payments></Payments>
             </div>
         </div>
