@@ -7,6 +7,7 @@ import Coupons from '../../Components/Coupons/Coupons';
 import Shipping from '../../Components/Shipping/Shipping';
 import ShippingMethod from '../../Components/ShippingMethod/ShippingMethod';
 import ContinueToPayment from '../../Components/ContinueToPayment/ContinueToPayment';
+import Payments from '../../Popups/Payments/Payments';
 
 const AppLayout = (prop) => {
     return (
@@ -20,10 +21,10 @@ const AppLayout = (prop) => {
             <Shipping></Shipping>
             <ShippingMethod></ShippingMethod>
             <ContinueToPayment></ContinueToPayment>
-            {/* <main>
-                <Outlet />
-            </main> */}
-            {/* <footer></footer> */}
+
+            <div class="hiddens">
+                <Payments></Payments>
+            </div>
         </div>
     )
 }

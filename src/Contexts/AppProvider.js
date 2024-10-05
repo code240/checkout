@@ -1,12 +1,14 @@
-import React, { createContext, useState  } from 'react'
+import React, { createContext, useRef, useState  } from 'react'
 
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
     const [name,setName] = useState("Demo");
+    const paymentsPage = useRef();
     const value = {
         name,
-        setName
+        setName,
+        paymentsPage
     }
     return (
         <AppContext.Provider value={value}>

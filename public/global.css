@@ -23,6 +23,12 @@ body {
     overflow: hidden;
     overflow: auto;
     position: relative;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    
+}
+#root::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
 }
 @media screen and (max-width:550px) {
     #root {

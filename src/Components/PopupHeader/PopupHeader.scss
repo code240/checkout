@@ -1,0 +1,66 @@
+.Header{
+    height: auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #ffffff;
+    justify-content: space-between;
+    padding: 0.7rem 1rem 0.7rem 1rem;
+    border-bottom: 1px solid #f4f4f4;
+    h6{
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding-top: 2px;
+        span{
+            color: #000000;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 1px 3px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 15px;
+            width: fit-content;
+        }
+        i {
+            font-size: 10px;
+        }
+    }
+    .brand-logo {
+        max-width: 5rem;
+        max-height: 2.5rem;
+        flex: 1;
+        width: auto;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        
+    }
+    .third-division{
+        flex:1;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        i{
+            display: flex;
+            font-size: 17px;
+            font-weight: 700;
+            background-color: #f4f4f4;
+            width: 24px;
+            height: 24px;
+            border-radius: 20px;
+            align-items: center;
+            justify-content: center;
+
+
+        }
+    }
+}
