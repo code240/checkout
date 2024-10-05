@@ -6,7 +6,10 @@ const Shipping = () => {
   return (
     <div className='Shipping'>
         <h6>
-            Hii Vipin 👋, Your delivery address is : 😋   
+            Hii +91 8930395227 👋, 
+            <span>
+                Logout    
+            </span>   
         </h6>
         <div class="delivery-address">
             <span className='check-absolute'>
@@ -17,7 +20,7 @@ const Shipping = () => {
                 <button>Edit</button>
             </h2>
             <h5 className='quicksand address'>
-                Village Gangaicha Ahir, Rewari, Haryana, 123401
+                Village Gangaicha Ahir, Rewari, 123401
             </h5>
             <h6 className='quicksand identifier'>
                 vipinraoxyz02@gmail.com

@@ -7,6 +7,16 @@
         font-size: 14px;
         margin: 0;
         font-weight: 400;
+        display: flex;
+        justify-content: space-between;
+        margin-block: 10px;
+        margin-bottom: 20px;
+
+        span{
+            padding: 6px 13px;
+            background-color: #f7f7f7;
+            border-radius: 10px;
+        }
 
     }
     .change-text{
