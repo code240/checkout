@@ -1,4 +1,6 @@
-
+body {
+    user-select: none;
+}
 .outer__frame{
     /* background:rgba(0,0,0,0.4) url(https://i.ibb.co/rZdnhC6/Screenshot-2024-10-02-123502.png); */
     /* background: rgba(0, 0, 0, 0.4) url(https://i.ibb.co/rZdnhC6/Screenshot-2024-10-02-123502.png) no-repeat center/cover; */
@@ -19,6 +21,8 @@
     border-radius: 1rem;
     background-color: #ffffff;
     overflow: hidden;
+    overflow: auto;
+    position: relative;
 }
 @media screen and (max-width:550px) {
     #root {
