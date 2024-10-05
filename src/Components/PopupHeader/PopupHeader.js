@@ -4,7 +4,7 @@ import { closePopup } from '../../Helper/Helper';
 const PopupHeader = (props) => {
 
     return (
-        <div className='Header'>
+        <div className='PopupHeader'>
             <h6>
                 {/* <span className='quicksand'>
                     <i className="bi bi-chevron-left"></i>Back
