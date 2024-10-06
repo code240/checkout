@@ -44,7 +44,7 @@ const UpiPayment = () => {
                     }
                     <div className={isqrcode ? 'upi-input' : 'upi-input only-upi-field'}>
                         <input type="text" className='upi-input-field' placeholder='my-upi-id@xyz' />
-                        <button className='upi-pay'>Pay Now</button>
+                        <button className='upi-pay quicksand'>Pay Now</button>
                     </div>
                 </div>
                 <hr className='upi-partition' />
