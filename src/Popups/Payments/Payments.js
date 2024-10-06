@@ -83,6 +83,23 @@ const Payments = () => {
                                 <div class="icon1" style={{backgroundImage:`url('${Constants.images.public.phonepewallet}')`}}></div>
                             </div>
                         </button>
+                        <button className='payment-button'>
+                            <span class="quicksand offer-text">
+                                Get 5% discount
+                            </span>
+                            <div class="left">
+                                <h6 className='quicksand'>
+                                   Cash on delivery
+                                </h6>
+                                <h5 className='quicksand'>
+                                    INR 172.05 
+                                </h5>
+                            </div>
+                            <div class="right">
+                                <div class="icon1" style={{backgroundImage:`url('${Constants.images.public.cod}')`}}></div>
+                            </div>
+                        </button>
+                        
                     </div>
                 </div>
 

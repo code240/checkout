@@ -15,6 +15,7 @@ const Constants = {
             phonepewallet : "/assets/phonepe.jpg",
             rupay : "/assets/rupay.png",
             visa : "/assets/visa.png",
+            cod : '/assets/cash-on-delivery.png'
         }
     }
 }
