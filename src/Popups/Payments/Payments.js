@@ -33,7 +33,7 @@ const Payments = () => {
                 </h6>
                 {selectedMethod === "NETBANKING" ? (
                     <>
-                        <NetBankingPayment></NetBankingPayment>
+                        <NetBankingPayment setSelectedMethod={setSelectedMethod}></NetBankingPayment>
                     </>
                 ) : null}
                 {selectedMethod === "WALLET" ? (

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "./NetBankingPayment.scss";
 
-const NetBankingPayment = () => {
+const NetBankingPayment = ({setSelectedMethod}) => {
     return (
         <div className="UpiPayment">
             <div class="upi-section">
                 <span class="quicksand offer-text">Get 5% discount</span>
                 <div className="icons">
-                    <div className="nb-card">
+                    <div className="nb-card" onClick={() => setSelectedMethod("")}>
                         <div class="ico">
                             <img
                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoDjplJYoxWKpPmVvuh9WXqjhoRMHnWzF-JQ&s"
