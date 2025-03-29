@@ -5,25 +5,28 @@ import PopupHeader from "../../Components/PopupHeader/PopupHeader";
 import Constants from "../../Data/Constants";
 import UpiPayment from "../../Components/UpiPayment/UpiPayment";
 import NetBankingPayment from "../../Components/NetBankingPayment/NetBankingPayment";
+import WalletPayment from "../../Components/WalletPayment/WalletPayment";
+import CardPayment from "../../Components/CardPayment/CardPayment";
+
 
 const Payments = () => {
     const { paymentsPage } = useContext(AppContext);
-    const [selectedMethod, setSelectedMethod] = useState("NETBANKING");
+    const [selectedMethod, setSelectedMethod] = useState("");
 
     return (
         <div className="Payments" ref={paymentsPage}>
             <main>
                 <div className="popup-sticky-header">
                     <PopupHeader page={paymentsPage}></PopupHeader>
-                    <div class="shipping-banner">
-                        <span class="quicksand">Shipping Charges added</span>
-                        <span class="quicksand bold">
+                    <div className="shipping-banner">
+                        <span className="quicksand">Shipping Charges added</span>
+                        <span className="quicksand bold">
                             {Constants.INR} 50.00
                         </span>
                     </div>
-                    <div class="total">
-                        <span class="quicksand">Grand Total</span>
-                        <span class="quicksand bold">
+                    <div className="total">
+                        <span className="quicksand">Grand Total</span>
+                        <span className="quicksand bold">
                             {Constants.INR} 212.05
                         </span>
                     </div>
@@ -38,44 +41,44 @@ const Payments = () => {
                 ) : null}
                 {selectedMethod === "WALLET" ? (
                     <>
-                        <NetBankingPayment></NetBankingPayment>
+                    <WalletPayment setSelectedMethod={setSelectedMethod}></WalletPayment>
                     </>
                 ) : null}
                 {selectedMethod === "CARDS" ? (
                     <>
-                        <NetBankingPayment></NetBankingPayment>
+                        <CardPayment setSelectedMethod={setSelectedMethod}></CardPayment>
                     </>
                 ) : null}
                 {selectedMethod === "" ? (
                     <div>
                         <UpiPayment></UpiPayment>
-                        <div class="btn-wrap">
+                        <div className="btn-wrap">
                             <button
                                 className="payment-button"
-                                onClick={() => setSelectedMethod("CARD")}
+                                onClick={() => setSelectedMethod("CARDS")}
                             >
-                                <span class="quicksand offer-text">
+                                <span className="quicksand offer-text">
                                     Get 5% discount
                                 </span>
-                                <div class="left">
+                                <div className="left">
                                     <h6 className="quicksand">Pay Via Cards</h6>
                                     <h5 className="quicksand">INR 172.05</h5>
                                 </div>
-                                <div class="right">
+                                <div className="right">
                                     <div
-                                        class="icon1"
+                                        className="icon1"
                                         style={{
                                             backgroundImage: `url('${Constants.images.public.mastercard}')`,
                                         }}
                                     ></div>
                                     <div
-                                        class="icon1"
+                                        className="icon1"
                                         style={{
                                             backgroundImage: `url('${Constants.images.public.visa}')`,
                                         }}
                                     ></div>
                                     <div
-                                        class="icon1"
+                                        className="icon1"
                                         style={{
                                             backgroundImage: `url('${Constants.images.public.rupay}')`,
                                         }}
@@ -86,30 +89,30 @@ const Payments = () => {
                                 className="payment-button"
                                 onClick={() => setSelectedMethod("NETBANKING")}
                             >
-                                <span class="quicksand offer-text">
+                                <span className="quicksand offer-text">
                                     Get 5% discount
                                 </span>
-                                <div class="left">
+                                <div className="left">
                                     <h6 className="quicksand">
                                         Pay Via Netbanking
                                     </h6>
                                     <h5 className="quicksand">INR 172.05</h5>
                                 </div>
-                                <div class="right">
+                                <div className="right">
                                     <div
-                                        class="icon1"
+                                        className="icon1"
                                         style={{
                                             backgroundImage: `url('${Constants.images.public.axis}')`,
                                         }}
                                     ></div>
                                     <div
-                                        class="icon1"
+                                        className="icon1"
                                         style={{
                                             backgroundImage: `url('${Constants.images.public.kotak}')`,
                                         }}
                                     ></div>
                                     <div
-                                        class="icon1"
+                                        className="icon1"
                                         style={{
                                             backgroundImage: `url('${Constants.images.public.hdfc}')`,
                                         }}
@@ -120,30 +123,30 @@ const Payments = () => {
                                 className="payment-button"
                                 onClick={() => setSelectedMethod("WALLET")}
                             >
-                                <span class="quicksand offer-text">
+                                <span className="quicksand offer-text">
                                     Get 5% discount
                                 </span>
-                                <div class="left">
+                                <div className="left">
                                     <h6 className="quicksand">
                                         Pay Via Wallets
                                     </h6>
                                     <h5 className="quicksand">INR 172.05</h5>
                                 </div>
-                                <div class="right">
+                                <div className="right">
                                     <div
-                                        class="icon1"
+                                        className="icon1"
                                         style={{
                                             backgroundImage: `url('${Constants.images.public.paytm}')`,
                                         }}
                                     ></div>
                                     <div
-                                        class="icon1"
+                                        className="icon1"
                                         style={{
                                             backgroundImage: `url('${Constants.images.public.mobikwik}')`,
                                         }}
                                     ></div>
                                     <div
-                                        class="icon1"
+                                        className="icon1"
                                         style={{
                                             backgroundImage: `url('${Constants.images.public.phonepewallet}')`,
                                         }}
@@ -156,18 +159,18 @@ const Payments = () => {
                                     setSelectedMethod("CASHONDELIVERY")
                                 }
                             >
-                                <span class="quicksand offer-text">
+                                <span className="quicksand offer-text">
                                     Get 5% discount
                                 </span>
-                                <div class="left">
+                                <div className="left">
                                     <h6 className="quicksand">
                                         Cash on delivery
                                     </h6>
                                     <h5 className="quicksand">INR 172.05</h5>
                                 </div>
-                                <div class="right">
+                                <div className="right">
                                     <div
-                                        class="icon1"
+                                        className="icon1"
                                         style={{
                                             backgroundImage: `url('${Constants.images.public.cod}')`,
                                         }}

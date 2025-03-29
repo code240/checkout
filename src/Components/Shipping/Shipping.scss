@@ -25,12 +25,15 @@
         display: block;
         font-size: 14px;
         margin: 0;
-        font-weight: 400;
-        margin-top: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 20px;
+        margin-bottom: 5px;
+        color: var(--quick-primary-color);
     }
     .delivery-address{
         width: 100%;
-        border: 1px solid #000000;
+        border: 1px solid var(--quick-primary-color);
         margin-top: 15px;
         height: auto;
         overflow: hidden;
@@ -39,7 +42,7 @@
         position: relative;
         .check-absolute{
             position: absolute;
-            background-color: #000000;
+            background-color: var(--quick-primary-color);
             color: #ffffff;
             display: block;
             top: 0;

@@ -7,7 +7,7 @@ const Coupons = () => {
         <div className="main-coupon-section">
             <i className="bi bi-stars"></i>
             <input type="text" spellCheck="false" placeholder='Enter Coupon code' className='quicksand' />
-            <span className='quicksand'>Apply</span>
+            <span className='quicksand apply-button'>Apply</span>
         </div>
         {
             false ? (

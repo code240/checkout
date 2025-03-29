@@ -26,9 +26,9 @@ const Shipping = () => {
                 vipinraoxyz02@gmail.com
             </h6>
         </div>
-        {/* <span className='quicksand change-text'>
-            Click to <b>change</b> address
-        </span> */}
+        <span className='quicksand change-text'>
+            <i className='bi bi-plus-lg'></i> Use different address
+        </span>
         <div className="gap"></div>
     </div>
   )

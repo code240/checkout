@@ -16,7 +16,7 @@ body {
     justify-content: center;
 }
 #root{
-    width: 28rem;
+    width: 30rem;
     height: 90vh;
     border-radius: 1rem;
     background-color: #ffffff;
@@ -52,7 +52,7 @@ body {
 /* For all scrollable elements */
 * {
     scrollbar-width: thin; /* Firefox */
-    scrollbar-color: #000000 rgba(255, 255, 255, 0); /* Scrollbar thumb color and track color for Firefox */
+    scrollbar-color: var(--quick-primary-color) rgba(255, 255, 255, 0); /* Scrollbar thumb color and track color for Firefox */
 }
 
 /* WebKit Browsers (Chrome, Safari, Edge) */

@@ -6,21 +6,21 @@ const UpiPayment = () => {
 
     return (
         <div className='UpiPayment'>
-            <div class="upi-section">
-                <span class="quicksand offer-text">
+            <div className="upi-section">
+                <span className="quicksand offer-text">
                     Get 5% discount
                 </span>
                 <div className='icons'>
-                    <div class="ico">
+                    <div className="ico">
                         <img src="https://pbs.twimg.com/profile_images/1615271089705463811/v-emhrqu_400x400.png" alt="phonepe" />
                     </div>
-                    <div class="ico">
+                    <div className="ico">
                         <img src="https://i.pinimg.com/736x/ea/4d/f5/ea4df535ef139dc6b904040a8323095f.jpg" alt="phonepe" />
                     </div>
-                    <div class="ico">
+                    <div className="ico">
                         <img src="https://static.vecteezy.com/system/resources/thumbnails/019/909/641/small/paytm-transparent-paytm-free-free-png.png" alt="phonepe" />
                     </div>
-                    <div class="ico">
+                    <div className="ico">
                         <img src="https://img.icons8.com/color/512/bhim.png" alt="phonepe" />
                     </div>
                 </div>
@@ -30,7 +30,7 @@ const UpiPayment = () => {
                         isqrcode ? (
                             <div className="qr-wrap">
                                 <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=007010100273206@UTIB0000007.ifsc.npci&pn=National%20Relief%20Fund&size=150x150" alt="UPI_QR" loading='lazy' />
-                                <div class="qr-hide-wrap">
+                                <div className="qr-hide-wrap">
                                     <span className='quicksand'>
                                         Click to see QR Code
                                     </span>
@@ -45,10 +45,10 @@ const UpiPayment = () => {
                     </div>
                 </div>
                 <hr className='upi-partition' />
-                <div class="vpa-accounts">
-                    <h6 class="quicksand vpa">8930395227@ybl</h6>
-                    <h6 class="quicksand vpa">vipinrao@axl</h6>
-                    <h6 class="quicksand vpa">vipin8930@paytm</h6>
+                <div className="vpa-accounts">
+                    <h6 className="quicksand vpa">8930395227@ybl</h6>
+                    <h6 className="quicksand vpa">vipinrao@axl</h6>
+                    <h6 className="quicksand vpa">vipin8930@paytm</h6>
                 </div>
             </div>
         </div>

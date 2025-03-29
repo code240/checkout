@@ -13,7 +13,7 @@
             position: absolute;
             top: 0;
             left: 50%;
-            background-color: #00bb00;
+            background-color: var(--quick-success-color);
             border-radius: 15px;
             color: #ffffff;
             padding: 3px 15px;
@@ -75,7 +75,7 @@
                     align-items: center;
                     justify-content: center;
                     span {
-                        background-color: #000000;
+                        background-color: var(--quick-primary-color);
                         color: #ffffff;
                         font-size: 12px;
                         padding: 7px 5px;
@@ -120,7 +120,7 @@
                 width: 100%;
                 border: 0;
                 border-radius: 5px;
-                background-color: #000000;
+                background-color: var(--quick-primary-color);
                 color: #ffffff;
                
             }
@@ -149,7 +149,7 @@
                 margin: 0;
                 padding: 4px 15px;
                 background-color: #f4f4f4;
-                color: #000000;
+                color: #010101;
                 border-radius: 13px;
                 font-size: 13px;
                 cursor: pointer;

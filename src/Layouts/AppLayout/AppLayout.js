@@ -10,6 +10,9 @@ import ContinueToPayment from '../../Components/ContinueToPayment/ContinueToPaym
 import Payments from '../../Popups/Payments/Payments';
 
 const AppLayout = (prop) => {
+    document.documentElement.style.setProperty("--quick-primary-color", "#006bed");
+    document.documentElement.style.setProperty("--quick-success-color", "#608d60");
+
     return (
         <div className='Layout'>
             <div className='sticky-to-top'>

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import "./NetBankingPayment.scss";
+import "./WalletPayment.scss";
 
-const NetBankingPayment = ({setSelectedMethod}) => {
+const WalletPayment = ({setSelectedMethod}) => {
     return (
-        <div className="NetBankingPayment">
+        <div className="WalletPayment">
             <h6 className="quicksand back-icon" onClick={() => setSelectedMethod("")}>
-                <i className="bi bi-arrow-left-short"></i> Pay via netbanking
+                <i className="bi bi-arrow-left-short"></i> Pay via wallet
             </h6>
             <div className="upi-section">
                 <span className="quicksand offer-text">Get 5% discount</span>
                 <div className="icons">
-                    <div className="nb-card">
+                    <div className="nb-card" onClick={() => setSelectedMethod("")}>
                         <div className="ico">
                             <img
                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoDjplJYoxWKpPmVvuh9WXqjhoRMHnWzF-JQ&s"
@@ -59,42 +59,6 @@ const NetBankingPayment = ({setSelectedMethod}) => {
                         </div>
                         <span className="quicksand bankName text-truncate">Canara Bank</span>
                     </div>
-
-
-
-                    <div className="nb-card">
-                        <div className="ico">
-                            <img
-                                src="https://1000logos.net/wp-content/uploads/2021/06/Bank-of-Baroda-icon.png"
-                                alt="phonepe"
-                            />
-                        </div>
-                        <span className="quicksand bankName text-truncate">Bank of baroda</span>
-                    </div>
-
-                </div>
-                <hr className="upi-partition" />
-                <div className="qr-with-upi">
-                    <div className={"upi-input only-upi-field"}>
-                        <select
-                            type="text"
-                            className="upi-input-field"
-                            placeholder="my-upi-id@xyz"
-                        >
-                            <option value="">Punjab National Bank</option>
-                            <option value="">Bank of India</option>
-                            <option value="">IDBI Bank</option>
-                            <option value="">Jio payments Bank</option>
-                        </select>
-                        <button className="upi-pay quicksand">Pay</button>
-                    </div>
-                </div>
-                <hr className="upi-partition" />
-                <div className="vpa-accounts">
-                    <h6 className="quicksand vpa">Federal Bank</h6>
-                    <h6 className="quicksand vpa">Union bank</h6>
-                    <h6 className="quicksand vpa">Airtel Bank</h6>
-                    <h6 className="quicksand vpa">Punjab National Bank</h6>
                 </div>
             </div>
             <h6 className="back-option quicksand" onClick={() => setSelectedMethod("")}>
@@ -104,4 +68,4 @@ const NetBankingPayment = ({setSelectedMethod}) => {
     );
 };
 
-export default NetBankingPayment;
+export default WalletPayment;

@@ -16,7 +16,7 @@
         align-items: center;
         padding-top: 2px;
         span{
-            color: #000000;
+            color: var(--quick-primary-color);
             font-weight: 500;
             cursor: pointer;
             padding: 1px 3px;
@@ -57,7 +57,7 @@
             font-size: 17px;
             font-weight: 700;
             background-color: #f4f4f4;
-            color: #000000;
+            color: var(--quick-primary-color);
             width: 24px;
             height: 24px;
             border-radius: 20px;
