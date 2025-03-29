@@ -23,9 +23,6 @@ const UpiPayment = () => {
                     <div class="ico">
                         <img src="https://img.icons8.com/color/512/bhim.png" alt="phonepe" />
                     </div>
-                    <div class="ico">
-                        <img src="https://yt3.googleusercontent.com/QI4nyLQV7enKT5hvyJfs7UPoY9PZf3HQYxT5GM56GWiuXo4us2huT7Hru2FNCrgxsPSIJuNzyA=s900-c-k-c0x00ffffff-no-rj" alt="phonepe" />
-                    </div>
                 </div>
                 <hr className='upi-partition' />
                 <div className='qr-with-upi'>
