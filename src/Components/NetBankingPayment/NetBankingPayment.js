@@ -14,7 +14,7 @@ const NetBankingPayment = ({setSelectedMethod}) => {
                                 alt="phonepe"
                             />
                         </div>
-                        <span className="quicksand bankName">State bank of India</span>
+                        <span className="quicksand bankName text-truncate">State bank of India</span>
                     </div>
 
                     <div className="nb-card">
@@ -24,7 +24,7 @@ const NetBankingPayment = ({setSelectedMethod}) => {
                                 alt="phonepe"
                             />
                         </div>
-                        <span className="quicksand bankName">Kotak mahindra bank</span>
+                        <span className="quicksand bankName text-truncate">Kotak mahindra bank</span>
                     </div>
 
                     <div className="nb-card">
@@ -34,7 +34,7 @@ const NetBankingPayment = ({setSelectedMethod}) => {
                                 alt="phonepe"
                             />
                         </div>
-                        <span className="quicksand bankName">HDFC Bank</span>
+                        <span className="quicksand bankName text-truncate">HDFC Bank</span>
                     </div>
 
                     <div className="nb-card">
@@ -44,7 +44,7 @@ const NetBankingPayment = ({setSelectedMethod}) => {
                                 alt="phonepe"
                             />
                         </div>
-                        <span className="quicksand bankName">Axis Bank</span>
+                        <span className="quicksand bankName text-truncate">Axis Bank</span>
                     </div>
 
                     <div className="nb-card">
@@ -54,7 +54,7 @@ const NetBankingPayment = ({setSelectedMethod}) => {
                                 alt="phonepe"
                             />
                         </div>
-                        <span className="quicksand bankName">Canara Bank</span>
+                        <span className="quicksand bankName text-truncate">Canara Bank</span>
                     </div>
 
 
@@ -66,7 +66,7 @@ const NetBankingPayment = ({setSelectedMethod}) => {
                                 alt="phonepe"
                             />
                         </div>
-                        <span className="quicksand bankName">Bank of baroda</span>
+                        <span className="quicksand bankName text-truncate">Bank of baroda</span>
                     </div>
 
                 </div>
