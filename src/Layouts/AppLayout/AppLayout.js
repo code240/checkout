@@ -8,6 +8,8 @@ import Shipping from '../../Components/Shipping/Shipping';
 import ShippingMethod from '../../Components/ShippingMethod/ShippingMethod';
 import ContinueToPayment from '../../Components/ContinueToPayment/ContinueToPayment';
 import Payments from '../../Popups/Payments/Payments';
+import AddressSelection from '../../Popups/AddressSelection/AddressSelection';
+import AddressFields from '../../Popups/AddressFields/AddressFields';
 
 const AppLayout = (prop) => {
     document.documentElement.style.setProperty("--quick-primary-color", "#006bed");
@@ -27,6 +29,8 @@ const AppLayout = (prop) => {
 
             <div className="hiddens">
                 <Payments></Payments>
+                <AddressSelection></AddressSelection>
+                <AddressFields></AddressFields>
             </div>
         </div>
     )

@@ -5,10 +5,15 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
     const [name,setName] = useState("Demo");
     const paymentsPage = useRef();
+    const addressSelectionPage = useRef();
+    const addressFields = useRef();
+
     const value = {
         name,
         setName,
-        paymentsPage
+        paymentsPage,
+        addressSelectionPage,
+        addressFields
     }
     return (
         <AppContext.Provider value={value}>
