@@ -7,7 +7,7 @@ import UpiPayment from "../../Components/UpiPayment/UpiPayment";
 import NetBankingPayment from "../../Components/NetBankingPayment/NetBankingPayment";
 import WalletPayment from "../../Components/WalletPayment/WalletPayment";
 import CardPayment from "../../Components/CardPayment/CardPayment";
-import { useSwipeDown } from "../../Helper/Helper";
+import { closePopup, useSwipeDown } from "../../Helper/Helper";
 
 
 const Payments = () => {
@@ -15,10 +15,10 @@ const Payments = () => {
     const [selectedMethod, setSelectedMethod] = useState("");
 
     const handleSwipeDown = () => {
-        alert("Top to Bottom Swipe Detected!");
+        closePopup(paymentsPage);
     };
 
-    useSwipeDown(handleSwipeDown);
+    useSwipeDown(paymentsPage,handleSwipeDown);
 
     return (
         <div className="Payments" ref={paymentsPage}>

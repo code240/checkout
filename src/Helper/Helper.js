@@ -17,11 +17,15 @@ export function closePopup(ref) {
     }, 500);
 }
 
-export function useSwipeDown(onSwipeDown, threshold = 50) {
+export function useSwipeDown(ref, onSwipeDown, threshold = 50) {
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
 
     useEffect(() => {
+        if (!ref?.current) return;
+
+        const element = ref.current;
+
         const handleTouchStart = (e) => {
             setTouchStart(e.touches[0].clientY);
         };
@@ -41,14 +45,14 @@ export function useSwipeDown(onSwipeDown, threshold = 50) {
             setTouchEnd(null);
         };
 
-        window.addEventListener("touchstart", handleTouchStart);
-        window.addEventListener("touchmove", handleTouchMove);
-        window.addEventListener("touchend", handleTouchEnd);
+        element.addEventListener("touchstart", handleTouchStart);
+        element.addEventListener("touchmove", handleTouchMove);
+        element.addEventListener("touchend", handleTouchEnd);
 
         return () => {
-            window.removeEventListener("touchstart", handleTouchStart);
-            window.removeEventListener("touchmove", handleTouchMove);
-            window.removeEventListener("touchend", handleTouchEnd);
+            element.removeEventListener("touchstart", handleTouchStart);
+            element.removeEventListener("touchmove", handleTouchMove);
+            element.removeEventListener("touchend", handleTouchEnd);
         };
-    }, [touchStart, touchEnd, onSwipeDown, threshold]);
+    }, [ref, touchStart, touchEnd, onSwipeDown, threshold]);
 };
