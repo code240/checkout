@@ -14,16 +14,10 @@ const Payments = () => {
     const { paymentsPage } = useContext(AppContext);
     const [selectedMethod, setSelectedMethod] = useState("");
 
-    const handleSwipeDown = () => {
-        closePopup(paymentsPage);
-    };
-    const handleScroll = (e) => {
-        const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-        if (bottom) { handleSwipeDown() }
-      }
+
 
     return (
-        <div className="Payments" ref={paymentsPage}  onScroll={handleScroll}>
+        <div className="Payments" ref={paymentsPage}>
             <main>
                 <div className="popup-sticky-header">
                     <PopupHeader page={paymentsPage}></PopupHeader>
