@@ -8,8 +8,6 @@ import NetBankingPayment from "../../Components/NetBankingPayment/NetBankingPaym
 import WalletPayment from "../../Components/WalletPayment/WalletPayment";
 import CardPayment from "../../Components/CardPayment/CardPayment";
 import { closePopup } from "../../Helper/Helper";
-import { useSwipeable } from "react-swipeable";
-import { useDrag } from "@use-gesture/react";
 
 
 const Payments = () => {
@@ -19,37 +17,13 @@ const Payments = () => {
     const handleSwipeDown = () => {
         closePopup(paymentsPage);
     };
-
-    useEffect(() => {
-        const preventPullToRefresh = (event) => {
-            if (paymentsPage.current?.scrollTop === 0) {
-                event.preventDefault();
-            }
-        };
-
-        document.addEventListener("touchstart", preventPullToRefresh, { passive: false });
-
-        return () => {
-            document.removeEventListener("touchstart", preventPullToRefresh);
-        };
-    }, []);
-
-    // ✅ Handle swipe-down gesture only when scrolled to the top
-    useDrag(
-        ({ down, movement: [, y], event }) => {
-            const element = paymentsPage.current;
-
-            if (element && element.scrollTop === 0 && !down && y > 50) {
-                handleSwipeDown();
-                event.preventDefault(); // Stop default refresh
-            }
-        },
-        { target: paymentsPage, eventOptions: { passive: false } }
-    );
-
+    const handleScroll = (e) => {
+        const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+        if (bottom) { handleSwipeDown() }
+      }
 
     return (
-        <div className="Payments" ref={paymentsPage}  style={{ touchAction: "none" }}>
+        <div className="Payments" ref={paymentsPage}  onScroll={handleScroll}>
             <main>
                 <div className="popup-sticky-header">
                     <PopupHeader page={paymentsPage}></PopupHeader>
