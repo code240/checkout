@@ -17,25 +17,28 @@ export function closePopup(ref) {
     }, 500);
 }
 
-export function useSwipeDown(ref, onSwipeDown, threshold = 50) {
+export const useSwipeDown = (ref, onSwipeDown, threshold = 50) => {
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
 
     useEffect(() => {
         if (!ref?.current) return;
-
         const element = ref.current;
 
         const handleTouchStart = (e) => {
-            setTouchStart(e.touches[0].clientY);
+            if (element.scrollTop === 0) { // Only allow if already at the top
+                setTouchStart(e.touches[0].clientY);
+            }
         };
 
         const handleTouchMove = (e) => {
-            setTouchEnd(e.touches[0].clientY);
+            if (touchStart !== null) {
+                setTouchEnd(e.touches[0].clientY);
 
-            // Prevent browser pull-to-refresh
-            if (touchStart !== null && touchEnd === null) {
-                e.preventDefault();
+                // Prevent browser pull-to-refresh if element is at the top
+                if (element.scrollTop === 0) {
+                    e.preventDefault();
+                }
             }
         };
 
@@ -60,4 +63,4 @@ export function useSwipeDown(ref, onSwipeDown, threshold = 50) {
             element.removeEventListener("touchend", handleTouchEnd);
         };
     }, [ref, touchStart, touchEnd, onSwipeDown, threshold]);
-}
+};
