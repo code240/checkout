@@ -13,6 +13,7 @@ import AddressFields from "../../Popups/AddressFields/AddressFields";
 import Login from "../../Components/Login/Login";
 import { AppContext } from "../../Contexts/AppProvider";
 import Verification from "../../Components/Verification/Verification";
+import CouponList from "../../Popups/CouponList/CouponList";
 
 const AppLayout = (prop) => {
     const { activeSection } = useContext(AppContext);
@@ -46,6 +47,7 @@ const AppLayout = (prop) => {
             <div className="hiddens">
                 <Payments></Payments>
                 <AddressSelection></AddressSelection>
+                <CouponList></CouponList>
                 <AddressFields></AddressFields>
             </div>
         </div>

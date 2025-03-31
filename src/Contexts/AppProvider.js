@@ -9,6 +9,7 @@ const AppProvider = ({ children }) => {
     const paymentsPage = useRef();
     const addressSelectionPage = useRef();
     const addressFields = useRef();
+    const couponListRef = useRef();
 
     const value = {
         name,
@@ -17,7 +18,8 @@ const AppProvider = ({ children }) => {
         addressSelectionPage,
         setActiveSection,
         activeSection,
-        addressFields
+        addressFields,
+        couponListRef
     }
     return (
         <AppContext.Provider value={value}>
