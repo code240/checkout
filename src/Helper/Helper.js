@@ -32,6 +32,11 @@ export function useSwipeDown(ref, onSwipeDown, threshold = 50) {
 
         const handleTouchMove = (e) => {
             setTouchEnd(e.touches[0].clientY);
+
+            // Prevent browser pull-to-refresh
+            if (touchStart !== null && touchEnd === null) {
+                e.preventDefault();
+            }
         };
 
         const handleTouchEnd = () => {
@@ -45,8 +50,8 @@ export function useSwipeDown(ref, onSwipeDown, threshold = 50) {
             setTouchEnd(null);
         };
 
-        element.addEventListener("touchstart", handleTouchStart);
-        element.addEventListener("touchmove", handleTouchMove);
+        element.addEventListener("touchstart", handleTouchStart, { passive: false });
+        element.addEventListener("touchmove", handleTouchMove, { passive: false });
         element.addEventListener("touchend", handleTouchEnd);
 
         return () => {
@@ -55,4 +60,4 @@ export function useSwipeDown(ref, onSwipeDown, threshold = 50) {
             element.removeEventListener("touchend", handleTouchEnd);
         };
     }, [ref, touchStart, touchEnd, onSwipeDown, threshold]);
-};
+}
