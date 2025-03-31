@@ -20,6 +20,9 @@
         text-align: center;
         display: block;
         margin: 10px auto;
+        @media screen and (max-width:500px) {
+            width: 75%;
+        }
     }
     .primary-link-btn{
         color: var(--quick-primary-color);
@@ -33,9 +36,13 @@
         border-radius: 5px;
         margin-top: 1rem;
         display: flex;
+        justify-content: center;
         padding: 10px 10px;
         overflow: hidden;
         align-items: center;
+        @media screen and (max-width:500px) {
+            width: 75%;
+        }
         h6 {
             padding: 0 15px 0 5px;  
             display: flex;     
@@ -44,12 +51,14 @@
             font-size: 18px;
         }
         input {
-            flex: 1;
             border: 0;
             padding: 5px 10px;
             font-size: 18px;
+            margin: 0 auto;
+            display: block;
             text-align: center;
-            letter-spacing: 20px;
+            max-width: 10rem;
+            letter-spacing: 10px;
             &:focus{
                 outline: 0;
             }
@@ -61,6 +70,9 @@
         color: #999999;
         display: block;
         margin: 10px auto;
+        @media screen and (max-width:500px) {
+            width: 75%;
+        }
     }
     .submit-btn{
         margin: 0 auto;
@@ -72,6 +84,10 @@
         background-color: var(--quick-primary-color);
         color: #ffffff;
         border-radius: 8px;
+        @media screen and (max-width:500px) {
+            width: 65%;
+            padding: 17px 10px;
+        }
     }
     
 }
