@@ -7,7 +7,8 @@ import UpiPayment from "../../Components/UpiPayment/UpiPayment";
 import NetBankingPayment from "../../Components/NetBankingPayment/NetBankingPayment";
 import WalletPayment from "../../Components/WalletPayment/WalletPayment";
 import CardPayment from "../../Components/CardPayment/CardPayment";
-import { closePopup, useSwipeDown } from "../../Helper/Helper";
+import { closePopup } from "../../Helper/Helper";
+import { useDrag } from "@use-gesture/react";
 
 
 const Payments = () => {
@@ -18,7 +19,18 @@ const Payments = () => {
         closePopup(paymentsPage);
     };
 
-    useSwipeDown(paymentsPage,handleSwipeDown);
+    useDrag(
+        ({ down, movement: [, y], event }) => {
+            const element = paymentsPage.current;
+            
+            // Allow swipe only if at the top
+            if (element && element.scrollTop === 0 && !down && y > 50) {
+                handleSwipeDown();
+                event.preventDefault(); 
+            }
+        },
+        { target: paymentsPage }
+    );
 
     return (
         <div className="Payments" ref={paymentsPage}>

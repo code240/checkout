@@ -1,6 +1,4 @@
-html, body {
-    overscroll-behavior-y: contain; /* Prevent pull-to-refresh */
-}
+
 body {
     user-select: none;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./NetBankingPayment.scss";
 
 const NetBankingPayment = ({setSelectedMethod}) => {
