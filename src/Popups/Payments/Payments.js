@@ -8,7 +8,7 @@ import NetBankingPayment from "../../Components/NetBankingPayment/NetBankingPaym
 import WalletPayment from "../../Components/WalletPayment/WalletPayment";
 import CardPayment from "../../Components/CardPayment/CardPayment";
 import { closePopup } from "../../Helper/Helper";
-import { useDrag } from "@use-gesture/react";
+import { useSwipeable } from "react-swipeable";
 
 
 const Payments = () => {
@@ -19,21 +19,18 @@ const Payments = () => {
         closePopup(paymentsPage);
     };
 
-    useDrag(
-        ({ down, movement: [, y], event }) => {
-            const element = paymentsPage.current;
-            
-            // Allow swipe only if at the top
-            if (element && element.scrollTop === 0 && !down && y > 50) {
+    const handlers = useSwipeable({
+        onSwipedDown: (eventData) => {
+            if (paymentsPage.current.scrollTop === 0) {
                 handleSwipeDown();
-                event.preventDefault(); 
+                eventData.event.preventDefault(); // Prevent pull-to-refresh
             }
         },
-        { target: paymentsPage }
-    );
+        preventScrollOnSwipe: true
+    });
 
     return (
-        <div className="Payments" ref={paymentsPage}>
+        <div className="Payments" {...handlers} ref={paymentsPage}>
             <main>
                 <div className="popup-sticky-header">
                     <PopupHeader page={paymentsPage}></PopupHeader>
