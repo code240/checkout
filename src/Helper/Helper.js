@@ -26,8 +26,10 @@ export const useSwipeDown = (ref, onSwipeDown, threshold = 50) => {
         const element = ref.current;
 
         const handleTouchStart = (e) => {
-            if (element.scrollTop === 0) { // Only allow if already at the top
+            if (element.scrollTop === 0) {
                 setTouchStart(e.touches[0].clientY);
+            } else {
+                setTouchStart(null);
             }
         };
 
@@ -35,8 +37,8 @@ export const useSwipeDown = (ref, onSwipeDown, threshold = 50) => {
             if (touchStart !== null) {
                 setTouchEnd(e.touches[0].clientY);
 
-                // Prevent browser pull-to-refresh if element is at the top
-                if (element.scrollTop === 0) {
+                // Prevent browser pull-to-refresh only when already at the top
+                if (element.scrollTop === 0 && touchEnd === null) {
                     e.preventDefault();
                 }
             }
@@ -64,3 +66,4 @@ export const useSwipeDown = (ref, onSwipeDown, threshold = 50) => {
         };
     }, [ref, touchStart, touchEnd, onSwipeDown, threshold]);
 };
+
