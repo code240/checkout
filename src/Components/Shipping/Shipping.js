@@ -4,12 +4,12 @@ import { AppContext } from "../../Contexts/AppProvider";
 import { openPopup } from "../../Helper/Helper";
 
 const Shipping = () => {
-    const { addressSelectionPage } = useContext(AppContext);
+    const { addressSelectionPage, setActiveSection } = useContext(AppContext);
     return (
         <div className="Shipping">
             <h6 className="quicksand">
                 Hii +91 8930395227 👋,
-                <span className="quicksand">Logout</span>
+                <span className="quicksand pointer" onClick={() => setActiveSection("LOGIN")}>Logout</span>
             </h6>
             <div className="delivery-address">
                 <span className="check-absolute">
@@ -27,7 +27,10 @@ const Shipping = () => {
                     vipinraoxyz02@gmail.com
                 </h6>
             </div>
-            <span className="quicksand change-text" onClick={() => openPopup(addressSelectionPage)}>
+            <span
+                className="quicksand change-text"
+                onClick={() => openPopup(addressSelectionPage)}
+            >
                 <i className="bi bi-plus-lg"></i> Use different address
             </span>
             <div className="gap"></div>
