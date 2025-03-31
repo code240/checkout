@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Payments.scss";
 import { AppContext } from "../../Contexts/AppProvider";
 import PopupHeader from "../../Components/PopupHeader/PopupHeader";
@@ -20,31 +20,36 @@ const Payments = () => {
         closePopup(paymentsPage);
     };
 
-    // const handlers = useSwipeable({
-    //     onSwipedDown: (eventData) => {
-    //         if (paymentsPage.current.scrollTop === 0) {
-    //             handleSwipeDown();
-    //             eventData.event.preventDefault(); // Prevent pull-to-refresh
-    //         }
-    //     },
-    //     preventScrollOnSwipe: true
-    // });
+    useEffect(() => {
+        const preventPullToRefresh = (event) => {
+            if (paymentsPage.current?.scrollTop === 0) {
+                event.preventDefault();
+            }
+        };
 
+        document.addEventListener("touchstart", preventPullToRefresh, { passive: false });
+
+        return () => {
+            document.removeEventListener("touchstart", preventPullToRefresh);
+        };
+    }, []);
+
+    // ✅ Handle swipe-down gesture only when scrolled to the top
     useDrag(
         ({ down, movement: [, y], event }) => {
             const element = paymentsPage.current;
-            
-            // Allow swipe only if already scrolled to the top
+
             if (element && element.scrollTop === 0 && !down && y > 50) {
                 handleSwipeDown();
-                event.preventDefault(); // Prevent browser pull-to-refresh
+                event.preventDefault(); // Stop default refresh
             }
         },
-        { target: paymentsPage, eventOptions: { passive: false } } // Ensures mobile touch works
+        { target: paymentsPage, eventOptions: { passive: false } }
     );
 
+
     return (
-        <div className="Payments" ref={paymentsPage}>
+        <div className="Payments" ref={paymentsPage}  style={{ touchAction: "none" }}>
             <main>
                 <div className="popup-sticky-header">
                     <PopupHeader page={paymentsPage}></PopupHeader>
