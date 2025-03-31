@@ -4,7 +4,7 @@ const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
     const [name,setName] = useState("Demo");
-    const [activeSection, setActiveSection] = useState('OTPVERIFICATION');
+    const [activeSection, setActiveSection] = useState('LOGIN');
 
     const paymentsPage = useRef();
     const addressSelectionPage = useRef();
