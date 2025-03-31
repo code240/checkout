@@ -9,6 +9,7 @@ import WalletPayment from "../../Components/WalletPayment/WalletPayment";
 import CardPayment from "../../Components/CardPayment/CardPayment";
 import { closePopup } from "../../Helper/Helper";
 import { useSwipeable } from "react-swipeable";
+import { useDrag } from "@use-gesture/react";
 
 
 const Payments = () => {
@@ -19,18 +20,31 @@ const Payments = () => {
         closePopup(paymentsPage);
     };
 
-    const handlers = useSwipeable({
-        onSwipedDown: (eventData) => {
-            if (paymentsPage.current.scrollTop === 0) {
+    // const handlers = useSwipeable({
+    //     onSwipedDown: (eventData) => {
+    //         if (paymentsPage.current.scrollTop === 0) {
+    //             handleSwipeDown();
+    //             eventData.event.preventDefault(); // Prevent pull-to-refresh
+    //         }
+    //     },
+    //     preventScrollOnSwipe: true
+    // });
+
+    useDrag(
+        ({ down, movement: [, y], event }) => {
+            const element = paymentsPage.current;
+            
+            // Allow swipe only if already scrolled to the top
+            if (element && element.scrollTop === 0 && !down && y > 50) {
                 handleSwipeDown();
-                eventData.event.preventDefault(); // Prevent pull-to-refresh
+                event.preventDefault(); // Prevent browser pull-to-refresh
             }
         },
-        preventScrollOnSwipe: true
-    });
+        { target: paymentsPage, eventOptions: { passive: false } } // Ensures mobile touch works
+    );
 
     return (
-        <div className="Payments" {...handlers} ref={paymentsPage}>
+        <div className="Payments" ref={paymentsPage}>
             <main>
                 <div className="popup-sticky-header">
                     <PopupHeader page={paymentsPage}></PopupHeader>
