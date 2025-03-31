@@ -7,11 +7,18 @@ import UpiPayment from "../../Components/UpiPayment/UpiPayment";
 import NetBankingPayment from "../../Components/NetBankingPayment/NetBankingPayment";
 import WalletPayment from "../../Components/WalletPayment/WalletPayment";
 import CardPayment from "../../Components/CardPayment/CardPayment";
+import { useSwipeDown } from "../../Helper/Helper";
 
 
 const Payments = () => {
     const { paymentsPage } = useContext(AppContext);
     const [selectedMethod, setSelectedMethod] = useState("");
+
+    const handleSwipeDown = () => {
+        alert("Top to Bottom Swipe Detected!");
+    };
+
+    useSwipeDown(handleSwipeDown);
 
     return (
         <div className="Payments" ref={paymentsPage}>
