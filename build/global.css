@@ -5,13 +5,13 @@ body {
     user-select: none;
 }
 .outer__frame{
-    /* background:rgba(0,0,0,0.4) url(https://i.ibb.co/rZdnhC6/Screenshot-2024-10-02-123502.png); */
-    /* background: rgba(0, 0, 0, 0.4) url(https://i.ibb.co/rZdnhC6/Screenshot-2024-10-02-123502.png) no-repeat center/cover; */
+    /* background:rgba(0,0,0,0.4) url(https://i.ibb.co/Ng0CXqLY/image.png); */
+    /* background: rgba(0, 0, 0, 0.4) url(https://i.ibb.co/Ng0CXqLY/image.png) no-repeat center/cover; */
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-            url(https://i.ibb.co/rZdnhC6/Screenshot-2024-10-02-123502.png) no-repeat;
+            url(https://i.ibb.co/Ng0CXqLY/image.png) no-repeat;
 
 
-    background-size: contain;
+    background-size: cover;
     height: 100vh;
     width: 100%;
     display: flex;
