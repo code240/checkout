@@ -19,7 +19,7 @@ const AppLayout = (prop) => {
     const { activeSection } = useContext(AppContext);
     document.documentElement.style.setProperty(
         "--quick-primary-color",
-        "#006bed"
+        "#000000ff"
     );
     document.documentElement.style.setProperty(
         "--quick-success-color",
