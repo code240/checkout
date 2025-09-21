@@ -5,6 +5,7 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
     const [name,setName] = useState("Demo");
     const [activeSection, setActiveSection] = useState('LOGIN');
+    const [paymentPopupClosed, setPaymentPopupClosed] = useState(false);
 
     const paymentsPage = useRef();
     const addressSelectionPage = useRef();
@@ -19,7 +20,9 @@ const AppProvider = ({ children }) => {
         setActiveSection,
         activeSection,
         addressFields,
-        couponListRef
+        couponListRef,
+        paymentPopupClosed,
+        setPaymentPopupClosed
     }
     return (
         <AppContext.Provider value={value}>

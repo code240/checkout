@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Payments.scss";
 import { AppContext } from "../../Contexts/AppProvider";
 import PopupHeader from "../../Components/PopupHeader/PopupHeader";
@@ -9,49 +9,88 @@ import WalletPayment from "../../Components/WalletPayment/WalletPayment";
 import CardPayment from "../../Components/CardPayment/CardPayment";
 import { closePopup } from "../../Helper/Helper";
 
+// 👇 ADD
+import { useSpring, animated } from "react-spring";
+import { useDrag } from "@use-gesture/react";
 
 const Payments = () => {
-    const { paymentsPage } = useContext(AppContext);
+    const { paymentsPage, paymentPopupClosed, setPaymentPopupClosed } = useContext(AppContext);
     const [selectedMethod, setSelectedMethod] = useState("");
+    const [{ y }, api] = useSpring(() => ({ y: 0 }));
 
 
+    const hideDrawer = () => {
+        api.start({
+            y: window.innerHeight,
+            config: { duration: 300 },
+            onRest: () => {
+                setPaymentPopupClosed(true);
+                closePopup && closePopup(paymentsPage);
+                console.log("DEMOOOO");
+
+            },
+        });
+    };
+
+    const bind = useDrag(
+        ({ down, movement: [, my], velocity: [, vy], direction: [, dy] }) => {
+            // if drawer is closed then ignore drag
+            if (paymentPopupClosed) return;
+
+            if (down) {
+                // only allow drag to bottom + resistance
+                api.start({ y: my > 0 ? my / 1.2 : 0, immediate: true });
+            } else {
+                // release: close or snap back
+                if (my > 150 || (vy > 1 && dy > 0)) {
+                    hideDrawer();
+                } else {
+                    api.start({ y: 0, config: { duration: 300 } });
+                }
+            }
+        },
+        { axis: "y" }
+    );
 
     return (
-        <div className="Payments" ref={paymentsPage}>
+        <animated.div
+            className="Payments"
+            ref={paymentsPage}
+            style={{ transform: y.to((val) => `translateY(${val}px)`) }}
+        >
             <main>
-                <div className="popup-sticky-header">
-                    <PopupHeader page={paymentsPage}></PopupHeader>
+                {/* ---- HEADER AREA DRAGGABLE ---- */}
+                <animated.div
+                    className="popup-sticky-header"
+                    {...bind()}
+                    style={{ touchAction: "none", cursor: "grab" }}
+                >
+                    <PopupHeader page={paymentsPage} />
                     <div className="shipping-banner">
                         <span className="quicksand">Shipping Charges added</span>
-                        <span className="quicksand bold">
-                            {Constants.INR} 50.00
-                        </span>
+                        <span className="quicksand bold">{Constants.INR} 50.00</span>
                     </div>
                     <div className="total">
                         <span className="quicksand">Grand Total</span>
-                        <span className="quicksand bold">
-                            {Constants.INR} 212.05
-                        </span>
+                        <span className="quicksand bold">{Constants.INR} 212.05</span>
                     </div>
-                </div>
+                </animated.div>
+                {/* --------------------------------- */}
+
                 <h6 className="quicksand main-heading">
                     Get extra 5% discount on prepaid orders.
                 </h6>
-                {selectedMethod === "NETBANKING" ? (
-                    <>
-                        <NetBankingPayment setSelectedMethod={setSelectedMethod}></NetBankingPayment>
-                    </>
-                ) : null}
-                {selectedMethod === "WALLET" ? (
-                    <>
-                    <WalletPayment setSelectedMethod={setSelectedMethod}></WalletPayment>
-                    </>
-                ) : null}
-                {selectedMethod === "CARDS" ? (
-                    <>
-                        <CardPayment setSelectedMethod={setSelectedMethod}></CardPayment>
-                    </>
-                ) : null}
+
+                {selectedMethod === "NETBANKING" && (
+                    <NetBankingPayment setSelectedMethod={setSelectedMethod} />
+                )}
+                {selectedMethod === "WALLET" && (
+                    <WalletPayment setSelectedMethod={setSelectedMethod} />
+                )}
+                {selectedMethod === "CARDS" && (
+                    <CardPayment setSelectedMethod={setSelectedMethod} />
+                )}
+
                 {selectedMethod === "" ? (
                     <div>
                         <UpiPayment></UpiPayment>
@@ -184,7 +223,7 @@ const Payments = () => {
                     </div>
                 ) : null}
             </main>
-        </div>
+        </animated.div>
     );
 };
 

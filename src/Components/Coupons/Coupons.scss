@@ -14,7 +14,7 @@
         border: 1px dashed #d9d9d9;
         border-bottom: 0;
         padding: 0px 12px;
-        font-size: 16px;
+        font-size: 15px;
         gap: 8px;
         i {
             color: var(--quick-primary-color);
@@ -22,9 +22,9 @@
         input {
             border: 0;
             flex: 1;
-            font-size: 15px;
+            font-size: 14px;
             height: 100%;
-            padding: 17px 0;
+            padding: 10px 0;
             &:focus {
                 outline: 0;
             }
@@ -36,6 +36,7 @@
         }
         .apply-button{
             color: var(--quick-primary-color);
+            font-size: 14px;
         }
     }
     .promoted-coupon {
@@ -55,7 +56,7 @@
         // border: 1px dashed var(--quick-primary-color);
         border: 1px dashed #d9d9d9;
         border-top: 0;
-        background-color: #ffffff;
+        background-color: #f8f8f8;
         font-size: 13px;
         padding: 7px 12px 9px 12px;
         font-weight: 700;

@@ -5,12 +5,12 @@ import { AppContext } from '../../Contexts/AppProvider';
 import { openPopup } from '../../Helper/Helper';
 
 const ContinueToPayment = () => {
-    const { paymentsPage } = useContext(AppContext);
+    const { paymentsPage, setPaymentPopupClosed } = useContext(AppContext);
     
     return (
         <div className='ContinueToPayment'>
             <div className='button-wrap'>
-                <button className='quicksand' onClick={() => { openPopup(paymentsPage) }}>
+                <button className='quicksand' onClick={() => { openPopup(paymentsPage); setPaymentPopupClosed(false); }}>
                     Continue to payment
                 </button>
             </div>

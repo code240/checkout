@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-let ApplicationName = "Checkout"; 
+let ApplicationName = "Checkout";
 export default ApplicationName;
 
-export function openPopup(ref,style='flex') {
+export function openPopup(ref, style = 'flex') {
     ref.current.style.display = style;
     setTimeout(() => {
         ref.current.style.bottom = '0%';
@@ -11,10 +11,12 @@ export function openPopup(ref,style='flex') {
 }
 
 export function closePopup(ref) {
-    ref.current.style.bottom = '-110%';
-    setTimeout(() => {
-        ref.current.style.display = 'none';
-    }, 500);
+    if (ref && ref.current) {
+        ref.current.style.bottom = '-110%';
+        setTimeout(() => {
+            ref.current.style.display = 'none';
+        }, 200);
+    }
 }
 
 export const useSwipeDown = (ref, onSwipeDown, threshold = 50) => {

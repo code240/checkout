@@ -14,6 +14,7 @@ import Login from "../../Components/Login/Login";
 import { AppContext } from "../../Contexts/AppProvider";
 import Verification from "../../Components/Verification/Verification";
 import CouponList from "../../Popups/CouponList/CouponList";
+import OrderSummary2 from "../../Components/OrderSummary2/OrderSummary2";
 
 const AppLayout = (prop) => {
     const { activeSection } = useContext(AppContext);
@@ -32,7 +33,7 @@ const AppLayout = (prop) => {
                 <Header></Header>
                 <Banner></Banner>
             </div>
-            <OrderSummary></OrderSummary>
+            <OrderSummary2></OrderSummary2>
             <Coupons></Coupons>
             {activeSection === "LOGIN" ? <Login></Login> : null}
             {activeSection === "OTPVERIFICATION" ? <Verification></Verification> : null}
