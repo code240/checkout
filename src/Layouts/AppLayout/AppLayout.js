@@ -4,7 +4,7 @@ import Header from "../../Components/Header/Header";
 import Banner from "../../Components/Banner/Banner";
 import OrderSummary from "../../Components/OrderSummary/OrderSummary";
 import Coupons from "../../Components/Coupons/Coupons";
-import Shipping from "../../Components/Shipping/Shipping";
+import ShippingAddress from "../../Components/Shipping/ShippingAddress";
 import ShippingMethod from "../../Components/ShippingMethod/ShippingMethod";
 import ContinueToPayment from "../../Components/ContinueToPayment/ContinueToPayment";
 import Payments from "../../Popups/Payments/Payments";
@@ -16,15 +16,11 @@ import Verification from "../../Components/Verification/Verification";
 import CouponList from "../../Popups/CouponList/CouponList";
 import OrderSummary2 from "../../Components/OrderSummary2/OrderSummary2";
 import { openPopup } from "../../Helper/Helper";
+import PaymentButtons from "../../Components/PaymentButtons/PaymentButtons";
 
 const AppLayout = (prop) => {
     const { activeSection, paymentsPage } = useContext(AppContext);
 
-    useEffect(() => {
-        setTimeout(() => {
-            openPopup(paymentsPage);
-        }, 500);
-    }, []);
 
 
     document.documentElement.style.setProperty(
@@ -46,16 +42,19 @@ const AppLayout = (prop) => {
                 <Header></Header>
                 <Banner></Banner>
             </div>
-            <OrderSummary2></OrderSummary2>
-            <Coupons></Coupons>
+            {/* <OrderSummary2></OrderSummary2> */}
+            <div className="seperator"></div>
             {activeSection === "LOGIN" ? <Login></Login> : null}
             {activeSection === "OTPVERIFICATION" ? <Verification></Verification> : null}
             {activeSection === "SHIPPING" ? (
-                <>
-                    <Shipping></Shipping>
+                <div className="page-wrapper">
+                    <OrderSummary></OrderSummary>
+                    <Coupons></Coupons>
+                    <ShippingAddress></ShippingAddress>
                     <ShippingMethod></ShippingMethod>
+                    <PaymentButtons></PaymentButtons>
                     <ContinueToPayment></ContinueToPayment>
-                </>
+                </div>
             ) : null}
 
             <div className="hiddens">

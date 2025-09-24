@@ -1,17 +1,20 @@
 .Coupons{
-    padding: 0px 7px 7px 7px;
-    background-color: #f7f7f7;
+    padding: 0px;
+    padding-top: 10px;
+
+    background-color: #ffffff;
     height: auto;
 
     .main-coupon-section{
         min-height: 3rem;
         border-radius: 7px 7px 0px 0px;
         background-color: #ffffff;
-        border: 1px solid #f4f4f4;
         display: flex;
         align-items: center;
-        // border: 1px dashed var(--quick-primary-color);
-        border: 1px dashed #d9d9d9;
+        width: 100%;
+        margin: 0 auto;
+        border: 1px dashed var(--quick-primary-color);
+        border: 1px solid #ececec;
         border-bottom: 0;
         padding: 0px 12px;
         font-size: 15px;
@@ -30,44 +33,51 @@
             }
         }
         span {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             cursor: pointer;
         }
         .apply-button{
+            color: #000000;
             color: var(--quick-primary-color);
-            font-size: 14px;
+            font-size: 13px;
         }
     }
     .promoted-coupon {
-        border: 1px solid #f4f4f4;
-        border-top: 0;
-        // border-left: 1px dashed var(--quick-primary-color);
-        // border-right: 1px dashed var(--quick-primary-color);
-        
-        border-left: 1px dashed #d9d9d9;
-        border-right: 1px dashed #d9d9d9;
+        border: 1px solid #ececec;
+        border-top: 0;        
+        border-left: 1px dashed #ececec;
+        border-right: 1px dashed #ececec;
         background-color: #ffffff;
         font-size: 12px;
         padding: 7px 12px;
     }
     .view-coupons{
         border-radius: 0px 0px 10px 10px;
-        // border: 1px dashed var(--quick-primary-color);
-        border: 1px dashed #d9d9d9;
-        border-top: 0;
-        background-color: #f8f8f8;
-        font-size: 13px;
-        padding: 7px 12px 9px 12px;
-        font-weight: 700;
-        color: var(--quick-primary-color);
-        cursor: pointer;
+        width: 100%;
         display: flex;
-        align-items:center;
-        justify-content:start;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 auto;
+        border: 1px dashed #ececec;
+        border: 1px dashed var(--quick-primary-color);
+        border: 1px solid #ececec;
+        border-top: 0;
+        background-color: #f9f9f9;
+        font-size: 13px;
+        padding: 6px 12px 6px 12px;
+        font-weight: 700;
+        cursor: pointer;
         gap: 3px;
         i {
             font-size: 10px;
+        }
+        .available-coupons-count{
+            font-weight: 500;
+            font-size: 13px;
+        }
+        .view-coupons-text{
+            font-size: 13px;
         }
     }
 }

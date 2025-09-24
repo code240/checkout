@@ -1,14 +1,15 @@
 .OrderSummary {
-    padding: 7px 10px 7px 10px;
-    background-color: #f7f7f7;
+    background-color: #ffffff;
     height: auto;
+    margin: 0;
+    padding: 0;
 
     .order-summary-wrap {
-        border: 1px solid #f4f4f4;
+        border: 1px solid #ececec;
         background-color: #ffffff;
-        border-radius: 10px;
+        border-radius: 8px;
         width: 100%;
-        padding: 15px 15px;
+        padding: 13px 10px;
 
         .summary-button {
             width: 100%;
@@ -34,6 +35,9 @@
 
             .summary-price {
                 font-weight: 600;
+                font-size: 15px;
+                margin: 0;
+                padding: 0;
             }
         }
 
@@ -50,11 +54,11 @@
             }
             .row-title{
                 font-size: 13px;
-                font-weight: 700;
+                font-weight: 500;
             }
             .row-value{
                 font-size: 13px;
-                font-weight: 700;
+                font-weight: 500;
             }
             .discount {
                 color: var(--quick-success-color) !important;
@@ -95,6 +99,7 @@
                         margin: 0;
                         color: #111111;
                         font-size: 14px;
+                        font-weight: 400;
                     }
                     .quantity{
                         margin: 0;

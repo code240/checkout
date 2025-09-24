@@ -9,11 +9,11 @@ const ContinueToPayment = () => {
 
     return (
         <div className='ContinueToPayment'>
-            <div className='button-wrap'>
+            {/* <div className='button-wrap'>
                 <button className='quicksand' onClick={() => { openPopup(paymentsPage); setPaymentPopupClosed(false); }}>
                     Continue to payment
                 </button>
-            </div>
+            </div> */}
             <div className='footer'>
                 <Footer></Footer>
             </div>

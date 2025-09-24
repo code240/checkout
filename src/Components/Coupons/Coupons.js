@@ -26,7 +26,13 @@ const Coupons = () => {
                 className="quicksand view-coupons"
                 onClick={() => openPopup(couponListRef)}
             >
-                View all coupons <i className="bi bi-chevron-double-right"></i>
+                <span className="available-coupons-count">
+                    6 Coupon available
+                </span>
+                <span className="view-coupons-text">
+                    View all coupons <i className="bi bi-chevron-double-right"></i>
+                </span>
+
             </div>
         </div>
     );
