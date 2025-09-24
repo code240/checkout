@@ -9,7 +9,7 @@ const Header = () => {
                 </span>
             </h6>
             <div className='brand-logo'>
-                <img src='https://asvf.in/wp-content/uploads/2023/05/Logo_Black-2-002.png' alt='brand'></img>
+                <img src='https://store.jiva.com/cdn/shop/files/Jiva-Ayurveda-TM-LOgo-new_large.png' alt='brand'></img>
             </div>
             <div className='third-division'></div>
         </div>

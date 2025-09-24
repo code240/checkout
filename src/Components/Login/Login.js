@@ -13,7 +13,7 @@ const Login = () => {
                 <h6 className="quicksand">
                     +91
                 </h6>
-                <input type="text" className="quicksand"/>
+                <input type="text" inputMode="numeric" className="quicksand" placeholder="9416XXXXXX"/>
 
             </div>
             <small className="info-text quicksand">

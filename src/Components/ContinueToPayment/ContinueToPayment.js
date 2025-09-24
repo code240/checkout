@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './ContinueToPayment.scss';
 import Footer from '../Footer/Footer';
 import { AppContext } from '../../Contexts/AppProvider';
@@ -6,7 +6,7 @@ import { openPopup } from '../../Helper/Helper';
 
 const ContinueToPayment = () => {
     const { paymentsPage, setPaymentPopupClosed } = useContext(AppContext);
-    
+
     return (
         <div className='ContinueToPayment'>
             <div className='button-wrap'>

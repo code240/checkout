@@ -42,8 +42,12 @@
             font-size: 18px;
             display: block;
             max-width: 10rem;
+            letter-spacing: 2px;
             &:focus{
                 outline: 0;
+            }
+            &::placeholder{
+                color: #bbbbbb;
             }
             @media screen and (max-width:500px) {
                 padding: 2px 10px;

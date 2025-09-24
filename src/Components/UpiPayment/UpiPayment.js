@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './UpiPayment.scss';
+import Constants from '../../Data/Constants';
 
 const UpiPayment = () => {
     const [isqrcode, setIsqrcode] = useState(false);
@@ -15,10 +16,10 @@ const UpiPayment = () => {
                         <img src="https://pbs.twimg.com/profile_images/1615271089705463811/v-emhrqu_400x400.png" alt="phonepe" />
                     </div>
                     <div className="ico">
-                        <img src="https://i.pinimg.com/736x/ea/4d/f5/ea4df535ef139dc6b904040a8323095f.jpg" alt="phonepe" />
+                        <img src={Constants.images.public.googlepay} alt="googlepay" />
                     </div>
                     <div className="ico">
-                        <img src="https://static.vecteezy.com/system/resources/thumbnails/019/909/641/small/paytm-transparent-paytm-free-free-png.png" alt="phonepe" />
+                        <img src={Constants.images.public.paytm} alt="paytm" />
                     </div>
                     <div className="ico">
                         <img src="https://img.icons8.com/color/512/bhim.png" alt="phonepe" />

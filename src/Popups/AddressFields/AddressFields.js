@@ -25,7 +25,7 @@ const AddressFields = () => {
                     <i className="bi bi-arrow-left"></i> Add new address
                 </h6>
                 <div className="address-main">
-                    <div className="input-group">
+                    <div className="input-group select-input-wrap">
                         <select className="select quicksand">
                             <option value="IN">India</option>
                         </select>

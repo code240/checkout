@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./AppLayout.scss";
 import Header from "../../Components/Header/Header";
 import Banner from "../../Components/Banner/Banner";
@@ -15,12 +15,25 @@ import { AppContext } from "../../Contexts/AppProvider";
 import Verification from "../../Components/Verification/Verification";
 import CouponList from "../../Popups/CouponList/CouponList";
 import OrderSummary2 from "../../Components/OrderSummary2/OrderSummary2";
+import { openPopup } from "../../Helper/Helper";
 
 const AppLayout = (prop) => {
-    const { activeSection } = useContext(AppContext);
+    const { activeSection, paymentsPage } = useContext(AppContext);
+
+    useEffect(() => {
+        setTimeout(() => {
+            openPopup(paymentsPage);
+        }, 500);
+    }, []);
+
+
     document.documentElement.style.setProperty(
         "--quick-primary-color",
-        "#000000ff"
+        "#c74919"
+    );
+    document.documentElement.style.setProperty(
+        "--quick-font-color-on-primary",
+        "#ffffff"
     );
     document.documentElement.style.setProperty(
         "--quick-success-color",

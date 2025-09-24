@@ -65,7 +65,7 @@ const Payments = () => {
                     {...bind()}
                     style={{ touchAction: "none", cursor: "grab" }}
                 >
-                    <PopupHeader page={paymentsPage} />
+                    <PopupHeader slider={true} page={paymentsPage} />
                     <div className="shipping-banner">
                         <span className="quicksand">Shipping Charges added</span>
                         <span className="quicksand bold">{Constants.INR} 50.00</span>

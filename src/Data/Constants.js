@@ -3,7 +3,7 @@ const Constants = {
     images : {
         public : {
             phonepe : "/assets/phonepe.png",
-            googlepay : "/assets/googlepay.jpg",
+            googlepay : "/assets/gpay.png",
             paytm : "/assets/paytm.png",
             bhimUpi : "/assets/bhim.png",
             cred : "/assets/cred.jpg",

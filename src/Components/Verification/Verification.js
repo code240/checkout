@@ -14,7 +14,7 @@ const Verification = () => {
                 <span className="primary-link-btn quicksand" onClick={() => setActiveSection("LOGIN")}>Change?</span>
             </span>
             <div className="input-wraps quicksand">
-                <input type="password" className="quicksand" autoComplete="false" placeholder=" ****"/>
+                <input type="password" inputMode="numeric" className="quicksand" autoComplete="false" placeholder=" ****"/>
             </div>
             <button className="submit-btn quicksand" onClick={() => setActiveSection("SHIPPING")}>
                 Verify OTP
