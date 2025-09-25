@@ -1,6 +1,10 @@
 .PaymentButtons {
     width: 100%;
     margin-top: 10px;
+
+    .upi-div {
+        margin-bottom: 10px;
+    }
     button{
         padding: 13px 13px;
         border: 1px solid #ececec;

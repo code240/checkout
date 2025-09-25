@@ -1,14 +1,13 @@
 .UpiPayment{
     .upi-section{
-        width: 90%;
+        width: 100%;
         margin: 0 auto;
         border-radius: 10px;
-        border: 1px solid #cccccc;
-        margin-top: 15px;
+        border: 1px solid #ececec;
         position: relative;
         height: auto;
-        padding-block: 14px;
-        padding-inline: 10px;
+        margin-top: 20px;
+        padding: 14px 10px;
         .offer-text{
             position: absolute;
             top: 0;
@@ -119,17 +118,21 @@
                     width: 100%  !important;
                     border-radius: 5px;
                     margin: 0;
-                    padding: 7px 10px;
+                    padding: 10px 10px;
                 }
             }
 
             .upi-pay{
-                padding: 7px 10px;
-                width: 100%;
+                padding: 10px 10px;
+                width: fit-content;
                 border: 0;
                 border-radius: 5px;
                 background-color: var(--quick-primary-color);
                 color: #ffffff;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                
             }
 

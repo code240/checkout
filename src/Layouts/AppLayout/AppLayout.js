@@ -53,7 +53,7 @@ const AppLayout = (prop) => {
                     <ShippingAddress></ShippingAddress>
                     <ShippingMethod></ShippingMethod>
                     <PaymentButtons></PaymentButtons>
-                    <ContinueToPayment></ContinueToPayment>
+                    {/* <ContinueToPayment></ContinueToPayment> */}
                 </div>
             ) : null}
 
