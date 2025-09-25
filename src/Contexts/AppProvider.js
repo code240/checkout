@@ -6,6 +6,7 @@ const AppProvider = ({ children }) => {
     const [name,setName] = useState("Demo");
     const [activeSection, setActiveSection] = useState('SHIPPING');
     const [paymentPopupClosed, setPaymentPopupClosed] = useState(false);
+    const [addressPopClosed, setAddressPopClosed] = useState(false);
     const [freeDelivery, setFreeDelivery] = useState(true);
 
     const paymentsPage = useRef();
@@ -25,7 +26,9 @@ const AppProvider = ({ children }) => {
         paymentPopupClosed,
         setPaymentPopupClosed,
         freeDelivery,
-        setFreeDelivery
+        setFreeDelivery,
+        addressPopClosed,
+        setAddressPopClosed
     }
     return (
         <AppContext.Provider value={value}>

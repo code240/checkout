@@ -40,10 +40,10 @@ const AppLayout = (prop) => {
         <div className="Layout">
             <div className="sticky-to-top">
                 <Header></Header>
-                <Banner></Banner>
+                {/* <Banner></Banner> */}
             </div>
             {/* <OrderSummary2></OrderSummary2> */}
-            <div className="seperator"></div>
+            {/* <div className="seperator"></div> */}
             {activeSection === "LOGIN" ? <Login></Login> : null}
             {activeSection === "OTPVERIFICATION" ? <Verification></Verification> : null}
             {activeSection === "SHIPPING" ? (

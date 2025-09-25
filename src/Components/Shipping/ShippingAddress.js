@@ -4,7 +4,7 @@ import { AppContext } from "../../Contexts/AppProvider";
 import { openPopup } from "../../Helper/Helper";
 
 const ShippingAddress = () => {
-    const { addressSelectionPage, setActiveSection } = useContext(AppContext);
+    const { addressSelectionPage, setActiveSection, addressPopClosed, setAddressPopClosed } = useContext(AppContext);
     return (
         <div className="ShippingAddress">
            
@@ -17,7 +17,7 @@ const ShippingAddress = () => {
                         <i className="bi bi-geo"></i>&nbsp;Deliver to&nbsp;
                     </span> 
                     Vipin Rao
-                    <button className="quicksand" onClick={() => { openPopup(addressSelectionPage); }}>Change</button>
+                    <button className="quicksand" onClick={() => { openPopup(addressSelectionPage); setAddressPopClosed(false); }}>Change</button>
                 </h2>
                 <h5 className="quicksand address text-truncate">
                     Village Gangaicha Ahir,
