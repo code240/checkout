@@ -2,6 +2,9 @@ const Constants = {
     INR : "₹",
     images : {
         public : {
+            loader1 : "/assets/gif/loader1.gif",
+            loader2 : "/assets/gif/loader2.gif",
+            loader3 : "/assets/gif/loader3.gif",
             phonepe : "/assets/phonepe.png",
             googlepay : "/assets/gpay.png",
             paytm : "/assets/paytm.png",
