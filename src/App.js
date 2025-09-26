@@ -6,7 +6,7 @@ import LoadingLayout from "./Layouts/LoadingLayout/LoadingLayout";
 
 function App() {
     return (
-        <BrowserRouter>
+        <BrowserRouter> 
             <AppProvider>
                 <Routes>
                     <Route path="/" element={<AppLayout />} >
