@@ -12,7 +12,7 @@ function App() {
                     <Route path="/" element={<AppLayout />} >
                         <Route index element={<Home />} />
                     </Route>
-                    <Route path="/load-checkout" element={<LoadingLayout />}></Route>
+                    <Route path="/load" element={<LoadingLayout />}></Route>
                 </Routes>
             </AppProvider>
         </BrowserRouter>
