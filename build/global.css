@@ -106,9 +106,14 @@ body {
     /* Scrollbar corner (when both vertical and horizontal bars are present) */
 }
 
-
+* {
+    font-family: "Quicksand", sans-serif !important;
+    /* font-family: "Montserrat", sans-serif; */
+    font-optical-sizing: auto;
+    font-style: normal;
+}
 .quicksand {
-    font-family: "Quicksand", sans-serif;
+    font-family: "Quicksand", sans-serif !important;
     /* font-family: "Montserrat", sans-serif; */
     font-optical-sizing: auto;
     font-style: normal;

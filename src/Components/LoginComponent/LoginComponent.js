@@ -1,11 +1,20 @@
 import React, { useContext } from "react";
-import "./Login.scss";
+import "./LoginComponent.scss";
 import { AppContext } from "../../Contexts/AppProvider";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const LoginComponent = () => {
     const { setActiveSection } = useContext(AppContext);
+    const navigate = useNavigate();
+
+    const HandleLogin = () => {
+        navigate("/verification");
+    }
+
+
     return (
-        <div className="Login">
+        <div className="LoginComponent">
+
             <h6 className="quicksand login-title">
                 Continue with mobile
             </h6>
@@ -17,13 +26,13 @@ const Login = () => {
 
             </div>
             <small className="info-text quicksand">
-                <span className="text-danger">*</span> Please ensure the mobile number entered belongs to the order placer for OTP verification on the next screen.
+                <span className="text-danger">*</span> I accept that I have read and understood the Jivaayurveda's Policies and T&C.
             </small>
-            <button className="submit-btn quicksand" onClick={() => setActiveSection("OTPVERIFICATION")}>
+            <button className="submit-btn quicksand" onClick={() => HandleLogin()}>
                 Proceed to OTP
             </button>
         </div>
     );
 };
 
-export default Login;
+export default LoginComponent;

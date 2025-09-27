@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./LoadingLayout.scss";
 import Constants from "../../Data/Constants";
 import Header from "../../Components/Header/Header";
+import { useNavigate } from "react-router-dom";
 
 const LoadingLayout = () => {
     const [currentLoadingText, setCurrentLoadingText] = useState(0);
-
+    const navigate = useNavigate();
     const headings = [
         "Preparing your checkout experience...",
         "Almost there, setting things up...",
@@ -16,7 +17,11 @@ const LoadingLayout = () => {
         "Wrapping up the final details...",
         "Hang tight—your order is about to be placed!"
     ];
-
+    useEffect(() => {
+        setTimeout(() => {
+            navigate("/login")
+        },2500)
+    })
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentLoadingText((prev) => (prev + 1) % headings.length);

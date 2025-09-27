@@ -3,6 +3,8 @@ import Home from "./Pages/Home/Home";
 import AppLayout from "./Layouts/AppLayout/AppLayout";
 import { AppProvider } from "./Contexts/AppProvider";
 import LoadingLayout from "./Layouts/LoadingLayout/LoadingLayout";
+import VerificationPage from "./Pages/VerificationPage/VerificationPage";
+import LoginPage from "./Pages/LoginPage/LoginPage";
 
 function App() {
     return (
@@ -10,7 +12,10 @@ function App() {
             <AppProvider>
                 <Routes>
                     <Route path="/" element={<AppLayout />} >
-                        <Route index element={<Home />} />
+                        <Route index element={<LoadingLayout />} />
+                        <Route path="checkout" element={<Home />} />
+                        <Route path="login" element={<LoginPage />} />
+                        <Route path="verification" element={<VerificationPage />} />
                     </Route>
                     <Route path="/load" element={<LoadingLayout />}></Route>
                 </Routes>

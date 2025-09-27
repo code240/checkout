@@ -10,15 +10,14 @@ import ContinueToPayment from "../../Components/ContinueToPayment/ContinueToPaym
 import Payments from "../../Popups/Payments/Payments";
 import AddressSelection from "../../Popups/AddressSelection/AddressSelection";
 import AddressFields from "../../Popups/AddressFields/AddressFields";
-import Login from "../../Components/Login/Login";
 import { AppContext } from "../../Contexts/AppProvider";
-import Verification from "../../Components/Verification/Verification";
 import CouponList from "../../Popups/CouponList/CouponList";
 import OrderSummary2 from "../../Components/OrderSummary2/OrderSummary2";
 import { openPopup } from "../../Helper/Helper";
 import PaymentButtons from "../../Components/PaymentButtons/PaymentButtons";
+import { Outlet } from "react-router-dom";
 
-const AppLayout = (prop) => {
+const AppLayout = (props) => {
     const { activeSection, paymentsPage } = useContext(AppContext);
 
 
@@ -40,20 +39,11 @@ const AppLayout = (prop) => {
         <div className="Layout">
             <div className="sticky-to-top">
                 <Header></Header>
-                {/* <Banner></Banner> */}
+                <Banner></Banner>
             </div>
-            {/* <OrderSummary2></OrderSummary2> */}
-            {/* <div className="seperator"></div> */}
-            {activeSection === "LOGIN" ? <Login></Login> : null}
-            {activeSection === "OTPVERIFICATION" ? <Verification></Verification> : null}
             {activeSection === "SHIPPING" ? (
                 <div className="page-wrapper">
-                    <OrderSummary></OrderSummary>
-                    <Coupons></Coupons>
-                    <ShippingAddress></ShippingAddress>
-                    <ShippingMethod></ShippingMethod>
-                    <PaymentButtons></PaymentButtons>
-                    {/* <ContinueToPayment></ContinueToPayment> */}
+                    <Outlet />
                 </div>
             ) : null}
 

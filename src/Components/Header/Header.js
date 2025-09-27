@@ -5,7 +5,7 @@ const Header = ({props}) => {
         <div className='Header'>
             <h6>
                 {
-                    props?.hideBackBtn ? (
+                    !props?.hideBackBtn ? (
                         <span className='quicksand'>
                             <i className="bi bi-chevron-left"></i>Back
                         </span>
@@ -15,7 +15,11 @@ const Header = ({props}) => {
             <div className='brand-logo'>
                 <img src='https://store.jiva.com/cdn/shop/files/Jiva-Ayurveda-TM-LOgo-new_large.png' alt='brand'></img>
             </div>
-            <div className='third-division'></div>
+            <div className='third-division'>
+                <span>
+                    <i className='bi bi-shield-lock-fill'></i> 100% Secured Payment
+                </span>
+            </div>
         </div>
     )
 }
