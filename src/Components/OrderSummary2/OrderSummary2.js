@@ -1,20 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './OrderSummary2.scss';
 import Constants from '../../Data/Constants';
+import { AppContext } from '../../Contexts/AppProvider';
 
 const OrderSummary2 = () => {
-    const [summaryProduct,setSummaryProduct] = useState(false)
+    const [summaryProduct, setSummaryProduct] = useState(false)
+    const { items }= useContext(AppContext);
     const products = [{}];
+    useEffect(() => {
+        console.log("items::",items);
+        
+    })
     return (
         <div className='OrderSummary2'>
             <div className='order-summary-wrap'>
                 <div className='summary-button' onClick={() => setSummaryProduct(!summaryProduct)}>
                     <div className='title-container quicksand'>
-                        <i className="bi bi-cart3"></i> Order Summary 
+                        <i className="bi bi-cart3"></i> Order Summary
                     </div>
                     <h6 className='quicksand summary-price'>
                         {Constants.INR} 172.05
-                        {summaryProduct ? ( <i className="bi bi-chevron-up downchevron"></i> ) : ( <i className="bi bi-chevron-down downchevron"></i> ) }
+                        {summaryProduct ? (<i className="bi bi-chevron-up downchevron"></i>) : (<i className="bi bi-chevron-down downchevron"></i>)}
                     </h6>
                 </div>
                 {
@@ -67,21 +73,21 @@ const OrderSummary2 = () => {
                     summaryProduct ? (
                         <div className='summary-item-main'>
                             {
-                                products.map((element,index) => {
+                                (items ?? []).map((element, index) => {
                                     return (
                                         <div className='item' key={index}>
                                             <div className="item-image">
-                                                <img src="https://cdn.shopify.com/s/files/1/0257/2091/3991/files/Mosquito-Go-Away-Kit-for-Baby_580835e3-1b71-4f39-9e67-f417e4d88823.webp?v=1725274865" alt="product-image" />
+                                                <img src={element.image} alt="product-image" />
                                             </div>
                                             <div className='item-info'>
                                                 <h6 className="quicksand title">
-                                                    Insects & Mosquitos Go Away Kit for Babies with pleasant rose smell
+                                                    {element.title} - {element.variant_title}
                                                 </h6>
                                                 <h6 className="quicksand quantity">
-                                                    Quantity : 3
+                                                    Quantity : {element.quantity}
                                                 </h6>
                                                 <h6 className="quicksand price">
-                                                    price : {Constants.INR} 172.05
+                                                    price : {Constants.INR} {element.price?.toFixed(2)}\
                                                 </h6>
                                             </div>
                                         </div>

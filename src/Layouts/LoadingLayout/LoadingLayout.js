@@ -1,35 +1,55 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./LoadingLayout.scss";
-import Constants from "../../Data/Constants";
-import Header from "../../Components/Header/Header";
-import { useNavigate } from "react-router-dom";
+import Constants, { LoadingHeadings } from "../../Data/Constants";
+import { useLocation, useNavigate } from "react-router-dom";
+import Api from "../../Helper/Api";
+import { AppContext } from "../../Contexts/AppProvider";
 
 const LoadingLayout = () => {
+
+    const { order, setOrder, items, setItems } = useContext(AppContext);
     const [currentLoadingText, setCurrentLoadingText] = useState(0);
     const navigate = useNavigate();
-    const headings = [
-        "Preparing your checkout experience...",
-        "Almost there, setting things up...",
-        "Fetching the best deals for you...",
-        "Just a moment while we get everything ready...",
-        "Optimizing your cart for a smooth checkout...",
-        "Securing your payment gateway...",
-        "Wrapping up the final details...",
-        "Hang tight—your order is about to be placed!"
-    ];
-    useEffect(() => {
-        setTimeout(() => {
-            navigate("/login")
-        },2500)
-    })
+    const location = useLocation();
+
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentLoadingText((prev) => (prev + 1) % headings.length);
+            setCurrentLoadingText((prev) => (prev + 1) % LoadingHeadings.length);
         }, 750);
 
         // cleanup interval on unmount
         return () => clearInterval(interval);
-    }, [headings.length]);
+    }, [LoadingHeadings.length]);
+
+    useEffect(() => {
+        CreateCheckout();
+    }, []);
+
+    const CreateCheckout = async () => {
+        const queryString = location.search;
+        const params = new URLSearchParams(window.location.search);
+        const data = Object.fromEntries(params.entries());
+        let shopId = (data?.shop)?.replaceAll(".myshopify.com", ""); 
+        console.log(queryString);
+        
+        const response = await Api.get(
+            `${shopId}/api/checkout/redirect${queryString}`
+        );
+
+        if (response?.data?.status === true) {
+            let orderId = response.data.data.order.RandomId ?? "";
+             
+            setOrder(response.data.data.order ?? {});
+            setItems(response.data.data.items ?? []);
+            console.log(response.data.data.items);
+            setItems(response.data.data.items);
+
+            navigate("/checkout/"+ shopId +"/"+orderId)
+        } else {
+            navigate("/error")
+        }
+        
+    }
 
     return (
         <div className="LoadingLayout">
@@ -44,7 +64,7 @@ const LoadingLayout = () => {
                     <img src={Constants.images.public.loader2} alt="loader" />
                 </div>
                 <h6 className="quicksand">
-                    {headings[currentLoadingText]}
+                    {LoadingHeadings[currentLoadingText]}
                 </h6>
 
             </div>

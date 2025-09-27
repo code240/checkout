@@ -5,6 +5,7 @@ import { AppProvider } from "./Contexts/AppProvider";
 import LoadingLayout from "./Layouts/LoadingLayout/LoadingLayout";
 import VerificationPage from "./Pages/VerificationPage/VerificationPage";
 import LoginPage from "./Pages/LoginPage/LoginPage";
+import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 
 function App() {
     return (
@@ -13,11 +14,11 @@ function App() {
                 <Routes>
                     <Route path="/" element={<AppLayout />} >
                         <Route index element={<LoadingLayout />} />
-                        <Route path="checkout" element={<Home />} />
+                        <Route path="checkout/:shopId/:orderId" element={<Home />} />
                         <Route path="login" element={<LoginPage />} />
                         <Route path="verification" element={<VerificationPage />} />
+                        <Route path="error" element={<ErrorPage />}></Route>
                     </Route>
-                    <Route path="/load" element={<LoadingLayout />}></Route>
                 </Routes>
             </AppProvider>
         </BrowserRouter>

@@ -5,6 +5,11 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
     const [name,setName] = useState("Demo");
     const [activeSection, setActiveSection] = useState('SHIPPING');
+
+    const [order, setOrder] = useState({});
+    const [items, setItems] = useState([]);
+
+
     const [paymentPopupClosed, setPaymentPopupClosed] = useState(false);
     const [addressPopClosed, setAddressPopClosed] = useState(false);
     const [freeDelivery, setFreeDelivery] = useState(true);
@@ -28,7 +33,9 @@ const AppProvider = ({ children }) => {
         freeDelivery,
         setFreeDelivery,
         addressPopClosed,
-        setAddressPopClosed
+        setAddressPopClosed,
+        order, setOrder,
+        items, setItems,
     }
     return (
         <AppContext.Provider value={value}>
