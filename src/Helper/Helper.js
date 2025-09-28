@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
 let ApplicationName = "Checkout";
 export default ApplicationName;
@@ -69,3 +70,7 @@ export const useSwipeDown = (ref, onSwipeDown, threshold = 50) => {
     }, [ref, touchStart, touchEnd, onSwipeDown, threshold]);
 };
 
+export function ValidatePhone(number, countryCode) {
+  const phoneNumber = parsePhoneNumberFromString(number, countryCode);
+  return phoneNumber?.isValid() || false;
+}

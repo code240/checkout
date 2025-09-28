@@ -8,28 +8,18 @@ import ShippingAddress from '../../Components/Shipping/ShippingAddress';
 import ShippingMethod from '../../Components/ShippingMethod/ShippingMethod';
 import PaymentButtons from '../../Components/PaymentButtons/PaymentButtons';
 import Api from '../../Helper/Api';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { GetToken } from '../../Helper/Storage';
 
 const Home = () => {
-    const { name, setItems } = useContext(AppContext);
+    const navigate = useNavigate();
     const { orderId, shopId } = useParams();
+
     useEffect(() => {
-        GetCheckoutData()
-    })
-
-    const GetCheckoutData = async () => {
-        const response = await Api.post(
-            `${shopId}/api/checkout/get/${orderId}`
-        );
-
-        if (response?.data?.status === true) {
-            let checkout = response.data;
-            console.log(checkout);
-            setItems(checkout.data.items)
-            console.log(checkout.data.items);
-            
+        if (!GetToken()) {
+            navigate(`/${shopId}/${orderId}/login`)
         }
-    }
+    },[])
 
     return (
         <div className='Home'>

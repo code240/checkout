@@ -16,11 +16,28 @@ import OrderSummary2 from "../../Components/OrderSummary2/OrderSummary2";
 import { openPopup } from "../../Helper/Helper";
 import PaymentButtons from "../../Components/PaymentButtons/PaymentButtons";
 import { Outlet } from "react-router-dom";
+import { useParams } from 'react-router-dom';
+import Api from "../../Helper/Api";
 
 const AppLayout = (props) => {
-    const { activeSection, paymentsPage } = useContext(AppContext);
+    const { activeSection, paymentsPage, name, setItems } = useContext(AppContext);
 
+    const { orderId, shopId } = useParams();
+    useEffect(() => {
+        GetCheckoutData()
+    },[])
+    const GetCheckoutData = async () => {
+        const response = await Api.post(
+            `${shopId}/api/checkout/get/${orderId}`
+        );
 
+        if (response?.data?.status === true) {
+            let checkout = response.data;
+            console.log(checkout);
+            setItems(checkout.data.items)
+            console.log(checkout.data.items);
+        }
+    }
 
     document.documentElement.style.setProperty(
         "--quick-primary-color",

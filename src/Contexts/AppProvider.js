@@ -1,11 +1,13 @@
-import React, { createContext, useRef, useState  } from 'react'
+import React, { createContext, useRef, useState } from 'react'
 
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
-    const [name,setName] = useState("Demo");
+    const [name, setName] = useState("Demo");
+    const [otpService, setOtpService] = useState(1);
     const [activeSection, setActiveSection] = useState('SHIPPING');
-
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [countryCode, setCountryCode] = useState("IN")
     const [order, setOrder] = useState({});
     const [items, setItems] = useState([]);
 
@@ -36,6 +38,9 @@ const AppProvider = ({ children }) => {
         setAddressPopClosed,
         order, setOrder,
         items, setItems,
+        otpService, setOtpService,
+        phoneNumber, setPhoneNumber,
+        countryCode, setCountryCode
     }
     return (
         <AppContext.Provider value={value}>
@@ -44,4 +49,4 @@ const AppProvider = ({ children }) => {
     )
 }
 
-export {AppProvider,AppContext}
+export { AppProvider, AppContext }

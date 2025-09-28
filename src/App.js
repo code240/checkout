@@ -9,12 +9,12 @@ import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 
 function App() {
     return (
-        <BrowserRouter> 
+        <BrowserRouter>
             <AppProvider>
                 <Routes>
-                    <Route path="/" element={<AppLayout />} >
-                        <Route index element={<LoadingLayout />} />
-                        <Route path="checkout/:shopId/:orderId" element={<Home />} />
+                    <Route path="/" element={<LoadingLayout />} ></Route>
+                    <Route path="/:shopId/:orderId" element={<AppLayout />} >
+                        <Route path="checkout" element={<Home />} />
                         <Route path="login" element={<LoginPage />} />
                         <Route path="verification" element={<VerificationPage />} />
                         <Route path="error" element={<ErrorPage />}></Route>

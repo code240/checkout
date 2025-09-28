@@ -1,14 +1,40 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./VerificationComponent.scss";
 import { AppContext } from "../../Contexts/AppProvider";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { GetDialCode } from "../../Data/Countries";
+import Api from "../../Helper/Api";
+import { SetToken } from "../../Helper/Storage";
 
 const VerificationComponent = () => {
-    const { setActiveSection } = useContext(AppContext);
+    const { setActiveSection, phoneNumber, countryCode } = useContext(AppContext);
+    const [loading, setLoading] = useState(false);
+    const [otpValue, setOtpValue] = useState("");
     const navigate = useNavigate();
+    const { orderId, shopId } = useParams();
 
-    const handleVerifyOtp = () => {
-        navigate("/checkout");
+    const handleVerifyOtp = async () => {
+        if (otpValue?.length != 4) {
+            // otp incomplete
+            return;
+        }
+        let data = {
+            "order_id": orderId,
+            "otp": parseInt(otpValue),
+            "phone": phoneNumber
+        }
+        setLoading(true);
+        let response = await Api.post(shopId + "/phone/otp/verify", data);
+        let responseData = response?.data;
+        setOtpValue("");
+        setLoading(false);
+        if (responseData?.status && responseData?.data) {
+            // alert 
+            SetToken(responseData.data);
+            navigate("../checkout");
+        } else {
+            // alert 
+        }
     };
 
     return (
@@ -17,14 +43,18 @@ const VerificationComponent = () => {
                 Verify your OTP
             </h6>
             <span className="info-text-1 quicksand">
-                OTP sent to your mobile number +918930395XX7&nbsp;&#183;&nbsp; 
+                4-digit OTP sent to your mobile number {GetDialCode(countryCode)}-{phoneNumber}&nbsp;&#183;&nbsp;
                 <span className="primary-link-btn quicksand" onClick={() => navigate("/login")}>Change?</span>
             </span>
             <div className="input-wraps quicksand">
-                <input type="password" inputMode="numeric" className="quicksand" autoComplete="false" placeholder=" OTP" />
+                <input type="password" value={otpValue} onChange={(e) => setOtpValue(e.target.value)} inputMode="numeric" className="quicksand" autoComplete="false" placeholder=" OTP" />
             </div>
             <button className="quicksand submit-btn" onClick={handleVerifyOtp}>
-                Verify OTP
+                {
+                    !loading ? (
+                        "Verify OTP"
+                    ) : <span class="spinner"></span>
+                }
             </button>
         </div>
     );
