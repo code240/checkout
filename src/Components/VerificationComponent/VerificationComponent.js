@@ -31,7 +31,9 @@ const VerificationComponent = () => {
         if (responseData?.status && responseData?.data) {
             // alert 
             SetToken(responseData.data);
-            navigate("../checkout");
+            navigate(`/${shopId}/${orderId}/checkout`);
+            console.log("logibn,...");
+            
         } else {
             // alert 
         }

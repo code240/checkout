@@ -3,16 +3,16 @@ import './OrderSummary2.scss';
 import Constants from '../../Data/Constants';
 import { AppContext } from '../../Contexts/AppProvider';
 import { BasicContext } from '../../Contexts/BasicDataProvider';
-import { amountInPaisa } from '../../Helper/Helper';
+import { amountInPaisa, PrintCurrency } from '../../Helper/Helper';
 
 const OrderSummary2 = () => {
     const [summaryProduct, setSummaryProduct] = useState(false)
-    const { }= useContext(AppContext);
-    const { items, total, subtotal, shippingCharges, taxTotal, taxType, currency }= useContext(BasicContext);
+    const { } = useContext(AppContext);
+    const { items, total, subtotal, discountCode, discountAmount, shippingCharges, taxTotal, taxType, currency } = useContext(BasicContext);
 
     useEffect(() => {
-        console.log("items::",items);
-        
+        console.log("items::", items);
+
     })
     return (
         <div className='OrderSummary2'>
@@ -22,7 +22,7 @@ const OrderSummary2 = () => {
                         <i className="bi bi-cart3"></i> Order Summary
                     </div>
                     <h6 className='quicksand summary-price'>
-                        {Constants.INR} {amountInPaisa(taxTotal)}
+                        {PrintCurrency(currency)} {amountInPaisa(taxTotal)}
                         {summaryProduct ? (<i className="bi bi-chevron-up downchevron"></i>) : (<i className="bi bi-chevron-down downchevron"></i>)}
                     </h6>
                 </div>
@@ -34,7 +34,7 @@ const OrderSummary2 = () => {
                                     Subtotal
                                 </span>
                                 <span className='quicksand row-value'>
-                                    {Constants.INR} {subtotal}
+                                    {PrintCurrency(currency)} {subtotal}
                                 </span>
                             </div>
                             <div className='detail-row'>
@@ -42,7 +42,7 @@ const OrderSummary2 = () => {
                                     Tax ({taxType})
                                 </span>
                                 <span className='quicksand row-value'>
-                                    {Constants.INR} {amountInPaisa(taxTotal)}
+                                    {PrintCurrency(currency)} {amountInPaisa(taxTotal)}
                                 </span>
                             </div>
                             <div className='detail-row'>
@@ -50,27 +50,31 @@ const OrderSummary2 = () => {
                                     Shipping Charges
                                 </span>
                                 <span className='quicksand row-value'>
-                                    {Constants.INR} {amountInPaisa(shippingCharges)}
+                                    {PrintCurrency(currency)} {amountInPaisa(shippingCharges)}
                                 </span>
                             </div>
-                            <div className='detail-row discount'>
-                                <span className='quicksand row-title'>
-                                    Applied Discount
-                                </span>
-                                <span className='quicksand row-value'>
-                                    {Constants.INR} 10.00
-                                </span>
-                            </div>
+                            {
+                                discountCode != "" ? (
+                                    <div className='detail-row discount'>
+                                        <span className='quicksand row-title'>
+                                            Applied Discount
+                                        </span>
+                                        <span className='quicksand row-value'>
+                                            {PrintCurrency(currency)} {amountInPaisa(discountAmount)}
+                                        </span>
+                                    </div>
+                                ) : null
+                            }
                             <div className='detail-row'>
                                 <span className='quicksand row-title'>
                                     Total
                                 </span>
                                 <span className='quicksand row-value'>
-                                    {amountInPaisa(total)}
+                                    {PrintCurrency(currency)} {amountInPaisa(total)}
                                 </span>
                             </div>
                         </div>
-                    ) : null 
+                    ) : null
                 }
                 {
                     summaryProduct ? (
@@ -90,7 +94,7 @@ const OrderSummary2 = () => {
                                                     Quantity : {element.quantity}
                                                 </h6>
                                                 <h6 className="quicksand price">
-                                                    price : {Constants.INR} {element.price?.toFixed(2)}\
+                                                    price :  {PrintCurrency(currency)} {amountInPaisa(element.price)}
                                                 </h6>
                                             </div>
                                         </div>

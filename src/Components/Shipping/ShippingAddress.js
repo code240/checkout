@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import "./ShippingAddress.scss";
 import { AppContext } from "../../Contexts/AppProvider";
 import { openPopup } from "../../Helper/Helper";
+import { BasicContext } from "../../Contexts/BasicDataProvider";
 
 const ShippingAddress = () => {
     const { addressSelectionPage, setActiveSection, addressPopClosed, setAddressPopClosed } = useContext(AppContext);
+    const { userLatestAdderess } = useContext(BasicContext);
     return (
         <div className="ShippingAddress">
            
@@ -16,15 +18,15 @@ const ShippingAddress = () => {
                     <span className="supporting-text">
                         <i className="bi bi-geo"></i>&nbsp;Deliver to&nbsp;
                     </span> 
-                    Vipin Rao
+                    {userLatestAdderess?.firstName} {userLatestAdderess?.lastName}
                     <button className="quicksand" onClick={() => { openPopup(addressSelectionPage); setAddressPopClosed(false); }}>Change</button>
                 </h2>
                 <h5 className="quicksand address text-truncate">
-                    Village Gangaicha Ahir,
-                    Gurgaon, 123401
+                    {userLatestAdderess.line1},
+                    {userLatestAdderess.city}, {userLatestAdderess.zipcode}
                 </h5>
                 <h6 className="quicksand identifier">
-                    vipinraoxyz02@gmail.com
+                    {userLatestAdderess.email}
                 </h6>
             </div>
             {/* <span

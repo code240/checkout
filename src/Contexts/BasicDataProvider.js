@@ -12,6 +12,9 @@ const BasicDataProvider = ({ children }) => {
     const [taxTotal, setTaxTotal] = useState(0);
     const [taxType, setTaxType] = useState("Inclusive");
     const [currency, setCurrency] = useState("");
+    const [discountCode, setDiscountCode] = useState("");
+    const [discountAmount, setDiscountAmount] = useState(0);
+    const [userLatestAdderess, setUserLatestAdderess] = useState(0);
 
     const value = {
         order, setOrder,
@@ -22,6 +25,9 @@ const BasicDataProvider = ({ children }) => {
         taxTotal, setTaxTotal,
         taxType, setTaxType,
         currency, setCurrency,
+        discountCode, setDiscountCode,
+        discountAmount, setDiscountAmount,
+        userLatestAdderess, setUserLatestAdderess
     }
     return (
         <BasicContext.Provider value={value}>

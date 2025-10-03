@@ -4,10 +4,12 @@ import Constants, { LoadingHeadings } from "../../Data/Constants";
 import { useLocation, useNavigate } from "react-router-dom";
 import Api from "../../Helper/Api";
 import { AppContext } from "../../Contexts/AppProvider";
+import { BasicContext } from "../../Contexts/BasicDataProvider";
 
 const LoadingLayout = () => {
 
-    const { order, setOrder, items, setItems } = useContext(AppContext);
+    const {  } = useContext(AppContext);
+    const { order, setOrder, items, setItems } = useContext(BasicContext);
     const [currentLoadingText, setCurrentLoadingText] = useState(0);
     const navigate = useNavigate();
     const location = useLocation();

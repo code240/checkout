@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
+import { CURRENCY_ICONS } from "../Data/Constants";
 
 let ApplicationName = "Checkout";
 export default ApplicationName;
@@ -71,10 +72,23 @@ export const useSwipeDown = (ref, onSwipeDown, threshold = 50) => {
 };
 
 export function ValidatePhone(number, countryCode) {
-  const phoneNumber = parsePhoneNumberFromString(number, countryCode);
-  return phoneNumber?.isValid() || false;
+    const phoneNumber = parsePhoneNumberFromString(number, countryCode);
+    return phoneNumber?.isValid() || false;
 }
 
 export function amountInPaisa(number) {
-    return (number/100)?.toFixed(2);
+    return (number / 100)?.toFixed(2);
+}
+
+export function PrintCurrency(currencyCode, needCurrencySymbol = true) {
+    currencyCode = currencyCode?.toUpperCase()
+    if (needCurrencySymbol) {
+        let sign = CURRENCY_ICONS[currencyCode];
+        if (sign) {
+            return sign;
+        }
+        return currencyCode
+    } else {
+        return currencyCode;
+    }
 }

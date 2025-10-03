@@ -23,7 +23,7 @@ import { BasicContext } from "../../Contexts/BasicDataProvider";
 
 const AppLayout = (props) => {
     const { activeSection, paymentsPage} = useContext(AppContext);
-    const {  name, setItems, setSubtotal,setTotal, setShippingCharges, setTaxTotal, setTaxType, setCurrency } = useContext(BasicContext);
+    const {  setItems, setUserLatestAdderess, setDiscountCode, setDiscountAmount, setSubtotal,setTotal, setShippingCharges, setTaxTotal, setTaxType, setCurrency } = useContext(BasicContext);
 
     const { orderId, shopId } = useParams();
     useEffect(() => {
@@ -38,7 +38,15 @@ const AppLayout = (props) => {
             let checkout = response.data;
             console.log(checkout);
             setItems(checkout.data.items)
-            setTotal(checkout.data.total)
+            setTotal(checkout.data.order.total)
+            setTaxTotal(checkout.data.order.tax)
+            setTaxType(checkout.data.order.taxType)
+            setShippingCharges(0)
+            setSubtotal(checkout.data.order.subtotal)
+            setDiscountAmount(checkout.data.order.discountAmount)
+            setDiscountCode(checkout.data.order.discountCode)
+            setCurrency(checkout.data.currency)
+            setUserLatestAdderess(checkout.data?.userAddress ?? {})
             console.log(checkout.data.items);
         }
     }

@@ -18,10 +18,10 @@ export function GetToken() {
     try {
         let flow = localStorage.getItem("flow");
         if (flow && flow == 2) {
-            let token = GetData("REMEMBERTOKEN_EM");
+            let token = GetData("auth_token");
             return token;
         }
-        let token = GetData("REMEMBERTOKEN");
+        let token = GetData("auth_token");
         return token;
     } catch (error) {
         console.log(error);
@@ -33,10 +33,10 @@ export function SetToken(token) {
     try {
         let flow = localStorage.getItem("flow");
         if (flow && flow == 2) {
-            SetData("REMEMBERTOKEN_EM", token);
+            SetData("auth_token2", token);
             return true;
         }
-        SetData("REMEMBERTOKEN",token);
+        SetData("auth_token",token);
         return true;
     } catch (error) {
         console.log(error);
