@@ -18,9 +18,12 @@ import PaymentButtons from "../../Components/PaymentButtons/PaymentButtons";
 import { Outlet } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import Api from "../../Helper/Api";
+import BackButton from "../../Popups/BackButton/BackButton";
+import { BasicContext } from "../../Contexts/BasicDataProvider";
 
 const AppLayout = (props) => {
-    const { activeSection, paymentsPage, name, setItems } = useContext(AppContext);
+    const { activeSection, paymentsPage} = useContext(AppContext);
+    const {  name, setItems, setSubtotal,setTotal, setShippingCharges, setTaxTotal, setTaxType, setCurrency } = useContext(BasicContext);
 
     const { orderId, shopId } = useParams();
     useEffect(() => {
@@ -35,6 +38,7 @@ const AppLayout = (props) => {
             let checkout = response.data;
             console.log(checkout);
             setItems(checkout.data.items)
+            setTotal(checkout.data.total)
             console.log(checkout.data.items);
         }
     }
@@ -65,10 +69,9 @@ const AppLayout = (props) => {
             ) : null}
 
             <div className="hiddens">
-                <Payments></Payments>
                 <AddressSelection></AddressSelection>
                 <CouponList></CouponList>
-                <AddressFields></AddressFields>
+                <BackButton></BackButton>
             </div>
         </div>
     );

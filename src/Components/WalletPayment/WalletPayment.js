@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 import "./WalletPayment.scss";
+import { useNavigate, useParams } from "react-router-dom";
 
-const WalletPayment = ({setSelectedMethod}) => {
+const WalletPayment = () => {
+    const navigate = useNavigate();
+    const { orderId, shopId } = useParams();
+
+    const goBack = () => {
+        navigate(`/${shopId}/${orderId}/checkout`)
+    }
+
     return (
         <div className="WalletPayment">
-            <h6 className="quicksand back-icon" onClick={() => setSelectedMethod("")}>
-                <i className="bi bi-arrow-left-short"></i> Pay via wallet
+            <h6 className="quicksand back-icon" onClick={() => goBack()}>
+                <i className="bi bi-arrow-left"></i> Pay via wallet
             </h6>
             <div className="upi-section">
                 <span className="quicksand offer-text">Get 5% discount</span>
                 <div className="icons">
-                    <div className="nb-card" onClick={() => setSelectedMethod("")}>
+                    <div className="nb-card">
                         <div className="ico">
                             <img
                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoDjplJYoxWKpPmVvuh9WXqjhoRMHnWzF-JQ&s"
@@ -61,7 +69,7 @@ const WalletPayment = ({setSelectedMethod}) => {
                     </div>
                 </div>
             </div>
-            <h6 className="back-option quicksand" onClick={() => setSelectedMethod("")}>
+            <h6 className="back-option quicksand" onClick={() => goBack()}>
                 <i className="bi bi-arrow-90deg-left"></i> Back to payment options
             </h6>
         </div>

@@ -7,13 +7,16 @@ import { closePopup, openPopup } from "../../Helper/Helper";
 
 import { useSpring, animated } from "react-spring";
 import { useDrag } from "@use-gesture/react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const AddressSelection = () => {
     const { addressSelectionPage, addressFields, addressPopClosed, setAddressPopClosed } = useContext(AppContext);
+    const navigate = useNavigate();
+    const { orderId, shopId } = useParams();
 
     const AddNewAddress = () => {
         closePopup(addressSelectionPage);
-        openPopup(addressFields);
+        navigate(`/${shopId}/${orderId}/checkout/address`)
     }
 
     const [{ y }, api] = useSpring(() => ({ y: 0 }));

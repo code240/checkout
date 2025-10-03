@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./Header.scss";
+import { AppContext } from '../../Contexts/AppProvider';
+import { closePopup, openPopup } from '../../Helper/Helper';
+
+
 const Header = ({props}) => {
+    const { backButtonRef, setExitPopupClosed } = useContext(AppContext);
+
+    const ShowExitPopup = () => {
+        openPopup(backButtonRef);
+        setExitPopupClosed(false);
+    }
+
     return (
         <div className='Header'>
             <h6>
                 {
                     !props?.hideBackBtn ? (
-                        <span className='quicksand'>
+                        <span className='quicksand' onClick={() => ShowExitPopup()}>
                             <i className="bi bi-chevron-left"></i>Back
                         </span>
                     ) : null

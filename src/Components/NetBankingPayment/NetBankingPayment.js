@@ -1,11 +1,18 @@
 import React from "react";
 import "./NetBankingPayment.scss";
+import { useNavigate, useParams } from "react-router-dom";
 
 const NetBankingPayment = ({setSelectedMethod}) => {
+    const navigate = useNavigate();
+    const { orderId, shopId } = useParams();
+
+    const goBack = () => {
+        navigate(`/${shopId}/${orderId}/checkout`)
+    }
     return (
         <div className="NetBankingPayment">
-            <h6 className="quicksand back-icon" onClick={() => setSelectedMethod("")}>
-                <i className="bi bi-arrow-left-short"></i> Pay via netbanking
+            <h6 className="quicksand back-icon" onClick={() => goBack()}>
+                <i className="bi bi-arrow-left"></i> Pay via netbanking
             </h6>
             <div className="upi-section">
                 <span className="quicksand offer-text">Get 5% discount</span>
@@ -97,7 +104,7 @@ const NetBankingPayment = ({setSelectedMethod}) => {
                     <h6 className="quicksand vpa">Punjab National Bank</h6>
                 </div>
             </div>
-            <h6 className="back-option quicksand" onClick={() => setSelectedMethod("")}>
+            <h6 className="back-option quicksand" onClick={() => goBack()}>
                 <i className="bi bi-arrow-90deg-left"></i> Back to payment options
             </h6>
         </div>

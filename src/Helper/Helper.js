@@ -74,3 +74,7 @@ export function ValidatePhone(number, countryCode) {
   const phoneNumber = parsePhoneNumberFromString(number, countryCode);
   return phoneNumber?.isValid() || false;
 }
+
+export function amountInPaisa(number) {
+    return (number/100)?.toFixed(2);
+}

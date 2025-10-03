@@ -2,10 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import './OrderSummary.scss';
 import Constants from '../../Data/Constants';
 import { AppContext } from '../../Contexts/AppProvider';
+import { BasicContext } from '../../Contexts/BasicDataProvider';
+import { amountInPaisa } from '../../Helper/Helper';
 
 const OrderSummary = () => {
     const [summaryProduct, setSummaryProduct] = useState(false)
-    const { items } = useContext(AppContext);
+    const {  } = useContext(AppContext);
+    const { items, total, subtotal, shippingCharges, taxTotal, taxType, currency } = useContext(BasicContext);
     useEffect(() => {
         console.log("items::",items);
         
@@ -19,7 +22,7 @@ const OrderSummary = () => {
                         {summaryProduct ? (<i className="bi bi-chevron-up downchevron"></i>) : (<i className="bi bi-chevron-down downchevron"></i>)}
                     </div>
                     <h6 className='quicksand summary-price'>
-                        {Constants.INR} 172.05
+                        {Constants.INR} {amountInPaisa(total)}
                     </h6>
                 </div>
                 {
@@ -30,7 +33,7 @@ const OrderSummary = () => {
                                     Subtotal
                                 </span>
                                 <span className='quicksand row-value'>
-                                    {Constants.INR} 172.05
+                                    {Constants.INR} {amountInPaisa(subtotal)}
                                 </span>
                             </div>
                             <div className='detail-row'>
@@ -38,7 +41,7 @@ const OrderSummary = () => {
                                     Tax (Inclusive)
                                 </span>
                                 <span className='quicksand row-value'>
-                                    {Constants.INR} 8.00
+                                    {Constants.INR} {amountInPaisa(taxTotal)}
                                 </span>
                             </div>
                             <div className='detail-row'>
@@ -46,7 +49,7 @@ const OrderSummary = () => {
                                     Shipping Charges
                                 </span>
                                 <span className='quicksand row-value'>
-                                    {Constants.INR} 30.00
+                                    {Constants.INR} {amountInPaisa(shippingCharges)}
                                 </span>
                             </div>
                             <div className='detail-row discount'>
@@ -62,7 +65,7 @@ const OrderSummary = () => {
                                     Total
                                 </span>
                                 <span className='quicksand row-value'>
-                                    172.05
+                                    {amountInPaisa(taxTotal)}
                                 </span>
                             </div>
                         </div>

@@ -4,9 +4,13 @@ import { AppContext } from "../../Contexts/AppProvider";
 import { openPopup } from "../../Helper/Helper";
 import Constants from "../../Data/Constants";
 import UpiPayment from "../UpiPayment/UpiPayment";
+import { useNavigate, useParams } from "react-router-dom";
 
 const PaymentButtons = () => {
     const { addressSelectionPage, setActiveSection } = useContext(AppContext);
+    const { orderId, shopId } = useParams();
+    const navigate = useNavigate();
+    
     const buttons = [
         {
             title: "UPI",
@@ -34,6 +38,19 @@ const PaymentButtons = () => {
             code: 'cod'
         }
     ]
+
+    const navigateToPaymentPage = (method) => {
+        if (method == "cards") {
+            navigate(`/${shopId}/${orderId}/checkout/card`)
+        }
+        if (method == "netbanking") {
+            navigate(`/${shopId}/${orderId}/checkout/netbanking`)
+        }
+        if (method == "wallet") {
+            navigate(`/${shopId}/${orderId}/checkout/wallet`)
+        }
+       
+    }
     return (
         <div className="PaymentButtons">
             {
@@ -46,12 +63,12 @@ const PaymentButtons = () => {
                         )
                     }
                     return (
-                        <button className="quicksand" key={index}>
+                        <button className="quicksand" key={index} onClick={() => navigateToPaymentPage(ele?.code)}>
                             <span className="quicksand">
                                <i className={ele?.icon}></i>&nbsp; { ele.title }
                             </span>
                             <span className="quicksand">
-                                {Constants.INR} 172.05
+                                {Constants.INR} 172.05 <i className="bi bi-chevron-right"></i>
                             </span>
 
                         </button>

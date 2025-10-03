@@ -8,18 +8,19 @@ const AppProvider = ({ children }) => {
     const [activeSection, setActiveSection] = useState('SHIPPING');
     const [phoneNumber, setPhoneNumber] = useState("");
     const [countryCode, setCountryCode] = useState("IN")
-    const [order, setOrder] = useState({});
-    const [items, setItems] = useState([]);
 
 
     const [paymentPopupClosed, setPaymentPopupClosed] = useState(false);
     const [addressPopClosed, setAddressPopClosed] = useState(false);
+    const [exitPopupClosed, setExitPopupClosed] = useState(false);
+
     const [freeDelivery, setFreeDelivery] = useState(true);
 
     const paymentsPage = useRef();
     const addressSelectionPage = useRef();
     const addressFields = useRef();
     const couponListRef = useRef();
+    const backButtonRef = useRef();
 
     const value = {
         name,
@@ -30,14 +31,14 @@ const AppProvider = ({ children }) => {
         activeSection,
         addressFields,
         couponListRef,
+        backButtonRef,
         paymentPopupClosed,
         setPaymentPopupClosed,
         freeDelivery,
         setFreeDelivery,
         addressPopClosed,
         setAddressPopClosed,
-        order, setOrder,
-        items, setItems,
+        exitPopupClosed, setExitPopupClosed,
         otpService, setOtpService,
         phoneNumber, setPhoneNumber,
         countryCode, setCountryCode

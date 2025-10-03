@@ -6,20 +6,31 @@ import LoadingLayout from "./Layouts/LoadingLayout/LoadingLayout";
 import VerificationPage from "./Pages/VerificationPage/VerificationPage";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
+import AddressPage from "./Pages/AddressPage/AddressPage";
+import NetbankingPage from "./Pages/NetbankingPage/NetbankingPage";
+import CardPage from "./Pages/CardPage/CardPage";
+import WalletPage from "./Pages/WalletPage/WalletPage";
+import { BasicDataProvider } from "./Contexts/BasicDataProvider";
 
 function App() {
     return (
         <BrowserRouter>
             <AppProvider>
-                <Routes>
-                    <Route path="/" element={<LoadingLayout />} ></Route>
-                    <Route path="/:shopId/:orderId" element={<AppLayout />} >
-                        <Route path="checkout" element={<Home />} />
-                        <Route path="login" element={<LoginPage />} />
-                        <Route path="verification" element={<VerificationPage />} />
-                        <Route path="error" element={<ErrorPage />}></Route>
-                    </Route>
-                </Routes>
+                <BasicDataProvider>
+                    <Routes>
+                        <Route path="/" element={<LoadingLayout />} ></Route>
+                        <Route path="/:shopId/:orderId" element={<AppLayout />} >
+                            <Route path="checkout" element={<Home />} />
+                            <Route path="login" element={<LoginPage />} />
+                            <Route path="verification" element={<VerificationPage />} />
+                            <Route path="checkout/address" element={<AddressPage />} />
+                            <Route path="checkout/netbanking" element={<NetbankingPage />} />
+                            <Route path="checkout/card" element={<CardPage />} />
+                            <Route path="checkout/wallet" element={<WalletPage />} />
+                            <Route path="error" element={<ErrorPage />}></Route>
+                        </Route>
+                    </Routes>
+                </BasicDataProvider>
             </AppProvider>
         </BrowserRouter>
     );
