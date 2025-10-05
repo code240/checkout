@@ -8,6 +8,24 @@ const UpiPayment = () => {
     const [isqrcode, setIsqrcode] = useState(false);
     const { isUpiQR, currency, isUpiIntent, Vpas, isUpiCollect, total } = useContext(BasicContext);
 
+    if (true) {
+        return (
+            <div className='UpiPayment_skeleton'>
+                <div className='intentContainer'>
+                    <div className='skeleton intentSkeleton'></div>
+                    <div className='skeleton intentSkeleton'></div>
+                    <div className='skeleton intentSkeleton'></div>
+                    <div className='skeleton intentSkeleton'></div>
+                </div>
+            
+                <div className='collectWrapper'>
+                    <div className='skeleton collectInput'></div>
+                    <div className='skeleton collectButton'></div>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className='UpiPayment'>
             <div className="upi-section">

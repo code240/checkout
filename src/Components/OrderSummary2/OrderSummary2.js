@@ -14,6 +14,14 @@ const OrderSummary2 = () => {
         console.log("items::", items);
 
     })
+
+    if (!items || items?.length == 0) {
+        return (
+            <div className='skeleton ordersummary_skeleton'>
+
+            </div>
+        )
+    }
     return (
         <div className='OrderSummary2'>
             <div className='order-summary-wrap'>

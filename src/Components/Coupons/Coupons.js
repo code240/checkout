@@ -2,9 +2,20 @@ import React, { useContext } from "react";
 import "./Coupons.scss";
 import { openPopup } from "../../Helper/Helper";
 import { AppContext } from "../../Contexts/AppProvider";
+import { BasicContext } from "../../Contexts/BasicDataProvider";
 
 const Coupons = () => {
     const { couponListRef } = useContext(AppContext);
+    const { items, total } = useContext(BasicContext);
+
+
+    if (true) {
+        return (
+            <div className='skeleton coupon_skeleton'>
+
+            </div>
+        )
+    }
     return (
         <div className="Coupons">
             <div className="main-coupon-section">

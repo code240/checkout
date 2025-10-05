@@ -7,9 +7,17 @@ import { BasicContext } from "../../Contexts/BasicDataProvider";
 const ShippingAddress = () => {
     const { addressSelectionPage, setActiveSection, addressPopClosed, setAddressPopClosed } = useContext(AppContext);
     const { userLatestAdderess } = useContext(BasicContext);
+
+    if (true) {
+        return (
+            <div className='skeleton shippingAddress_skeleton'>
+
+            </div>
+        )
+    }
     return (
         <div className="ShippingAddress">
-           
+
             <div className="delivery-address">
                 {/* <span className="check-absolute">
                     <i className="bi bi-check-lg"></i>
@@ -17,7 +25,7 @@ const ShippingAddress = () => {
                 <h2 className="quicksand customer-name">
                     <span className="supporting-text">
                         <i className="bi bi-geo"></i>&nbsp;Deliver to&nbsp;
-                    </span> 
+                    </span>
                     {userLatestAdderess?.firstName} {userLatestAdderess?.lastName}
                     <button className="quicksand" onClick={() => { openPopup(addressSelectionPage); setAddressPopClosed(false); }}>Change</button>
                 </h2>

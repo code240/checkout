@@ -11,10 +11,19 @@ const ShippingMethod = () => {
 
     const changeShippingHandle = (amount, handle) => {
         let newTotal = total - shippingCharges;
-        setShippingCharges(parseInt(amount)*100);
-        newTotal = newTotal + parseInt(amount)*100;
+        setShippingCharges(parseInt(amount) * 100);
+        newTotal = newTotal + parseInt(amount) * 100;
         setTotal(newTotal);
         setShippingHandle(handle);
+    }
+
+    if (true) {
+        return (
+            <div className='ShippingMethod_skelton'>
+                <div className='skeleton ShippingMethod_skelton1'></div>
+                <div className='skeleton ShippingMethod_skelton2'></div>
+            </div>
+        )
     }
 
     return (

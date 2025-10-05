@@ -207,3 +207,42 @@
         margin-block: 5px;
     }
 }
+
+.UpiPayment_skeleton {
+    border: 1px solid #ececec;
+    border-radius: 5px;
+    height: auto;
+
+    .intentContainer {
+        padding-block: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        .intentSkeleton {
+            width: 4.5rem;
+            height: 4.5rem;
+            border-radius: 5px;
+        }
+    }
+
+    .collectWrapper {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        gap: 10px;
+        .collectInput {
+            width: 65%;
+            height: 2.9rem;
+            border-radius: 5px;
+        }
+        .collectButton {
+            width: 35%;
+            height: 2.9rem;
+            border-radius: 5px;
+
+        }
+    }
+
+}

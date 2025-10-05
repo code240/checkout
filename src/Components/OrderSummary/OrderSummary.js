@@ -9,10 +9,15 @@ const OrderSummary = () => {
     const [summaryProduct, setSummaryProduct] = useState(false)
     const { } = useContext(AppContext);
     const { items, total, subtotal, discountCode, discountAmount, shippingCharges, taxTotal, taxType, currency, shippingHandle } = useContext(BasicContext);
-    useEffect(() => {
-        console.log("items::", items);
 
-    })
+    // if (!items || items?.length == 0) {
+    if (true) {
+        return (
+            <div className='skeleton ordersummary_skeleton'>
+
+            </div>
+        )
+    }
     return (
         <div className='OrderSummary'>
             <div className='order-summary-wrap'>

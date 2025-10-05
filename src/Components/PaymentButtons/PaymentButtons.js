@@ -24,6 +24,23 @@ const PaymentButtons = () => {
             navigate(`/${shopId}/${orderId}/checkout/wallet`)
         }
     }
+
+    if (true) {
+        return (
+
+            <div className="PaymentButtons_skeleton">
+                <UpiPayment></UpiPayment>
+
+                <div className="innerPaybtn">
+                    <div className="skeleton paybtn"></div>
+                    <div className="skeleton paybtn"></div>
+                    <div className="skeleton paybtn"></div>
+                    <div className="skeleton paybtn"></div>
+                </div>
+
+            </div>
+        )
+    }
     return (
         <div className="PaymentButtons">
             {
