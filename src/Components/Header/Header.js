@@ -4,12 +4,27 @@ import { AppContext } from '../../Contexts/AppProvider';
 import { closePopup, openPopup } from '../../Helper/Helper';
 
 
-const Header = ({props}) => {
+const Header = ({ props }) => {
     const { backButtonRef, setExitPopupClosed } = useContext(AppContext);
 
     const ShowExitPopup = () => {
         openPopup(backButtonRef);
         setExitPopupClosed(false);
+    }
+
+
+    if (true) {
+        return (
+            <div className='Header_skeleton'>
+                <div className='skeleton backBtn'></div>
+                <div className='skeleton logoSkeleton'></div>
+                <div className='third-division'>
+                    <span>
+                        <i className='bi bi-shield-lock-fill'></i> 100% Secured Payment
+                    </span>
+                </div>
+            </div>
+        )
     }
 
     return (

@@ -59,3 +59,40 @@
         }
     }
 }
+
+.Header_skeleton {
+    padding: 1rem 1rem 0.7rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    background-color: #ffffff;
+
+    .backBtn {
+        height: 30px;
+        border-radius: 5px;
+        width: 50px;
+    }
+    .logoSkeleton {
+        height: 30px;
+        border-radius: 5px;
+        width: 80px;
+        margin-left: 70px;
+    }
+     .third-division{
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: right;
+
+        span{
+            padding: 0 !important;
+            font-size: 8px;
+            color: #999999;
+            width: 4rem;
+            text-align: center;
+            display: block;
+        }
+    }
+}
+
