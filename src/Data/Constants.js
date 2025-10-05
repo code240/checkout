@@ -27,6 +27,10 @@ export const CURRENCY_ICONS = {
     INR: "₹",
     USD: "$",
 }
+
+export const TOP_BANKS = [
+    "CANARA", "ICICI", "PNB", "INDUSIND", "FEDERAL", "YESBK", "IDBI", "IDFC", "KOTAK", "HDFC", "SBI", "AXIS", "BKOFBR", "EQUITASSF", "UBOFIN"
+]
 export const LoadingHeadings = [
     "Preparing your checkout experience...",
     "Almost there, setting things up...",

@@ -22,13 +22,15 @@ import BackButton from "../../Popups/BackButton/BackButton";
 import { BasicContext } from "../../Contexts/BasicDataProvider";
 
 const AppLayout = (props) => {
-    const { activeSection, paymentsPage} = useContext(AppContext);
-    const {  setItems, setUserLatestAdderess, setDiscountCode, setDiscountAmount, setSubtotal,setTotal, setShippingCharges, setTaxTotal, setTaxType, setCurrency } = useContext(BasicContext);
-
+    const { activeSection, paymentsPage } = useContext(AppContext);
+    const { setItems, setUserLatestAdderess, setInstalledApps, HandleInstalledApps, UpdateOrder, GetMethods, setDiscountCode, setDiscountAmount, setSubtotal, setTotal, setShippingCharges, setTaxTotal, setTaxType, setCurrency } = useContext(BasicContext);
     const { orderId, shopId } = useParams();
+
     useEffect(() => {
         GetCheckoutData()
-    },[])
+    }, [])
+
+
     const GetCheckoutData = async () => {
         const response = await Api.post(
             `${shopId}/api/checkout/get/${orderId}`
@@ -36,7 +38,6 @@ const AppLayout = (props) => {
 
         if (response?.data?.status === true) {
             let checkout = response.data;
-            console.log(checkout);
             setItems(checkout.data.items)
             setTotal(checkout.data.order.total)
             setTaxTotal(checkout.data.order.tax)
@@ -47,7 +48,12 @@ const AppLayout = (props) => {
             setDiscountCode(checkout.data.order.discountCode)
             setCurrency(checkout.data.currency)
             setUserLatestAdderess(checkout.data?.userAddress ?? {})
-            console.log(checkout.data.items);
+            setInstalledApps(checkout.data?.apps);
+            HandleInstalledApps(checkout.data?.apps ?? [], shopId, orderId);
+            console.log(checkout.data.apps);
+            if (checkout.data?.userAddress?.address_ref_id) {
+                UpdateOrder(checkout.data.userAddress.address_ref_id, shopId, orderId);
+            }
         }
     }
 
@@ -61,7 +67,7 @@ const AppLayout = (props) => {
     );
     document.documentElement.style.setProperty(
         "--quick-success-color",
-        "#608d60"
+        "#44a144"
     );
 
     return (

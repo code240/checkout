@@ -8,7 +8,7 @@ import { amountInPaisa, PrintCurrency } from '../../Helper/Helper';
 const OrderSummary = () => {
     const [summaryProduct, setSummaryProduct] = useState(false)
     const { } = useContext(AppContext);
-    const { items, total, subtotal, discountCode, discountAmount, shippingCharges, taxTotal, taxType, currency } = useContext(BasicContext);
+    const { items, total, subtotal, discountCode, discountAmount, shippingCharges, taxTotal, taxType, currency, shippingHandle } = useContext(BasicContext);
     useEffect(() => {
         console.log("items::", items);
 
@@ -46,7 +46,12 @@ const OrderSummary = () => {
                             </div>
                             <div className='detail-row'>
                                 <span className='quicksand row-title'>
-                                    Shipping Charges
+                                    Shipping Charges 
+                                    {
+                                        shippingCharges == 0 ? (
+                                            <span className='quicksand free'>Free</span>
+                                        ) : null
+                                    }
                                 </span>
                                 <span className='quicksand row-value'>
                                     {PrintCurrency(currency)} {amountInPaisa(shippingCharges)}

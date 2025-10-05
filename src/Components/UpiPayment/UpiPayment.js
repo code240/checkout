@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './UpiPayment.scss';
 import Constants from '../../Data/Constants';
+import { BasicContext } from '../../Contexts/BasicDataProvider';
+import { amountInPaisa, PrintCurrency } from '../../Helper/Helper';
 
 const UpiPayment = () => {
     const [isqrcode, setIsqrcode] = useState(false);
+    const { isUpiQR, currency, isUpiIntent, Vpas, isUpiCollect, total } = useContext(BasicContext);
 
     return (
         <div className='UpiPayment'>
@@ -16,7 +19,7 @@ const UpiPayment = () => {
                         Quick checkout with UPI
                     </span>
                     <span className='quicksand upi-amount'>
-                        { Constants.INR } 172.05
+                        {PrintCurrency(currency)} {amountInPaisa(total)}
                     </span>
                 </h6>
                 {
@@ -37,22 +40,34 @@ const UpiPayment = () => {
                         </div>
                     ) : (
                         <div className='upi-qr-section'>
-                           
+
                         </div>
                     )
                 }
-                <hr className='upi-partition'></hr>
-                <div className='qr-with-upi'>
-                    <div className='upi-input only-upi-field'>
-                        <input type="text" className='upi-input-field' placeholder='my-upi-id@xyz' />
-                        <button className='upi-pay quicksand'>Pay Now</button>
-                    </div>
-                </div>
-                <div className="vpa-accounts">
-                    <h6 className="quicksand vpa">8930395227@ybl</h6>
-                    <h6 className="quicksand vpa">vipinrao@axl</h6>
-                    <h6 className="quicksand vpa">vipin8930@paytm</h6>
-                </div>
+                {
+                    isUpiCollect ? (
+                        <>
+                            <hr className='upi-partition'></hr>
+                            <div className='qr-with-upi'>
+                                <div className='upi-input only-upi-field'>
+                                    <input type="text" className='upi-input-field' placeholder='my-upi-id@xyz' />
+                                    <button className='upi-pay quicksand'>Pay Now</button>
+                                </div>
+                            </div>
+                            <div className="vpa-accounts">
+                                {
+                                    Vpas?.map((ele, eleInd) => {
+                                        return (
+                                            <h6 className="quicksand vpa" key={eleInd}>{ele}</h6>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </>
+                    ) : null
+                }
+
+
             </div>
         </div>
     )

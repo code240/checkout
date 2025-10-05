@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./NetBankingPayment.scss";
 import { useNavigate, useParams } from "react-router-dom";
+import { BasicContext } from "../../Contexts/BasicDataProvider";
 
-const NetBankingPayment = ({setSelectedMethod}) => {
+const NetBankingPayment = ({ setSelectedMethod }) => {
     const navigate = useNavigate();
+    const { netbankingBanks, favBanks, bankShortcuts } = useContext(BasicContext);
     const { orderId, shopId } = useParams();
 
     const goBack = () => {
@@ -17,67 +19,23 @@ const NetBankingPayment = ({setSelectedMethod}) => {
             <div className="upi-section">
                 <span className="quicksand offer-text">Get 5% discount</span>
                 <div className="icons">
-                    <div className="nb-card">
-                        <div className="ico">
-                            <img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoDjplJYoxWKpPmVvuh9WXqjhoRMHnWzF-JQ&s"
-                                alt="phonepe"
-                            />
-                        </div>
-                        <span className="quicksand bankName text-truncate">State bank of India</span>
-                    </div>
 
-                    <div className="nb-card">
-                        <div className="ico">
-                            <img
-                                src="https://companieslogo.com/img/orig/KOTAKBANK.NS-36440c5e.png?t=1720244492"
-                                alt="phonepe"
-                            />
-                        </div>
-                        <span className="quicksand bankName text-truncate">Kotak mahindra bank</span>
-                    </div>
+                    {
+                        favBanks?.map((el, elKey) => {
+                            return (
+                                <div className="nb-card" key={elKey}>
+                                    <div className="ico">
+                                        <img
+                                            src={ el.image }
+                                            alt="phonepe"
+                                        />
+                                    </div>
+                                    <span className="quicksand bankName text-truncate">{ el.title }</span>
+                                </div>
+                            )
+                        })
+                    }
 
-                    <div className="nb-card">
-                        <div className="ico">
-                            <img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXgiz41maa34mpQoVYhRyZ8wk8XOMZfHvIrA&s"
-                                alt="phonepe"
-                            />
-                        </div>
-                        <span className="quicksand bankName text-truncate">HDFC Bank</span>
-                    </div>
-
-                    <div className="nb-card">
-                        <div className="ico">
-                            <img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0RUF7zKsncgZOWviOIkmuuc3hsrCftRSvkQ&s"
-                                alt="phonepe"
-                            />
-                        </div>
-                        <span className="quicksand bankName text-truncate">Axis Bank</span>
-                    </div>
-
-                    <div className="nb-card">
-                        <div className="ico">
-                            <img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCTm1ko2IGtHwamB_XjRCFxYDt9xDB2ePlyw&s"
-                                alt="phonepe"
-                            />
-                        </div>
-                        <span className="quicksand bankName text-truncate">Canara Bank</span>
-                    </div>
-
-
-
-                    <div className="nb-card">
-                        <div className="ico">
-                            <img
-                                src="https://1000logos.net/wp-content/uploads/2021/06/Bank-of-Baroda-icon.png"
-                                alt="phonepe"
-                            />
-                        </div>
-                        <span className="quicksand bankName text-truncate">Bank of baroda</span>
-                    </div>
 
                 </div>
                 <hr className="upi-partition" />
@@ -88,7 +46,13 @@ const NetBankingPayment = ({setSelectedMethod}) => {
                             className="upi-input-field"
                             placeholder="my-upi-id@xyz"
                         >
-                            <option value="">Punjab National Bank</option>
+                            {
+                                netbankingBanks?.map((ele, ind) => {
+                                    return (
+                                        <option value={ele?.code} key={ind}>{ele?.title}</option>
+                                    )
+                                })
+                            }
                             <option value="">Bank of India</option>
                             <option value="">IDBI Bank</option>
                             <option value="">Jio payments Bank</option>
@@ -98,10 +62,13 @@ const NetBankingPayment = ({setSelectedMethod}) => {
                 </div>
                 <hr className="upi-partition" />
                 <div className="vpa-accounts">
-                    <h6 className="quicksand vpa">Federal Bank</h6>
-                    <h6 className="quicksand vpa">Union bank</h6>
-                    <h6 className="quicksand vpa">Airtel Bank</h6>
-                    <h6 className="quicksand vpa">Punjab National Bank</h6>
+                    {
+                        bankShortcuts?.map((el, elKey) => {
+                            return (
+                                <h6 className="quicksand vpa" key={elKey}>{el?.title}</h6>
+                            )
+                        })
+                    }
                 </div>
             </div>
             <h6 className="back-option quicksand" onClick={() => goBack()}>

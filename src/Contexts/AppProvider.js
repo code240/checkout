@@ -14,7 +14,6 @@ const AppProvider = ({ children }) => {
     const [addressPopClosed, setAddressPopClosed] = useState(false);
     const [exitPopupClosed, setExitPopupClosed] = useState(false);
 
-    const [freeDelivery, setFreeDelivery] = useState(true);
 
     const paymentsPage = useRef();
     const addressSelectionPage = useRef();
@@ -34,8 +33,6 @@ const AppProvider = ({ children }) => {
         backButtonRef,
         paymentPopupClosed,
         setPaymentPopupClosed,
-        freeDelivery,
-        setFreeDelivery,
         addressPopClosed,
         setAddressPopClosed,
         exitPopupClosed, setExitPopupClosed,

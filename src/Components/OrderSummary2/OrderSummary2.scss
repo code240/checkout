@@ -46,25 +46,37 @@
         }
 
 
-        .details{
+        .details {
             min-height: auto;
             margin-top: 22px;
             padding: 5px 10px;
-            
-            .detail-row{
+
+            .detail-row {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                margin-bottom: 6px;  
+                margin-bottom: 6px;
             }
-            .row-title{
+
+            .row-title {
+                font-size: 13px;
+                font-weight: 700;
+
+                .free {
+                    padding: 3px 5px;
+                    background-color: var(--quick-success-color);
+                    color: #ffffff;
+                    margin-left: 5px;
+                    font-size: 10px;
+                    border-radius: 3px;
+                }
+            }
+
+            .row-value {
                 font-size: 13px;
                 font-weight: 700;
             }
-            .row-value{
-                font-size: 13px;
-                font-weight: 700;
-            }
+
             .discount {
                 color: var(--quick-success-color) !important;
             }
@@ -72,16 +84,18 @@
 
 
 
-        .summary-item-main{
+        .summary-item-main {
             // border: 1px solid rebeccapurple;
             margin-top: 22px;
             max-height: 210px;
             overflow: auto;
             padding: 5px 10px;
-            .item{
+
+            .item {
                 display: flex;
                 margin-bottom: 4px;
-                .item-image{
+
+                .item-image {
                     flex: none;
                     overflow: hidden;
                     width: 4rem;
@@ -92,27 +106,32 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    img{
+
+                    img {
                         width: 100%;
                         height: 100%;
 
                     }
                 }
+
                 .item-info {
                     flex: 1;
-                    padding:7px 8px;
-                    .title{
+                    padding: 7px 8px;
+
+                    .title {
                         margin: 0;
                         color: #111111;
                         font-size: 14px;
                     }
-                    .quantity{
+
+                    .quantity {
                         margin: 0;
                         margin-top: 4px;
                         font-size: 13px;
                         font-weight: 700;
                     }
-                    .price{
+
+                    .price {
                         margin: 0;
                         margin-top: 4px;
                         font-size: 13px;

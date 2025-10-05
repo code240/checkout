@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./WalletPayment.scss";
 import { useNavigate, useParams } from "react-router-dom";
+import { BasicContext } from "../../Contexts/BasicDataProvider";
 
 const WalletPayment = () => {
     const navigate = useNavigate();
+    const { wallets } = useContext(BasicContext);
     const { orderId, shopId } = useParams();
 
     const goBack = () => {
@@ -18,55 +20,23 @@ const WalletPayment = () => {
             <div className="upi-section">
                 <span className="quicksand offer-text">Get 5% discount</span>
                 <div className="icons">
-                    <div className="nb-card">
-                        <div className="ico">
-                            <img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoDjplJYoxWKpPmVvuh9WXqjhoRMHnWzF-JQ&s"
-                                alt="phonepe"
-                            />
-                        </div>
-                        <span className="quicksand bankName text-truncate">State bank of India</span>
-                    </div>
 
-                    <div className="nb-card">
-                        <div className="ico">
-                            <img
-                                src="https://companieslogo.com/img/orig/KOTAKBANK.NS-36440c5e.png?t=1720244492"
-                                alt="phonepe"
-                            />
-                        </div>
-                        <span className="quicksand bankName text-truncate">Kotak mahindra bank</span>
-                    </div>
+                    {
+                        wallets.map((ele, eleKey) => {
+                            return (
+                                <div className="nb-card" key={eleKey}>
+                                    <div className="ico">
+                                        <img
+                                            src={ele?.image}
+                                            alt={ele?.code}
+                                        />
+                                    </div>
+                                    <span className="quicksand bankName text-truncate">{ele?.title}</span>
+                                </div>
+                            )
+                        })
+                    }
 
-                    <div className="nb-card">
-                        <div className="ico">
-                            <img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXgiz41maa34mpQoVYhRyZ8wk8XOMZfHvIrA&s"
-                                alt="phonepe"
-                            />
-                        </div>
-                        <span className="quicksand bankName text-truncate">HDFC Bank</span>
-                    </div>
-
-                    <div className="nb-card">
-                        <div className="ico">
-                            <img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0RUF7zKsncgZOWviOIkmuuc3hsrCftRSvkQ&s"
-                                alt="phonepe"
-                            />
-                        </div>
-                        <span className="quicksand bankName text-truncate">Axis Bank</span>
-                    </div>
-
-                    <div className="nb-card">
-                        <div className="ico">
-                            <img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCTm1ko2IGtHwamB_XjRCFxYDt9xDB2ePlyw&s"
-                                alt="phonepe"
-                            />
-                        </div>
-                        <span className="quicksand bankName text-truncate">Canara Bank</span>
-                    </div>
                 </div>
             </div>
             <h6 className="back-option quicksand" onClick={() => goBack()}>

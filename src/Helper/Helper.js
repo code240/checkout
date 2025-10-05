@@ -92,3 +92,21 @@ export function PrintCurrency(currencyCode, needCurrencySymbol = true) {
         return currencyCode;
     }
 }
+
+export function ProductsParsing(products,rate, setProducts) {
+    let items = [];
+    products?.forEach((element) => {
+        let thisItem = {
+            title : element.node.title,
+            variant_title: element.node.variant.title,
+            variant_id: element.node.variant.id,
+            quantity: element.node.quantity,
+            image: element.node.variant.image.originalSrc,
+            market_price: (parseFloat(element.node.variant.compareAtPriceV2.amount) * rate) * 100,
+            price: (parseFloat(element.node.variant.priceV2.amount) * rate) * 100
+
+        }
+        items.push(thisItem);
+    });
+    setProducts(items);
+}

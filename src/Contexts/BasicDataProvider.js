@@ -1,4 +1,7 @@
 import React, { createContext, useRef, useState } from 'react'
+import Api from '../Helper/Api';
+import { TOP_BANKS } from '../Data/Constants';
+import { ProductsParsing } from '../Helper/Helper';
 
 const BasicContext = createContext();
 
@@ -15,6 +18,140 @@ const BasicDataProvider = ({ children }) => {
     const [discountCode, setDiscountCode] = useState("");
     const [discountAmount, setDiscountAmount] = useState(0);
     const [userLatestAdderess, setUserLatestAdderess] = useState(0);
+    const [isUpiCollect, setIsUpiCollect] = useState(false);
+    const [isUpiQR, setIsUpiQR] = useState(false);
+    const [isUpiIntent, setIsUpiIntent] = useState(false);
+    const [seamlessPaymentMethods, setSeamlessPaymentMethods] = useState([]);
+    const [netbankingBanks, setNetbankingBanks] = useState([]);
+    const [wallets, setWallets] = useState([]);
+    const [favBanks,setFavBanks] = useState([]);
+    const [Vpas,setVpas] = useState([]);
+    const [bankShortcuts,setBankShortcuts] = useState([]);
+    const [installedApps, setInstalledApps] = useState([]);
+    const [shippingHandles,setShippingHandles] = useState([]);
+    const [freeDelivery, setFreeDelivery] = useState(false);
+    const [shippingAmount, setShippingAmount] = useState(true);
+    const [shippingHandle, setShippingHandle] = useState(true);
+    const [codAvailablity, setCodAvailablity] = useState(false);
+
+
+
+    const GetMethods = async (shopId, orderId) => {
+        const response = await Api.post(
+            `${shopId}/${orderId}/payment/methods`
+        );
+
+        if (response?.data?.status) {
+            let data = response.data.data;
+            console.log(data);
+
+            let prepareMethods = [];
+            if ((data?.upi && data?.upi?.data) && (data?.upi?.data?.QR || data?.upi?.data?.UPI || data?.upi?.data?.INTENT)) {
+                prepareMethods.push({
+                    title: "UPI",
+                    icon: "bi bi-collection-play",
+                    code: 'upi'
+                });
+                if (data?.upi?.data?.QR) {
+                    setIsUpiQR(true);
+                }
+                if (data?.upi?.data?.INTENT) {
+                    setIsUpiIntent(true);
+                }
+                if (data?.upi?.data?.UPI) {
+                    setIsUpiCollect(true);
+                }
+            }
+            if ((data?.debitcard && data?.debitcard?.data && data?.debitcard?.data?.length > 0) || (data?.creditcard && data?.creditcard?.data && data?.creditcard?.data?.length > 0)) {
+                prepareMethods.push({
+                    title: "Cards",
+                    icon: "bi bi-credit-card",
+                    code: 'cards'
+                });
+            }
+            if (data?.netbanking && data?.netbanking?.data && data?.netbanking?.data?.length > 0) {
+                setNetbankingBanks(data?.netbanking?.data);
+                prepareMethods.push({
+                    title: "Netbanking",
+                    icon: "bi bi-bank",
+                    code: 'netbanking'
+                });
+
+                // handle fav banks and bank shortcuts
+                let favList = [];
+                let ShuffledFavBanks = [];
+                data?.netbanking?.data?.forEach((ele) => {
+                    if (TOP_BANKS.includes(ele?.code)) {
+                        favList.push(ele);
+                    }
+                })
+                ShuffledFavBanks = favList
+                    .map(value => ({ value, sort: Math.random() }))
+                    .sort((a, b) => a.sort - b.sort)
+                    .map(({ value }) => value);
+
+                setFavBanks(ShuffledFavBanks.slice(0, 6));
+                setBankShortcuts(ShuffledFavBanks.slice(6, 9));
+
+
+            }
+            if (data?.wallet && data?.wallet?.data && data?.wallet?.data?.length > 0) {
+                setWallets(data?.wallet?.data);
+                prepareMethods.push({
+                    title: "Wallet",
+                    icon: "bi bi-wallet2",
+                    code: 'wallet'
+                });
+            }
+            setSeamlessPaymentMethods(prepareMethods);
+        }
+    }
+
+    const HandleInstalledApps = (installApps, shopId, orderId) => {
+        installApps.forEach((ele) => {
+            if (ele?.app_image == "seamless") {
+                GetMethods(shopId, orderId)
+            }
+        });
+    }
+
+    const UpdateOrder = async (addressId, shopId, orderId) => {
+        const response = await Api.post(
+            `${shopId}/user/update/order/${orderId}`, 
+            {
+                address_id: addressId
+            }
+        );
+
+        if (response?.data?.status === true) {
+            let updatedCheckout = response.data.data;
+            console.log(updatedCheckout);
+            let orderTotal = updatedCheckout.Amount;
+            setShippingHandles(updatedCheckout.ShippingHandle);
+
+            setSubtotal(updatedCheckout.Subtotal);
+            setDiscountAmount(updatedCheckout.DiscountAmount);
+            setDiscountCode(updatedCheckout.DiscountCode);
+            setCodAvailablity(updatedCheckout.isCodCheckPassed);
+            setTaxTotal(updatedCheckout.Tax);
+            setTaxType(updatedCheckout.TaxType);
+            setCurrency(updatedCheckout.Currency);
+            ProductsParsing(updatedCheckout.LineItems, updatedCheckout.Rate, setItems);
+            // if only 1 handle exist and that is 0 then...
+            if (updatedCheckout.ShippingHandle?.length == 1 && updatedCheckout.ShippingHandle[0] && updatedCheckout.ShippingHandle[0]?.priceV2?.amount != undefined && parseInt(updatedCheckout.ShippingHandle[0]?.priceV2?.amount) == 0) {
+                setFreeDelivery(true);
+            } else {
+                setFreeDelivery(false);
+            }
+            // select default 0th handle...
+            if (updatedCheckout.ShippingHandle?.length > 0 && updatedCheckout.ShippingHandle[0] != undefined) {
+                setShippingCharges(parseInt(updatedCheckout.ShippingHandle[0]?.priceV2?.amount) * 100); 
+                setShippingHandle(updatedCheckout.ShippingHandle[0].handle);
+                setTotal(orderTotal + (parseInt(updatedCheckout.ShippingHandle[0]?.priceV2?.amount) * 100));
+            }
+
+        }
+    }
 
     const value = {
         order, setOrder,
@@ -27,7 +164,23 @@ const BasicDataProvider = ({ children }) => {
         currency, setCurrency,
         discountCode, setDiscountCode,
         discountAmount, setDiscountAmount,
-        userLatestAdderess, setUserLatestAdderess
+        userLatestAdderess, setUserLatestAdderess,
+        isUpiCollect, setIsUpiCollect,
+        isUpiQR, setIsUpiQR,
+        isUpiIntent, setIsUpiIntent,
+        seamlessPaymentMethods, setSeamlessPaymentMethods,
+        GetMethods, HandleInstalledApps,
+        netbankingBanks, setNetbankingBanks,
+        wallets, setWallets,
+        favBanks, setFavBanks,
+        bankShortcuts,setBankShortcuts,
+        installedApps, setInstalledApps,
+        Vpas, setVpas,
+        UpdateOrder,
+        shippingHandles,setShippingHandles,
+        freeDelivery, setFreeDelivery,
+        shippingHandle, setShippingHandle,
+        codAvailablity, setCodAvailablity
     }
     return (
         <BasicContext.Provider value={value}>

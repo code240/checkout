@@ -1,11 +1,21 @@
 import React, { useContext } from 'react';
 import './ShippingMethod.scss';
 import { AppContext } from '../../Contexts/AppProvider';
+import { BasicContext } from '../../Contexts/BasicDataProvider';
 
 const ShippingMethod = () => {
 
-    const { freeDelivery } = useContext(AppContext);
+    const { } = useContext(AppContext);
+    const { freeDelivery, shippingHandles, shippingCharges, setTotal, total, setShippingCharges, shippingHandle, setShippingHandle } = useContext(BasicContext);
 
+
+    const changeShippingHandle = (amount, handle) => {
+        let newTotal = total - shippingCharges;
+        setShippingCharges(parseInt(amount)*100);
+        newTotal = newTotal + parseInt(amount)*100;
+        setTotal(newTotal);
+        setShippingHandle(handle);
+    }
 
     return (
         <div className='ShippingMethod'>
@@ -16,18 +26,47 @@ const ShippingMethod = () => {
                         Free delivery unlocked 🎉🎉
                     </div>
                 ) : (
+                    <>
+                        {
+                            shippingHandles?.length > 0 ? (
+                                <div className='main-ship-wrapper'>
+                                    <h5 className='quicksand'>
+                                        Shipping methods
+                                    </h5>
+                                    <div className='shipping-method-inner'>
 
-                    <div className='shipping-method-inner'>
-                        <label htmlFor='delivery-option1'>
-                            <input type="radio" defaultChecked id='delivery-option1' name='delivery-option' />
-                            <h6 className='quicksand'>Stadard Shipping <b className='quicksand'>@ Rs 30</b></h6>
-                        </label>
-                        <label htmlFor='delivery-option2'>
-                            <input type="radio" id='delivery-option2' name='delivery-option' />
-                            <h6 className='quicksand'>Rapid Delivery <b className='quicksand'>@ Rs 100</b></h6>
-                        </label>
+                                        {
+                                            shippingHandles.map((element, elementKey) => {
+                                                return (
+                                                    <div key={elementKey}>
+                                                        <label htmlFor={'delivery-option' + elementKey} className={elementKey === 0 ? 'firstOption' : ''}>
+                                                            <input
+                                                                onChange={() => changeShippingHandle(element?.priceV2.amount, element?.handle)}
+                                                                type="radio"
+                                                                defaultChecked={elementKey === 0}
+                                                                name='delivery-option'
+                                                                id={'delivery-option' + elementKey}
+                                                            />
+                                                            <h6 className='quicksand'>{element?.title} <b className='quicksand'>@ {element?.priceV2.amount}</b></h6>
+                                                        </label>
+                                                        {
+                                                            elementKey != shippingHandles?.length - 1 ? (
+                                                                <hr></hr>
+                                                            ) : null
+                                                        }
+                                                    </div>
+                                                )
+                                            })
+                                        }
 
-                    </div>
+
+                                    </div>
+                                </div>
+                            ) : null
+
+                        }
+
+                    </>
                 )
             }
         </div>

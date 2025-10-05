@@ -7,14 +7,16 @@ import UpiPayment from "../../Components/UpiPayment/UpiPayment";
 import NetBankingPayment from "../../Components/NetBankingPayment/NetBankingPayment";
 import WalletPayment from "../../Components/WalletPayment/WalletPayment";
 import CardPayment from "../../Components/CardPayment/CardPayment";
-import { closePopup } from "../../Helper/Helper";
+import { closePopup, PrintCurrency } from "../../Helper/Helper";
 
 // 👇 ADD
 import { useSpring, animated } from "react-spring";
 import { useDrag } from "@use-gesture/react";
+import { BasicContext } from "../../Contexts/BasicDataProvider";
 
 const Payments = () => {
     const { paymentsPage, paymentPopupClosed, setPaymentPopupClosed } = useContext(AppContext);
+    const { currency, total } = useContext(BasicContext);
     const [selectedMethod, setSelectedMethod] = useState("");
     const [{ y }, api] = useSpring(() => ({ y: 0 }));
 
@@ -26,7 +28,6 @@ const Payments = () => {
             onRest: () => {
                 setPaymentPopupClosed(true);
                 closePopup && closePopup(paymentsPage);
-                console.log("DEMOOOO");
 
             },
         });
@@ -68,11 +69,11 @@ const Payments = () => {
                     <PopupHeader slider={true} page={paymentsPage} />
                     <div className="shipping-banner">
                         <span className="quicksand">Shipping Charges added</span>
-                        <span className="quicksand bold">{Constants.INR} 50.00</span>
+                        <span className="quicksand bold">{PrintCurrency(currency)} 50.00</span>
                     </div>
                     <div className="total">
                         <span className="quicksand">Grand Total</span>
-                        <span className="quicksand bold">{Constants.INR} 212.05</span>
+                        <span className="quicksand bold">{PrintCurrency(currency)} 212.05</span>
                     </div>
                 </animated.div>
                 {/* --------------------------------- */}
