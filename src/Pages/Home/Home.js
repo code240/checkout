@@ -10,14 +10,19 @@ import PaymentButtons from '../../Components/PaymentButtons/PaymentButtons';
 import Api from '../../Helper/Api';
 import { useNavigate, useParams } from 'react-router-dom';
 import { GetToken } from '../../Helper/Storage';
+import { BasicContext } from '../../Contexts/BasicDataProvider';
 
 const Home = () => {
     const navigate = useNavigate();
     const { orderId, shopId } = useParams();
+    const { isCheckoutCreated, userLatestAdderess } = useContext(BasicContext);
 
     useEffect(() => {
         if (!GetToken()) {
             navigate(`/${shopId}/${orderId}/login`)
+        }
+        if (isCheckoutCreated && !userLatestAdderess?.address_ref_id) {
+            navigate(`/${shopId}/${orderId}/checkout/address`);
         }
     },[])
 

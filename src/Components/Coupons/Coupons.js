@@ -6,14 +6,12 @@ import { BasicContext } from "../../Contexts/BasicDataProvider";
 
 const Coupons = () => {
     const { couponListRef } = useContext(AppContext);
-    const { items, total } = useContext(BasicContext);
+    const { items, total, shopName } = useContext(BasicContext);
 
 
-    if (true) {
+    if (!shopName) {
         return (
-            <div className='skeleton coupon_skeleton'>
-
-            </div>
+            <div className='skeleton coupon_skeleton'></div>
         )
     }
     return (

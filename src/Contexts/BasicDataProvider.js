@@ -24,15 +24,24 @@ const BasicDataProvider = ({ children }) => {
     const [seamlessPaymentMethods, setSeamlessPaymentMethods] = useState([]);
     const [netbankingBanks, setNetbankingBanks] = useState([]);
     const [wallets, setWallets] = useState([]);
-    const [favBanks,setFavBanks] = useState([]);
-    const [Vpas,setVpas] = useState([]);
-    const [bankShortcuts,setBankShortcuts] = useState([]);
+    const [favBanks, setFavBanks] = useState([]);
+    const [Vpas, setVpas] = useState([]);
+    const [bankShortcuts, setBankShortcuts] = useState([]);
     const [installedApps, setInstalledApps] = useState([]);
-    const [shippingHandles,setShippingHandles] = useState([]);
+    const [shippingHandles, setShippingHandles] = useState([]);
     const [freeDelivery, setFreeDelivery] = useState(false);
     const [shippingAmount, setShippingAmount] = useState(true);
-    const [shippingHandle, setShippingHandle] = useState(true);
+    const [selectedShippingHandle, setSelectedShippingHandle] = useState(true);
     const [codAvailablity, setCodAvailablity] = useState(false);
+    const [shopLogo, setShopLogo] = useState("");
+    const [shopName, setShopName] = useState("");
+    const [shopId, setShopId] = useState("");
+    const [isCheckoutCreated, setIsCheckoutCreated] = useState(false);
+    const [isCheckoutUpdated, setIsCheckoutUpdated] = useState(false);
+    const [showFullScreenLoader, setShowFullScreenLoader] = useState(false);
+    const [addressList, setAddressList] = useState([]);
+    const [fetchingAddressList, setFetchingAddressList] = useState([]);
+
 
 
 
@@ -115,15 +124,29 @@ const BasicDataProvider = ({ children }) => {
         });
     }
 
+    const fetchAddressList = async (shopId, orderId) => {
+        setFetchingAddressList(true);
+        const response = await Api.post(
+            `${shopId}/user/${orderId}/address/fetch`
+        );
+        setFetchingAddressList(false);
+        if (response?.data?.status && response?.data?.data?.length > 0) {
+            setAddressList(response?.data?.data);
+        } else {
+            setAddressList([]);
+        }
+    }
+
     const UpdateOrder = async (addressId, shopId, orderId) => {
         const response = await Api.post(
-            `${shopId}/user/update/order/${orderId}`, 
+            `${shopId}/user/update/order/${orderId}`,
             {
                 address_id: addressId
             }
         );
 
         if (response?.data?.status === true) {
+            setIsCheckoutUpdated(true);
             let updatedCheckout = response.data.data;
             console.log(updatedCheckout);
             let orderTotal = updatedCheckout.Amount;
@@ -145,12 +168,18 @@ const BasicDataProvider = ({ children }) => {
             }
             // select default 0th handle...
             if (updatedCheckout.ShippingHandle?.length > 0 && updatedCheckout.ShippingHandle[0] != undefined) {
-                setShippingCharges(parseInt(updatedCheckout.ShippingHandle[0]?.priceV2?.amount) * 100); 
-                setShippingHandle(updatedCheckout.ShippingHandle[0].handle);
+                setShippingCharges(parseInt(updatedCheckout.ShippingHandle[0]?.priceV2?.amount) * 100);
+                setSelectedShippingHandle(updatedCheckout.ShippingHandle[0].handle);
                 setTotal(orderTotal + (parseInt(updatedCheckout.ShippingHandle[0]?.priceV2?.amount) * 100));
             }
-
+            // if no handle 
+            if (updatedCheckout.ShippingHandle?.length == 0) {
+                setShippingCharges(0);
+                setSelectedShippingHandle("standard");
+            }
+            return true;
         }
+        return false;
     }
 
     const value = {
@@ -173,17 +202,35 @@ const BasicDataProvider = ({ children }) => {
         netbankingBanks, setNetbankingBanks,
         wallets, setWallets,
         favBanks, setFavBanks,
-        bankShortcuts,setBankShortcuts,
+        bankShortcuts, setBankShortcuts,
         installedApps, setInstalledApps,
         Vpas, setVpas,
-        UpdateOrder,
-        shippingHandles,setShippingHandles,
+        UpdateOrder, fetchAddressList,
+        shippingHandles, setShippingHandles,
         freeDelivery, setFreeDelivery,
-        shippingHandle, setShippingHandle,
-        codAvailablity, setCodAvailablity
+        selectedShippingHandle, setSelectedShippingHandle,
+        codAvailablity, setCodAvailablity,
+        shopLogo, setShopLogo,
+        shopName, setShopName,
+        shopId, setShopId,
+        isCheckoutCreated, setIsCheckoutCreated,
+        isCheckoutUpdated, setIsCheckoutUpdated,
+        showFullScreenLoader, setShowFullScreenLoader,
+        fetchingAddressList, setFetchingAddressList,
+        addressList, setAddressList
     }
     return (
         <BasicContext.Provider value={value}>
+            {
+                showFullScreenLoader ? (
+                    <div className='black-loader-bg'>
+                        <div class="loader-new paytring-animate">
+                            <img src={shopLogo} loading="lazy" alt="logo" class="paytring-logo-new" />
+                        </div>
+                    </div>
+                ) : null
+            }
+
             {children}
         </BasicContext.Provider>
     )

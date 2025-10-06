@@ -1,18 +1,26 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./LoginComponent.scss";
 import { AppContext } from "../../Contexts/AppProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import { GetDialCode } from "../../Data/Countries";
 import { ValidatePhone } from "../../Helper/Helper";
 import Api from "../../Helper/Api";
+import { GetToken } from "../../Helper/Storage";
+import { Button, Message, toaster, useToaster } from 'rsuite';
 
 const LoginComponent = () => {
     const { setActiveSection, phoneNumber, setPhoneNumber, otpService, setOtpService, countryCode, setCountryCode } = useContext(AppContext);
-    
+
     const [mobileErrorTracker, setMobileErrorTracker] = useState(false);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const { orderId, shopId } = useParams();
+
+    useEffect(() => {
+        if (GetToken()) {
+            navigate(`/${shopId}/${orderId}/checkout`)
+        }
+    })
 
     const HandleLogin = async () => {
         if (otpService == 1) {
@@ -39,12 +47,39 @@ const LoginComponent = () => {
         let response = await Api.post(shopId + "/phone/otp/send", data)
         let responseData = response?.data;
         if (responseData?.status) {
-            // alert for otp sent successfully
+            toaster.push(
+                <Message showIcon type="success" closable>
+                    OTP sent successfully!
+                </Message>,
+                { placement: 'topCenter', duration: 3000 }
+            );
             setLoading(false);
             navigate("../verification");
 
         } else {
-            // alert for otp sending failure
+            if (responseData?.error?.data?.LimitExceed) {
+                toaster.push(
+                    <Message showIcon type="error" closable>
+                        You have requested an OTP multiple times for this number. Now OTP requests are temporarily disabled for your number.
+                    </Message>,
+                    { placement: 'topCenter', duration: 3000 }
+                );
+            } else if (responseData?.error?.code == "C100") {
+                toaster.push(
+                    <Message showIcon type="error" closable>
+                        Invalid captcha!
+                    </Message>,
+                    { placement: 'topCenter', duration: 3000 }
+                );
+            } else {
+                toaster.push(
+                    <Message showIcon type="error" closable>
+                        Failed to send OTP on this Mobile number.
+                    </Message>,
+                    { placement: 'topCenter', duration: 3000 }
+                );
+            }
+
             setLoading(false);
         }
 

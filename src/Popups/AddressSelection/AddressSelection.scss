@@ -166,4 +166,16 @@
         }
 
     }
+
+    .gap{
+        height: 18px;
+        width: 100%;
+        opacity: 0;
+    }
+    .loadingEffect {
+        width: 90%;
+        height: 3rem;
+        margin: 6px auto;
+        border-radius: 4px;
+    }
 }

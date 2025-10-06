@@ -3,11 +3,12 @@ import "./CouponList.scss";
 import { AppContext } from "../../Contexts/AppProvider";
 import PopupHeader from "../../Components/PopupHeader/PopupHeader";
 import Constants from "../../Data/Constants";
-import { closePopup, openPopup } from "../../Helper/Helper";
+import { amountInPaisa, closePopup, openPopup, PrintCurrency } from "../../Helper/Helper";
+import { BasicContext } from "../../Contexts/BasicDataProvider";
 
 const CouponList = () => {
     const { couponListRef } = useContext(AppContext);
-
+    const { total, currency } = useContext(BasicContext);
 
 
     return (
@@ -18,7 +19,7 @@ const CouponList = () => {
                     <div className="total">
                         <span className="quicksand">Grand Total</span>
                         <span className="quicksand bold">
-                            {Constants.INR} 212.05
+                            { PrintCurrency(currency) } { amountInPaisa(total) }
                         </span>
                     </div>
 

@@ -10,11 +10,6 @@ const OrderSummary2 = () => {
     const { } = useContext(AppContext);
     const { items, total, subtotal, discountCode, discountAmount, shippingCharges, taxTotal, taxType, currency, shippingAmount, shippingHandle } = useContext(BasicContext);
 
-    useEffect(() => {
-        console.log("items::", items);
-
-    })
-
     if (!items || items?.length == 0) {
         return (
             <div className='skeleton ordersummary_skeleton'>

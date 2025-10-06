@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { GetDialCode } from "../../Data/Countries";
 import Api from "../../Helper/Api";
 import { SetToken } from "../../Helper/Storage";
+import { Button, Message, toaster, useToaster } from 'rsuite';
 
 const VerificationComponent = () => {
     const { setActiveSection, phoneNumber, countryCode } = useContext(AppContext);
@@ -13,14 +14,14 @@ const VerificationComponent = () => {
     const navigate = useNavigate();
     const { orderId, shopId } = useParams();
 
-    const handleVerifyOtp = async () => {
-        if (otpValue?.length != 4) {
+    const handleVerifyOtp = async (givenOtp = "") => {
+        if (givenOtp?.length != 4) {
             // otp incomplete
             return;
         }
         let data = {
             "order_id": orderId,
-            "otp": parseInt(otpValue),
+            "otp": parseInt(givenOtp),
             "phone": phoneNumber
         }
         setLoading(true);
@@ -29,13 +30,37 @@ const VerificationComponent = () => {
         setOtpValue("");
         setLoading(false);
         if (responseData?.status && responseData?.data) {
-            // alert 
+            toaster.push(
+                <Message showIcon type="success" closable>
+                    Verification complete!
+                </Message>,
+                { placement: 'topCenter', duration: 3000 }
+            );
             SetToken(responseData.data);
             navigate(`/${shopId}/${orderId}/checkout`);
-            console.log("logibn,...");
-            
         } else {
-            // alert 
+            if (responseData?.error?.data?.AttemptLeft > 0) {
+                toaster.push(
+                    <Message showIcon type="error" closable>
+                        Invalid OTP. You have {responseData?.error?.data?.AttemptLeft} attempt(s) remaining.
+                    </Message>,
+                    { placement: 'topCenter', duration: 3000 }
+                );
+            } else if (responseData?.error?.data?.AttemptLeft == 0) {
+                toaster.push(
+                    <Message showIcon type="error" closable>
+                        You have entered an incorrect OTP multiple times. This OTP has now expired.
+                    </Message>,
+                    { placement: 'topCenter', duration: 3000 }
+                );
+            } else {
+                toaster.push(
+                    <Message showIcon type="error" closable>
+                        Invalid OTP. Please try again.
+                    </Message>,
+                    { placement: 'topCenter', duration: 3000 }
+                );
+            }
         }
     };
 
@@ -46,16 +71,31 @@ const VerificationComponent = () => {
             </h6>
             <span className="info-text-1 quicksand">
                 4-digit OTP sent to your mobile number {GetDialCode(countryCode)}-{phoneNumber}&nbsp;&#183;&nbsp;
-                <span className="primary-link-btn quicksand" onClick={() => navigate("/login")}>Change?</span>
+                <span className="primary-link-btn quicksand" onClick={() => navigate(`/${shopId}/${orderId}/login`)}>Change?</span>
             </span>
             <div className="input-wraps quicksand">
-                <input type="password" value={otpValue} onChange={(e) => setOtpValue(e.target.value)} inputMode="numeric" className="quicksand" autoComplete="false" placeholder=" OTP" />
+                <input
+                    type="text"
+                    value={otpValue}
+                    onChange={(e) => {
+                        const val = e.target.value.replace(/\D/g, '').slice(0, 4);
+                        setOtpValue(val);
+                        if (val.length === 4) {
+                            handleVerifyOtp(val);
+                        }
+                    }}
+                    inputMode="numeric"
+                    className="quicksand"
+                    autoComplete="off"
+                    placeholder=" OTP"
+                    maxLength={4}
+                />
             </div>
             <button className="quicksand submit-btn" onClick={handleVerifyOtp}>
                 {
                     !loading ? (
                         "Verify OTP"
-                    ) : <span class="spinner"></span>
+                    ) : <span className="spinner"></span>
                 }
             </button>
         </div>

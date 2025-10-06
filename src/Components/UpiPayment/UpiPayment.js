@@ -2,13 +2,13 @@ import React, { useContext, useState } from 'react';
 import './UpiPayment.scss';
 import Constants from '../../Data/Constants';
 import { BasicContext } from '../../Contexts/BasicDataProvider';
-import { amountInPaisa, PrintCurrency } from '../../Helper/Helper';
+import { amountInPaisa, GetDeviceType, PrintCurrency } from '../../Helper/Helper';
 
 const UpiPayment = () => {
     const [isqrcode, setIsqrcode] = useState(false);
-    const { isUpiQR, currency, isUpiIntent, Vpas, isUpiCollect, total } = useContext(BasicContext);
+    const { isUpiQR, seamlessPaymentMethods, currency, isUpiIntent, userLatestAdderess, Vpas, isUpiCollect, total } = useContext(BasicContext);
 
-    if (true) {
+    if ((!seamlessPaymentMethods || seamlessPaymentMethods?.length == 0) || (!userLatestAdderess?.address_ref_id)) {
         return (
             <div className='UpiPayment_skeleton'>
                 <div className='intentContainer'>
@@ -17,7 +17,7 @@ const UpiPayment = () => {
                     <div className='skeleton intentSkeleton'></div>
                     <div className='skeleton intentSkeleton'></div>
                 </div>
-            
+
                 <div className='collectWrapper'>
                     <div className='skeleton collectInput'></div>
                     <div className='skeleton collectButton'></div>
@@ -40,8 +40,9 @@ const UpiPayment = () => {
                         {PrintCurrency(currency)} {amountInPaisa(total)}
                     </span>
                 </h6>
+
                 {
-                    !isqrcode ? (
+                    (GetDeviceType() == "android" || GetDeviceType() == "ios") && isUpiIntent ? (
                         <div className='icons'>
                             <div className="ico">
                                 <img src="https://pbs.twimg.com/profile_images/1615271089705463811/v-emhrqu_400x400.png" alt="phonepe" />
@@ -56,11 +57,22 @@ const UpiPayment = () => {
                                 <img src="https://img.icons8.com/color/512/bhim.png" alt="phonepe" />
                             </div>
                         </div>
-                    ) : (
-                        <div className='upi-qr-section'>
+                    ) : null
+                }
 
-                        </div>
-                    )
+                {
+                     (GetDeviceType() != "android" && GetDeviceType() != "ios") && isUpiQR  ? (
+                        <div className='upi-qr-section'>
+                            <div className='qr-code-wrap'>
+                                <img src='/assets/qr.png' ></img>
+                                <div className='clickToScanBtn'>
+                                    <button className='quicksand'>
+                                        Click to see QR Code
+                                    </button>
+                                </div>
+                            </div>
+                        </div >
+                    ) : null
                 }
                 {
                     isUpiCollect ? (
@@ -86,8 +98,8 @@ const UpiPayment = () => {
                 }
 
 
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 

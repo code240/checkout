@@ -110,3 +110,35 @@ export function ProductsParsing(products,rate, setProducts) {
     });
     setProducts(items);
 }
+
+export function GetDeviceType() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    // Check for Android
+    if (/android/i.test(userAgent)) {
+        return "android";
+    }
+
+    // Check for iOS (iPhone or iPad)
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return "ios";
+    }
+
+    // Check for Windows
+    if (/windows/i.test(userAgent)) {
+        return "windows";
+    }
+
+    // Check for MacOS
+    if (/Macintosh|MacIntel|MacPPC|Mac68K/.test(userAgent)) {
+        return "macos";
+    }
+
+    // Check for Linux
+    if (/linux/i.test(userAgent)) {
+        return "linux";
+    }
+
+    // Default to unknown
+    return "unknown";
+}

@@ -6,7 +6,7 @@ import { BasicContext } from '../../Contexts/BasicDataProvider';
 const ShippingMethod = () => {
 
     const { } = useContext(AppContext);
-    const { freeDelivery, shippingHandles, shippingCharges, setTotal, total, setShippingCharges, shippingHandle, setShippingHandle } = useContext(BasicContext);
+    const { freeDelivery, shippingHandles, shippingCharges, setTotal, total, setShippingCharges, selectedShippingHandle, setSelectedShippingHandle } = useContext(BasicContext);
 
 
     const changeShippingHandle = (amount, handle) => {
@@ -14,10 +14,10 @@ const ShippingMethod = () => {
         setShippingCharges(parseInt(amount) * 100);
         newTotal = newTotal + parseInt(amount) * 100;
         setTotal(newTotal);
-        setShippingHandle(handle);
+        setSelectedShippingHandle(handle);
     }
 
-    if (true) {
+    if (!selectedShippingHandle) {
         return (
             <div className='ShippingMethod_skelton'>
                 <div className='skeleton ShippingMethod_skelton1'></div>

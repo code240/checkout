@@ -9,7 +9,7 @@ import { BasicContext } from "../../Contexts/BasicDataProvider";
 
 const PaymentButtons = () => {
     const { addressSelectionPage, setActiveSection } = useContext(AppContext);
-    const { seamlessPaymentMethods, total, currency, codAvailablity } = useContext(BasicContext);
+    const { seamlessPaymentMethods, total, currency, codAvailablity, userLatestAdderess } = useContext(BasicContext);
     const { orderId, shopId } = useParams();
     const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const PaymentButtons = () => {
         }
     }
 
-    if (true) {
+    if ((!seamlessPaymentMethods || seamlessPaymentMethods?.length == 0) || (!userLatestAdderess?.address_ref_id)) {
         return (
 
             <div className="PaymentButtons_skeleton">

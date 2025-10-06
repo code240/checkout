@@ -15,16 +15,20 @@ import CouponList from "../../Popups/CouponList/CouponList";
 import OrderSummary2 from "../../Components/OrderSummary2/OrderSummary2";
 import { openPopup } from "../../Helper/Helper";
 import PaymentButtons from "../../Components/PaymentButtons/PaymentButtons";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import Api from "../../Helper/Api";
 import BackButton from "../../Popups/BackButton/BackButton";
 import { BasicContext } from "../../Contexts/BasicDataProvider";
+import { Button, Message, toaster, useToaster } from 'rsuite';
+import { GetToken } from "../../Helper/Storage";
+
 
 const AppLayout = (props) => {
     const { activeSection, paymentsPage } = useContext(AppContext);
-    const { setItems, setUserLatestAdderess, setInstalledApps, HandleInstalledApps, UpdateOrder, GetMethods, setDiscountCode, setDiscountAmount, setSubtotal, setTotal, setShippingCharges, setTaxTotal, setTaxType, setCurrency } = useContext(BasicContext);
+    const { setItems, setUserLatestAdderess, setShopLogo, setShopId, setIsCheckoutCreated, setShopName, setInstalledApps, HandleInstalledApps, UpdateOrder, GetMethods, setDiscountCode, setDiscountAmount, setSubtotal, setTotal, setShippingCharges, setTaxTotal, setTaxType, setCurrency } = useContext(BasicContext);
     const { orderId, shopId } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         GetCheckoutData()
@@ -32,12 +36,17 @@ const AppLayout = (props) => {
 
 
     const GetCheckoutData = async () => {
+        document.documentElement.style.setProperty(
+            "--quick-primary-color",
+            "#cccccc"
+        );
         const response = await Api.post(
             `${shopId}/api/checkout/get/${orderId}`
         );
 
         if (response?.data?.status === true) {
             let checkout = response.data;
+            setIsCheckoutCreated(true);
             setItems(checkout.data.items)
             setTotal(checkout.data.order.total)
             setTaxTotal(checkout.data.order.tax)
@@ -51,16 +60,32 @@ const AppLayout = (props) => {
             setInstalledApps(checkout.data?.apps);
             HandleInstalledApps(checkout.data?.apps ?? [], shopId, orderId);
             console.log(checkout.data.apps);
+            setShopId(checkout.data.shop.shop_id);
+            setShopLogo(checkout.data.shop.shop_logo);
+            setShopName(checkout.data.shop.shop_name);
+
+            document.documentElement.style.setProperty(
+                "--quick-primary-color",
+                checkout.data.colors.primary
+            );
+            document.documentElement.style.setProperty(
+                "--quick-primary-light-color",
+                checkout.data.colors.primary_light
+            );
+
+            
+            
             if (checkout.data?.userAddress?.address_ref_id) {
                 UpdateOrder(checkout.data.userAddress.address_ref_id, shopId, orderId);
+            } else {
+                if (GetToken()) {
+                    navigate(`/${shopId}/${orderId}/checkout/address`)
+                }
             }
         }
     }
 
-    document.documentElement.style.setProperty(
-        "--quick-primary-color",
-        "#c74919"
-    );
+
     document.documentElement.style.setProperty(
         "--quick-font-color-on-primary",
         "#ffffff"

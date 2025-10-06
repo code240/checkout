@@ -2,10 +2,12 @@ import React, { useContext } from 'react'
 import "./Header.scss";
 import { AppContext } from '../../Contexts/AppProvider';
 import { closePopup, openPopup } from '../../Helper/Helper';
+import { BasicContext } from '../../Contexts/BasicDataProvider';
 
 
 const Header = ({ props }) => {
     const { backButtonRef, setExitPopupClosed } = useContext(AppContext);
+    const { shopLogo, shopName } = useContext(BasicContext);
 
     const ShowExitPopup = () => {
         openPopup(backButtonRef);
@@ -13,7 +15,7 @@ const Header = ({ props }) => {
     }
 
 
-    if (true) {
+    if (!shopName) {
         return (
             <div className='Header_skeleton'>
                 <div className='skeleton backBtn'></div>
@@ -39,7 +41,7 @@ const Header = ({ props }) => {
                 }
             </h6>
             <div className='brand-logo'>
-                <img src='https://store.jiva.com/cdn/shop/files/Jiva-Ayurveda-TM-LOgo-new_large.png' alt='brand'></img>
+                <img src={shopLogo} alt={shopName}></img>
             </div>
             <div className='third-division'>
                 <span>

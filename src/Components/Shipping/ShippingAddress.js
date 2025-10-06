@@ -3,22 +3,30 @@ import "./ShippingAddress.scss";
 import { AppContext } from "../../Contexts/AppProvider";
 import { openPopup } from "../../Helper/Helper";
 import { BasicContext } from "../../Contexts/BasicDataProvider";
+import { useParams } from "react-router-dom";
 
 const ShippingAddress = () => {
     const { addressSelectionPage, setActiveSection, addressPopClosed, setAddressPopClosed } = useContext(AppContext);
-    const { userLatestAdderess } = useContext(BasicContext);
+    const { userLatestAdderess, fetchAddressList } = useContext(BasicContext);
+    const { shopId, orderId } = useParams();
 
-    if (true) {
+
+    const changeAddress = () =>  { 
+        openPopup(addressSelectionPage);
+        setAddressPopClosed(false); 
+        fetchAddressList(shopId, orderId)
+    }
+
+
+    if (!userLatestAdderess?.firstName && !userLatestAdderess.lastName) {
         return (
-            <div className='skeleton shippingAddress_skeleton'>
-
-            </div>
+            <div className='skeleton shippingAddress_skeleton'></div>
         )
     }
     return (
         <div className="ShippingAddress">
 
-            <div className="delivery-address">
+            <div className="delivery-address" onClick={() => changeAddress()}>
                 {/* <span className="check-absolute">
                     <i className="bi bi-check-lg"></i>
                 </span> */}
@@ -27,7 +35,7 @@ const ShippingAddress = () => {
                         <i className="bi bi-geo"></i>&nbsp;Deliver to&nbsp;
                     </span>
                     {userLatestAdderess?.firstName} {userLatestAdderess?.lastName}
-                    <button className="quicksand" onClick={() => { openPopup(addressSelectionPage); setAddressPopClosed(false); }}>Change</button>
+                    <button className="quicksand" onClick={() => changeAddress()}>Change</button>
                 </h2>
                 <h5 className="quicksand address text-truncate">
                     {userLatestAdderess.line1},
