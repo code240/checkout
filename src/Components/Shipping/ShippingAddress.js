@@ -12,6 +12,8 @@ const ShippingAddress = () => {
 
 
     const changeAddress = () =>  { 
+        console.log("click change address");
+        
         openPopup(addressSelectionPage);
         setAddressPopClosed(false); 
         fetchAddressList(shopId, orderId)
