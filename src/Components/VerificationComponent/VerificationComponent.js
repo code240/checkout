@@ -30,18 +30,19 @@ const VerificationComponent = () => {
         let response = await Api.post(shopId + "/phone/otp/verify", data);
         let responseData = response?.data;
         setOtpValue("");
-        setLoading(false);
         if (responseData?.status && responseData?.data) {
+            SetToken(responseData.data);
+            const navigationRoute = await FetchAddress(shopId, orderId)
             toaster.push(
                 <Message showIcon type="success" closable>
                     Verification complete!
                 </Message>,
                 { placement: 'topCenter', duration: 3000 }
             );
-            SetToken(responseData.data);
-            const navigationRoute = await FetchAddress(shopId, orderId)
+            setLoading(false);
             navigate(navigationRoute);
         } else {
+            setLoading(false);
             if (responseData?.error?.data?.AttemptLeft > 0) {
                 toaster.push(
                     <Message showIcon type="error" closable>
