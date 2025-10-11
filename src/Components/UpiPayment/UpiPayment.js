@@ -42,7 +42,7 @@ const UpiPayment = () => {
                 </h6>
 
                 {
-                    (GetDeviceType() == "android" || GetDeviceType() == "ios") && isUpiIntent ? (
+                    (GetDeviceType() == "android" || GetDeviceType() == "ios") && true ? (
                         <div className='icons'>
                             <div className="ico">
                                 <img src="https://pbs.twimg.com/profile_images/1615271089705463811/v-emhrqu_400x400.png" alt="phonepe" />

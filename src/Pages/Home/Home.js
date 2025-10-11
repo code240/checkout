@@ -15,7 +15,7 @@ import { BasicContext } from '../../Contexts/BasicDataProvider';
 const Home = () => {
     const navigate = useNavigate();
     const { orderId, shopId } = useParams();
-    const { isCheckoutCreated, userLatestAdderess } = useContext(BasicContext);
+    const { isCheckoutCreated, userLatestAdderess, FetchAddress } = useContext(BasicContext);
 
     useEffect(() => {
         if (!GetToken()) {

@@ -10,7 +10,7 @@ const OrderSummary = () => {
     const { } = useContext(AppContext);
     const { items, total, subtotal, discountCode, discountAmount, shippingCharges, taxTotal, taxType, currency, shippingHandle } = useContext(BasicContext);
 
-    if (!items || items?.length == 0) {
+    if (!items || items?.length == 0 || !total) {
         return (
             <div className='skeleton ordersummary_skeleton'>
 

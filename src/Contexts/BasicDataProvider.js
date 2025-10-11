@@ -182,6 +182,39 @@ const BasicDataProvider = ({ children }) => {
         return false;
     }
 
+    const FetchAddress = async (shopId, orderId) => {
+         const response = await Api.post(
+            `${shopId}/user/${orderId}/address/fetch`,
+          
+        );
+
+        if (response?.data?.status === true) {
+            let addresses = response.data.data;
+            console.log(addresses);
+            
+            if (addresses?.length > 0) {
+                let last = addresses[addresses?.length - 1];
+                
+                setUserLatestAdderess({
+                    "address_ref_id": last.id,
+                    "city": last.city,
+                    "country": last.country,
+                    "email": last.email,
+                    "firstName": last.first_name,
+                    "lastName": last.last_name,
+                    "line1": last.line1,
+                    "line2": last.line2,
+                    "phone": last.phone,
+                    "state": last.state,
+                    "zipcode": last.zipcode
+                });
+                UpdateOrder(last.id, shopId, orderId);
+                return `/${shopId}/${orderId}/checkout`
+            }
+            return `/${shopId}/${orderId}/checkout/address`
+        }
+    }
+
     const value = {
         order, setOrder,
         items, setItems,
@@ -217,7 +250,8 @@ const BasicDataProvider = ({ children }) => {
         isCheckoutUpdated, setIsCheckoutUpdated,
         showFullScreenLoader, setShowFullScreenLoader,
         fetchingAddressList, setFetchingAddressList,
-        addressList, setAddressList
+        addressList, setAddressList,
+        FetchAddress
     }
     return (
         <BasicContext.Provider value={value}>

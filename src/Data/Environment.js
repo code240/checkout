@@ -1,3 +1,4 @@
 export const APP_CONFIGS = {
-    AppBackendUrl: "http://localhost:8080/quick" ,
+    AppBackendUrl: "https://quick-staging.paytring.com/quick" ,
+    // AppBackendUrl: "http://localhost:8080/quick" ,
 };

@@ -6,9 +6,11 @@ import { GetDialCode } from "../../Data/Countries";
 import Api from "../../Helper/Api";
 import { SetToken } from "../../Helper/Storage";
 import { Button, Message, toaster, useToaster } from 'rsuite';
+import { BasicContext } from "../../Contexts/BasicDataProvider";
 
 const VerificationComponent = () => {
     const { setActiveSection, phoneNumber, countryCode } = useContext(AppContext);
+    const { FetchAddress } = useContext(BasicContext);
     const [loading, setLoading] = useState(false);
     const [otpValue, setOtpValue] = useState("");
     const navigate = useNavigate();
@@ -37,7 +39,8 @@ const VerificationComponent = () => {
                 { placement: 'topCenter', duration: 3000 }
             );
             SetToken(responseData.data);
-            navigate(`/${shopId}/${orderId}/checkout`);
+            const navigationRoute = await FetchAddress(shopId, orderId)
+            navigate(navigationRoute);
         } else {
             if (responseData?.error?.data?.AttemptLeft > 0) {
                 toaster.push(
