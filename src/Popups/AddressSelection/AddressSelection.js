@@ -19,6 +19,7 @@ const AddressSelection = () => {
 
     const AddNewAddress = () => {
         closePopup(addressSelectionPage);
+        console.log("this also click");
         navigate(`/${shopId}/${orderId}/checkout/address`)
     }
 
