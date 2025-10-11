@@ -28,7 +28,7 @@ const ShippingAddress = () => {
     return (
         <div className="ShippingAddress">
 
-            <div className="delivery-address" onClick={() => changeAddress()}>
+            <div className="delivery-address">
                 {/* <span className="check-absolute">
                     <i className="bi bi-check-lg"></i>
                 </span> */}
