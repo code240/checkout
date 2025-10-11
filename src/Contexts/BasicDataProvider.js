@@ -210,8 +210,9 @@ const BasicDataProvider = ({ children }) => {
                 });
                 UpdateOrder(last.id, shopId, orderId);
                 return `/${shopId}/${orderId}/checkout`
+            } else {
+                return `/${shopId}/${orderId}/checkout/address`
             }
-            return `/${shopId}/${orderId}/checkout/address`
         }
     }
 
