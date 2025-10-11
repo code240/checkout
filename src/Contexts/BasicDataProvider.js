@@ -126,6 +126,7 @@ const BasicDataProvider = ({ children }) => {
 
     const fetchAddressList = async (shopId, orderId) => {
         setFetchingAddressList(true);
+        console.log("call 2");
         const response = await Api.post(
             `${shopId}/user/${orderId}/address/fetch`
         );
@@ -183,6 +184,8 @@ const BasicDataProvider = ({ children }) => {
     }
 
     const FetchAddress = async (shopId, orderId) => {
+        console.log("call 1");
+        
          const response = await Api.post(
             `${shopId}/user/${orderId}/address/fetch`,
           
