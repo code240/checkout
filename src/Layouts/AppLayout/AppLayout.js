@@ -29,7 +29,7 @@ const AppLayout = (props) => {
     const { setItems, setUserLatestAdderess, setShopLogo, setShopId, setIsCheckoutCreated, setShopName, setInstalledApps, HandleInstalledApps, UpdateOrder, GetMethods, setDiscountCode, setDiscountAmount, setSubtotal, setTotal, setShippingCharges, setTaxTotal, setTaxType, setCurrency } = useContext(BasicContext);
     const { orderId, shopId } = useParams();
     const navigate = useNavigate();
-    const { pathname } = useLocation();
+    const { pathname} = useLocation();
 
     useEffect(() => {
         GetCheckoutData()
@@ -37,7 +37,7 @@ const AppLayout = (props) => {
 
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        window.scrollTo({ top: 0, behavior: "auto" });
     }, [pathname]);
 
 
