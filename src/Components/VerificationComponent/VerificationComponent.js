@@ -40,7 +40,7 @@ const VerificationComponent = () => {
                 { placement: 'topCenter', duration: 3000 }
             );
             setLoading(false);
-            navigate(navigationRoute);
+            navigate(navigationRoute, { replace: true });
         } else {
             setLoading(false);
             if (responseData?.error?.data?.AttemptLeft > 0) {

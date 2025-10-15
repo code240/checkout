@@ -11,11 +11,13 @@ import Api from '../../Helper/Api';
 import { useNavigate, useParams } from 'react-router-dom';
 import { GetToken } from '../../Helper/Storage';
 import { BasicContext } from '../../Contexts/BasicDataProvider';
+import { openPopup } from '../../Helper/Helper';
 
 const Home = () => {
     const navigate = useNavigate();
     const { orderId, shopId } = useParams();
     const { isCheckoutCreated, userLatestAdderess } = useContext(BasicContext);
+    const { backButtonRef, setExitPopupClosed } = useContext(AppContext);
 
     useEffect(() => {
         if (!GetToken()) {
@@ -24,7 +26,22 @@ const Home = () => {
         if (isCheckoutCreated && !userLatestAdderess?.address_ref_id) {
             navigate(`/${shopId}/${orderId}/checkout/address`);
         }
-    },[])
+    }, [])
+
+    useEffect(() => {
+        const handlePopState = (event) => {
+            event.preventDefault();
+            console.log("Back pressed!");
+            openPopup(backButtonRef);
+            setExitPopupClosed(false);
+        };
+
+        window.addEventListener("popstate", handlePopState);
+
+        return () => {
+            window.removeEventListener("popstate", handlePopState);
+        };
+    }, [navigate]);
 
     return (
         <div className='Home'>
