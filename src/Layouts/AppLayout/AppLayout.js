@@ -15,7 +15,7 @@ import CouponList from "../../Popups/CouponList/CouponList";
 import OrderSummary2 from "../../Components/OrderSummary2/OrderSummary2";
 import { openPopup } from "../../Helper/Helper";
 import PaymentButtons from "../../Components/PaymentButtons/PaymentButtons";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import Api from "../../Helper/Api";
 import BackButton from "../../Popups/BackButton/BackButton";
@@ -29,10 +29,17 @@ const AppLayout = (props) => {
     const { setItems, setUserLatestAdderess, setShopLogo, setShopId, setIsCheckoutCreated, setShopName, setInstalledApps, HandleInstalledApps, UpdateOrder, GetMethods, setDiscountCode, setDiscountAmount, setSubtotal, setTotal, setShippingCharges, setTaxTotal, setTaxType, setCurrency } = useContext(BasicContext);
     const { orderId, shopId } = useParams();
     const navigate = useNavigate();
+    const { pathname } = useLocation();
 
     useEffect(() => {
         GetCheckoutData()
     }, [])
+
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
 
 
     const GetCheckoutData = async () => {

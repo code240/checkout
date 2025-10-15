@@ -10,12 +10,6 @@ import { useLocation } from "react-router-dom";
 const NetbankingPage = () => {
     const { setActiveSection } = useContext(AppContext);
 
-    const { pathname } = useLocation();
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [pathname]);
-
     return (
         <div className="NetbankingPage">
 
