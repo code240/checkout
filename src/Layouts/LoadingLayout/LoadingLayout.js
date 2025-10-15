@@ -48,7 +48,7 @@ const LoadingLayout = () => {
             console.log(response.data.data.items);
             setItems(response.data.data.items);
 
-            navigate("/"+ shopId +"/"+orderId+ "/checkout", { replace: true })
+            navigate("/"+ shopId +"/"+orderId+ "/checkout")
         } else {
             navigate("/error")
         }

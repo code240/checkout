@@ -27,13 +27,18 @@ const Home = () => {
             navigate(`/${shopId}/${orderId}/checkout/address`);
         }
     }, [])
+    const handlePopState = (event) => {
+    };
 
     useEffect(() => {
+        window.history.pushState(null, "", window.location.href);
+
         const handlePopState = (event) => {
             event.preventDefault();
-            console.log("Back pressed!");
+            console.log("Back button pressed in iframe!");
             openPopup(backButtonRef);
             setExitPopupClosed(false);
+            window.history.pushState(null, "", window.location.href);
         };
 
         window.addEventListener("popstate", handlePopState);
@@ -41,7 +46,7 @@ const Home = () => {
         return () => {
             window.removeEventListener("popstate", handlePopState);
         };
-    }, [navigate]);
+    }, []);
 
     return (
         <div className='Home'>
