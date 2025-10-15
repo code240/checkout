@@ -47,7 +47,7 @@ const BackButton = () => {
 
     const Exit = () => {
         window.parent.postMessage({
-            eventName: "CLOSE_IFRAME_COMMAND",
+            eventName: "HARD_CLOSE_IFRAME_COMMAND",
             data: true,
         }, "*");
     }

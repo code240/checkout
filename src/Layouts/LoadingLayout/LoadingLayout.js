@@ -13,7 +13,7 @@ const LoadingLayout = () => {
     const [currentLoadingText, setCurrentLoadingText] = useState(0);
     const navigate = useNavigate();
     const location = useLocation();
-    const [receivedShopId, setReceivedShopId] = useState("");
+    const [receivedShopId, setReceivedShopId] = useState("empty");
 
     useEffect(() => {
         const interval = setInterval(() => {
