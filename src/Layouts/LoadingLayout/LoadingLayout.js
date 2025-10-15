@@ -13,6 +13,7 @@ const LoadingLayout = () => {
     const [currentLoadingText, setCurrentLoadingText] = useState(0);
     const navigate = useNavigate();
     const location = useLocation();
+    const [receivedShopId, setReceivedShopId] = useState("");
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -33,6 +34,7 @@ const LoadingLayout = () => {
         const data = Object.fromEntries(params.entries());
         let shopId = (data?.shop)?.replaceAll(".myshopify.com", ""); 
         console.log(queryString);
+        setReceivedShopId(shopId);
         
         const response = await Api.get(
             `${shopId}/api/checkout/redirect${queryString}`
@@ -57,7 +59,7 @@ const LoadingLayout = () => {
         <div className="LoadingLayout">
             <header className="header">
                 <div className='brand-logo'>
-                    <img src='https://store.jiva.com/cdn/shop/files/Jiva-Ayurveda-TM-LOgo-new_large.png' alt='brand'></img>
+                    <img src={`https://cdn.paytring.com/logo/quick/${receivedShopId}.png`} alt='brand'></img>
                 </div>
             </header>
             <div className="loader-with-text">

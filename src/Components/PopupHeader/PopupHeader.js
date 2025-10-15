@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./PopupHeader.scss";
 import { closePopup } from '../../Helper/Helper';
+import { BasicContext } from '../../Contexts/BasicDataProvider';
 const PopupHeader = (props) => {
+    const { shopLogo, shopName } = useContext(BasicContext);
 
     return (
         <div className='PopupHeader'>
@@ -15,7 +17,7 @@ const PopupHeader = (props) => {
                         <div className='slider-line'></div>
                     ) :  (
                         <div className='brand-logo'>
-                            <img src='https://store.jiva.com/cdn/shop/files/Jiva-Ayurveda-TM-LOgo-new_large.png' alt='brand'></img>
+                            <img  src={shopLogo} alt={shopName}></img>
                         </div>
                     )
                 }
