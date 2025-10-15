@@ -45,7 +45,16 @@ const BackButton = () => {
         { axis: "y" }
     );
 
+    const Exit = () => {
+        window.parent.postMessage({
+            eventName: "CLOSE_IFRAME_COMMAND",
+            data: true,
+        }, "*");
+    }
 
+    const DoNotExit = () => {
+        closePopup && closePopup(backButtonRef);
+    }
 
     return (
         <animated.div className="BackButton" ref={backButtonRef} style={{ transform: y.to((val) => `translateY(${val}px)`) }}>
@@ -60,11 +69,11 @@ const BackButton = () => {
                     Are you sure you want to exit?
                 </h6>
                 <textarea className="feedback" placeholder="Share feedback..."></textarea>
-                <button className="yes-btn">
-                    Yes, exit checkout 
+                <button className="yes-btn" onClick={() => Exit()}>
+                    Yes, exit checkout
                 </button>
-                <button className="no-btn">
-                    No, continue to checkout 
+                <button className="no-btn" onClick={() => DoNotExit()}>
+                    No, continue to checkout
                 </button>
 
             </animated.div>
